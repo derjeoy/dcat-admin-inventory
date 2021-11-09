@@ -34,7 +34,7 @@ class FirstSheetImport implements ToCollection, WithBatchInserts, WithChunkReadi
     {
         // 断数据是否
         $products = Product::where('irobot_sku', '=', $row['irobot_sku'])->first();
-        dd($products);
+        //dd($products);
         if ($products) {
             // 存在返回 null
             return null;
