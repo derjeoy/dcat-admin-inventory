@@ -32,3 +32,49 @@ php artisan admin:install
 
 
 
+## 亚马逊反爬
+https://www.sohu.com/a/285133490_759197
+
+## Laravel 表单
+https://blog.csdn.net/hualaoshuan/article/details/98481204?ops_request_misc=&request_id=&biz_id=&utm_medium=distribute.pc_search_result.none-task-blog-2~all~es_rank~default-20-98481204.pc_search_all_es&utm_term=laravel&spm=1018.2226.3001.4187
+
+## Laravel8开荒~正确安装前端Bootstrap CSS库
+https://learnku.com/articles/49892
+
+## python3爬虫实战之selenium爬取亚马逊商品  - 改邮编
+https://blog.csdn.net/weixin_39020133/article/details/105966388
+
+
+## PHP调用Python和PHP向Python发送数据
+https://blog.csdn.net/qq_37035946/article/details/91492379
+
+
+
+## 基于 Laravel 构建的适用于小公司和自由职业者的免费在线财务会计系统 —— Akaunting
+https://laravelacademy.org/post/9483.html
+
+
+## 基于 Laravel 构建的免费、开源 CRM 平台 —— Flarepoint
+https://laravelacademy.org/post/5305.html
+
+## laravel-admin / Dcat admin 上传Excel并导入数据到数据库
+https://blog.csdn.net/qq_42468039/article/details/108277599
+
+## Laragon工具
+git config --global http.sslVerify "false"
+Github
+derjoey2010@163.com
+302019csf
+githun token:githun123  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
+
+
+## 遇到问题
+1.不能RUI访问本地图片或文件
+执行命令：php artisan storage:link
+命令执行完毕后，就会在项目里多出一个 public/storage，
+这个 storage 就是一个软链接，它指向 storage/app/public 目录。
+public/storage（软连接） → storage/app/public
+然后就可以用地址直接访问public里面的照片了
+
+
+
