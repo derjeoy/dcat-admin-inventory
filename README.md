@@ -67,14 +67,38 @@ derjoey2010@163.com
 302019csf
 githun token:githun123  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
 
+php artisan key:generate
+
+php -S 127.0.0.1:8000 -t ./ -f serve.php
+
+php artisan sample-data:seed
+
+php artisan install --db-host=localhost --db-name=akaunting --db-username=root --db-password= --company-name=Stephen
+
+php artisan migrate
+
+详情看
+vendor
+------dcat
+----------laravel-admin
+------------------------redame.md
+
+
+
 
 ## 遇到问题
+、、、
 1.不能RUI访问本地图片或文件
 执行命令：php artisan storage:link
 命令执行完毕后，就会在项目里多出一个 public/storage，
 这个 storage 就是一个软链接，它指向 storage/app/public 目录。
 public/storage（软连接） → storage/app/public
 然后就可以用地址直接访问public里面的照片了
-
+、、、
+2.php artisan admin:install执行这一步命令可能会报以下错误 Specified key was too long ... 767 bytes，如果出现这个报错。
+请在 app/Providers/AppServiceProvider.php 文件的 boot方法中加上代码 
+\Schema::defaultStringLength(191);，
+然后删除掉数据库中的所有数据表，再重新运行一遍 php artisan admin:install 命令即可。
+、、、
 
 
