@@ -8,7 +8,27 @@ return [
         'uri'       => 'layout',
         'parent_id' => 0,
     ],
-
+    [
+        'id'        => 'products',
+        'title'     => '产品管理',
+        'icon'      => 'fa-cubes',
+        'uri'       => '',
+        'parent_id' => 0,
+    ],
+    [
+        'id'        => 'productslist',
+        'title'     => '产品库',
+        'icon'      => 'fa-cubes',
+        'uri'       => 'products',
+        'parent_id' => 'products',
+    ],
+    [
+        'id'        => 'listings',
+        'title'     => '销售链接',
+        'icon'      => 'fa-cubes',
+        'uri'       => 'listings',
+        'parent_id' => 'products',
+    ],
     /////////////////////////////////////////////////////
     [
         'id'        => 'tables',

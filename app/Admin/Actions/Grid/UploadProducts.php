@@ -27,7 +27,7 @@ class UploadProducts extends AbstractTool
 
         return <<<HTML
         <span class="grid-expand" data-toggle="modal" data-target="#{$id}">
-           <a href="javascript:void(0)"><button class="btn btn-outline-info ">上传Excel并导入数据</button></a>
+           <a href="javascript:void(0)"><button class="btn btn-success  ">上传Excel并导入数据</button></a>
         </span>
         HTML;
     }

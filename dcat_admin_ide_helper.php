@@ -11,6 +11,7 @@ namespace Dcat\Admin {
     use Illuminate\Support\Collection;
 
     /**
+     * @property Grid\Column|Collection image
      * @property Grid\Column|Collection id
      * @property Grid\Column|Collection name
      * @property Grid\Column|Collection norms
@@ -57,8 +58,16 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection upc
      * @property Grid\Column|Collection irobot_sku
      * @property Grid\Column|Collection addbyuser
+     * @property Grid\Column|Collection image_column
+     * @property Grid\Column|Collection amz_account
+     * @property Grid\Column|Collection country
+     * @property Grid\Column|Collection amz_sku
+     * @property Grid\Column|Collection fnsku
+     * @property Grid\Column|Collection local_name
+     * @property Grid\Column|Collection saler
      * @property Grid\Column|Collection email_verified_at
      *
+     * @method Grid\Column|Collection image(string $label = null)
      * @method Grid\Column|Collection id(string $label = null)
      * @method Grid\Column|Collection name(string $label = null)
      * @method Grid\Column|Collection norms(string $label = null)
@@ -105,6 +114,13 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection upc(string $label = null)
      * @method Grid\Column|Collection irobot_sku(string $label = null)
      * @method Grid\Column|Collection addbyuser(string $label = null)
+     * @method Grid\Column|Collection image_column(string $label = null)
+     * @method Grid\Column|Collection amz_account(string $label = null)
+     * @method Grid\Column|Collection country(string $label = null)
+     * @method Grid\Column|Collection amz_sku(string $label = null)
+     * @method Grid\Column|Collection fnsku(string $label = null)
+     * @method Grid\Column|Collection local_name(string $label = null)
+     * @method Grid\Column|Collection saler(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
      */
     class Grid {}
@@ -112,6 +128,7 @@ namespace Dcat\Admin {
     class MiniGrid extends Grid {}
 
     /**
+     * @property Show\Field|Collection image
      * @property Show\Field|Collection id
      * @property Show\Field|Collection name
      * @property Show\Field|Collection norms
@@ -158,8 +175,16 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection upc
      * @property Show\Field|Collection irobot_sku
      * @property Show\Field|Collection addbyuser
+     * @property Show\Field|Collection image_column
+     * @property Show\Field|Collection amz_account
+     * @property Show\Field|Collection country
+     * @property Show\Field|Collection amz_sku
+     * @property Show\Field|Collection fnsku
+     * @property Show\Field|Collection local_name
+     * @property Show\Field|Collection saler
      * @property Show\Field|Collection email_verified_at
      *
+     * @method Show\Field|Collection image(string $label = null)
      * @method Show\Field|Collection id(string $label = null)
      * @method Show\Field|Collection name(string $label = null)
      * @method Show\Field|Collection norms(string $label = null)
@@ -206,6 +231,13 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection upc(string $label = null)
      * @method Show\Field|Collection irobot_sku(string $label = null)
      * @method Show\Field|Collection addbyuser(string $label = null)
+     * @method Show\Field|Collection image_column(string $label = null)
+     * @method Show\Field|Collection amz_account(string $label = null)
+     * @method Show\Field|Collection country(string $label = null)
+     * @method Show\Field|Collection amz_sku(string $label = null)
+     * @method Show\Field|Collection fnsku(string $label = null)
+     * @method Show\Field|Collection local_name(string $label = null)
+     * @method Show\Field|Collection saler(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
      */
     class Show {}

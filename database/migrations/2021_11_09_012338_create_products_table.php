@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('upc')->nullable();
             $table->string('irobot_sku')->default('');
             $table->string('addbyuser')->default('')->comment('添加产品用户');
+            $table->string('image_colunb')->default('');
             $table->timestamps();
         });
     }
