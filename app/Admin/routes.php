@@ -14,6 +14,10 @@ Route::group([
 
     $router->resource('products', 'ProductController');
     $router->resource('listings', 'TableListingController');
+    $router->get('productsummary', 'HomeController@index');
+    $router->get('listingsummary', 'Summary\ListingSummaryController@create');
+    $router->resource('shipments', 'InventoryOutController');
+    $router->resource('purchaseinventory', 'InventoryPurchaseController');
 
     $router->get('/', 'HomeController@index');
 

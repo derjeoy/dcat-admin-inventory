@@ -8,6 +8,7 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Widgets\Table;
+use App\Admin\Renderable\ListingTable;
 
 class TableListingController extends AdminController
 {
@@ -48,14 +49,7 @@ class TableListingController extends AdminController
             // });;
 
             $grid->column('irobot_sku')
-                ->display("关联销售链接")
-                ->expand(function () {
-                    $table = new Table();
-
-                    return "<div style='padding:10px 10px 0;color:blue;'>$table</div>";
-                });
-
-
+                ->display('产品详情')->modal('产品详情', ListingTable::make());
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');

@@ -33,7 +33,7 @@ return [
         'id'        => 'productsummary',
         'title'     => '产品详情',
         'icon'      => 'fa-cubes',
-        'uri'       => 'fa-sellsy',
+        'uri'       => 'productsummary',
         'parent_id' => 'products',
     ],
     [
