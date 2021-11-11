@@ -17,17 +17,42 @@ class ListingSummaryController
             ->body($this->form());
     }
 
+    protected $options = [
+            1 => '显示文本框',
+            2 => '显示编辑器',
+            3 => '显示文件上传',
+            4 => '还是显示文本框',
+            ];
+
     protected function form()
     {
         $listing_id = 1;
         //dd(TableListing::find($listing_id));
+        $listings = TableListing::get();
+        foreach($listings as $v){
+            $options[] = $v->asin;
+        }
+        
         return Form::make(new TableListing(), function (Form $form) {
 
             $form->block(8, function (Form\BlockForm $form) {
+                
                 // 设置标题
                 $form->title('产品基本信息');
                 // 设置字段宽度
                 $form->width(6, 4);
+
+                $form->column(4, function (Form\BlockForm $form) {
+                    $form->select('Listing列表')->options(function ($id) {
+                        $listing = TableListing::find($id);
+
+                        if ($listing) {
+                            return [$listing->asin => $listing->asin];
+                        }
+                    });//->ajax('api/listing');
+                });
+                
+                    
 
                 $form->column(4, function (Form\BlockForm $form) {
                     $form->image('');
