@@ -6,7 +6,7 @@ use App\Admin\Repositories\NullRepository;
 use Dcat\Admin\Form;
 use Dcat\Admin\Layout\Content;
 use App\Models\TableListing;
-
+use App\Models\Product;
 class ListingSummaryController
 {
     public function create(Content $content)
@@ -26,33 +26,29 @@ class ListingSummaryController
 
     protected function form()
     {
-        $listing_id = 1;
-        //dd(TableListing::find($listing_id));
-        $listings = TableListing::get();
-        foreach($listings as $v){
-            $options[] = $v->asin;
-        }
-        
+
         return Form::make(new TableListing(), function (Form $form) {
 
             $form->block(8, function (Form\BlockForm $form) {
                 
+                $irobot_id = 1;
+                //dd(TableListing::find($listing_id));
+                $listings = TableListing::get();
+
+
                 // 设置标题
                 $form->title('产品基本信息');
                 // 设置字段宽度
                 $form->width(6, 4);
 
-                $form->column(4, function (Form\BlockForm $form) {
-                    $form->select('Listing列表')->options(function ($id) {
-                        $listing = TableListing::find($id);
-
-                        if ($listing) {
-                            return [$listing->asin => $listing->asin];
-                        }
-                    });//->ajax('api/listing');
+                $form->column(4, function (Form\BlockForm $form) use($listings){
+                    foreach($listings as $v){
+                        $options[] = $v->asin;
+                    }
+                    $form->select('Listing列表')->options($options);
                 });
                 
-                    
+                $products = Product::get()->where('irobot_id','=','');
 
                 $form->column(4, function (Form\BlockForm $form) {
                     $form->image('');
