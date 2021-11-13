@@ -9,6 +9,7 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Widgets\Table;
 use App\Admin\Renderable\ListingTable;
+use App\Models\Product;
 
 class TableListingController extends AdminController
 {
@@ -62,6 +63,10 @@ class TableListingController extends AdminController
 
             $grid->showQuickEditButton();
 
+            //$grid->disableActions();
+            
+            //$grid->disableRowSelector();
+
         });
     }
 
@@ -98,19 +103,38 @@ class TableListingController extends AdminController
     protected function form()
     {
         return Form::make(new TableListing(), function (Form $form) {
-            $form->display('id');
-            $form->text('amz_account');
-            $form->text('country');
-            $form->text('amz_sku');
-            $form->text('asin');
-            $form->text('fnsku');
-            $form->text('local_name');
-            $form->text('upc');
-            $form->text('irobot_sku');
-            $form->text('saler');
-        
-            $form->display('created_at');
-            $form->display('updated_at');
+            $this->setForm($form);
+            if ($form->isCreating()) {
+                $this->creating($form);
+            } 
+            // elseif ($form->isEditing()) {
+            //     $this->editing($form);
+            // }
+        });
+    }
+
+
+    protected function setForm(Form &$form): void
+    {
+        $form->display('id');
+        $form->text('amz_account');
+        $form->text('country');
+        $form->text('amz_sku');
+        $form->text('asin');
+        $form->text('fnsku');
+        $form->text('local_name');
+        $form->text('upc');
+        $form->text('irobot_sku');
+        $form->text('saler');
+    }
+
+    protected function creating(Form &$form): void
+    {
+        $form->row(function (Form\Row $row) {
+            $row->hasMany('items', '', function (Form\NestedForm $table) {
+                $table->select('product_id', '名称')->options(Product::pluck('name_chinese', 'irobot_sku'))->loadpku(route('api.product.find'))->required();
+                $table->ipt('name', '名称')->rem(3)->default('-')->disable();
+            })->useTable()->width(12);
         });
     }
 }
