@@ -96,3 +96,10 @@ HTML
     // 下拉面板
     $navbar->right(view('admin.navbar-1'));
 });
+
+\App\Admin\Extensions\Form\Select::macro();
+
+
+Dcat\Admin\Form::extend('ipt', \App\Admin\Extensions\Form\Input::class);
+
+

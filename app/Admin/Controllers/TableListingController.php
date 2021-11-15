@@ -132,7 +132,7 @@ class TableListingController extends AdminController
     {
         $form->row(function (Form\Row $row) {
             $row->hasMany('items', '', function (Form\NestedForm $table) {
-                $table->select('product_id', '名称')->options(Product::pluck('name_chinese', 'irobot_sku'))->loadpku(route('api.product.find'))->required();
+                $table->select('product_id', '名称')->options(Product::pluck('name_chinese', 'irobot_sku'))->loadpku(route('dcat.admin.api.product.find'))->required();
                 $table->ipt('name', '名称')->rem(3)->default('-')->disable();
             })->useTable()->width(12);
         });
