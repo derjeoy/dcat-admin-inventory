@@ -97,9 +97,43 @@ HTML
     $navbar->right(view('admin.navbar-1'));
 });
 
+
+//过滤初始化
+Filter::resolving(function (Filter $filter) {
+    $filter->panel();
+    $filter->expand();
+});
+
+//表格全局初始化
+Grid::resolving(function (Grid $grid) {
+    $grid->setActionClass(\Dcat\Admin\Grid\Displayers\Actions::class);
+    $grid->model()->orderBy("id", "desc");
+    $grid->disableViewButton();
+    $grid->showQuickEditButton();
+    $grid->enableDialogCreate();
+    $grid->disableBatchDelete();
+    $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
+        $actions->disableView();
+        $actions->disableDelete();
+        $actions->disableEdit();
+    });
+    $grid->option("dialog_form_area", ["70%", "80%"]);
+});
+
+
+
+
+
+
+
+
+
+
+
 \App\Admin\Extensions\Form\Select::macro();
 
 
 Dcat\Admin\Form::extend('ipt', \App\Admin\Extensions\Form\Input::class);
 
 
+app('view')->prependNamespace('admin', resource_path('views/vendor/laravel-admin'));

@@ -9,7 +9,7 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Widgets\Table;
 use App\Admin\Renderable\ListingTable;
-use App\Models\Product;
+use App\Models\ProductModel;
 
 class TableListingController extends AdminController
 {
@@ -132,9 +132,12 @@ class TableListingController extends AdminController
     {
         $form->row(function (Form\Row $row) {
             $row->hasMany('items', '', function (Form\NestedForm $table) {
-                $table->select('product_id', '名称')->options(Product::pluck('name_chinese', 'irobot_sku'))->loadpku(route('dcat.admin.api.product.find'))->required();
-                $table->ipt('name', '名称')->rem(3)->default('-')->disable();
+                //pluck(value, key) : 返回指定value,key的值组成的集合
+                $table->select('selected_product_id', '名称')->options(ProductModel::pluck('name_chinese', 'id'))->loadpku(route('dcat.admin.api.product.find'))->required();
+                $table->ipt('asin', 'asin')->rem(6)->default('-')->disable();
             })->useTable()->width(12);
+
+
         });
     }
 }

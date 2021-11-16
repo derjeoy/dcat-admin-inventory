@@ -16,7 +16,7 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
-use App\Admin\Repositories\Product;
+use App\Repositories\Product;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller

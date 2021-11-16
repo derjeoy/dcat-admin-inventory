@@ -29,20 +29,16 @@ class Select
         // 加载pku动态选择
         Form\Field\Select::macro('loadpku', function ($sourceUrl) {
             $sourceUrl  = admin_url($sourceUrl);
-            $unitClass  = static::FIELD_CLASS_PREFIX . 'unit';
+            $asin  = static::FIELD_CLASS_PREFIX . 'asin';
 
             $script = <<<JS
 $(document).off('change', "{$this->getElementClassSelector()}");
 $(document).on('change', "{$this->getElementClassSelector()}", function () {
-     var unit = $(this).closest('.fields-group').find(".$unitClass");
-  
-
-    if (String(this.value) !== '0' && ! this.value) {
-        return;
-    }
-    
+     var asin = $(this).closest('.fields-group').find(".$asin");
+    console.log(asin);
+    console.log(this.value);
     $.ajax("$sourceUrl?q="+this.value).then(function (data) {
-        unit.val(data.data.unit);
+        asin.val(data.data.asin);
     });
 });
 $("{$this->getElementClassSelector()}").trigger('change');
