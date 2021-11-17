@@ -108,11 +108,11 @@ class ProductController extends AdminController
 
             
 
-            // $form->image('image_column')->name(function ($file) use ($form){
-            //     $img_name = $form->model()->name_english;
-            //     $finename = $img_name.'.'.$file->guessExtension();
-            //     return $finename;
-            // })->autoUpload();
+            $form->image('image_column')->name(function ($file) use ($form){
+                $img_name = $form->model()->name_english;
+                $finename = $img_name.'.'.$file->guessExtension();
+                return $finename;
+            })->autoUpload();
             $form->image('image_column')->uniqueName();
             $form->text('name_chinese');
             $form->text('name_english');

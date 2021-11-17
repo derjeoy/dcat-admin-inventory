@@ -15,8 +15,8 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductResource;
-use App\Repositories\Product;
+use App\Http\Resources\ListingResource;
+use App\Repositories\ListingRepository;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -30,6 +30,12 @@ class ApiController extends Controller
     {
         $product_id = $request->get('q');
         return ProductResource::make($repository->getInfoById($product_id));
+    }
+
+    public function getListingInfo(Request $request, ListingRepository $repository): ListingResource
+    {
+        $listing_id = $request->get('q');
+        return ListingResource::make($repository->getInfoById($listing_id));
     }
 
 }

@@ -5,8 +5,8 @@ namespace App\Admin\Controllers\Summary;
 use App\Admin\Repositories\NullRepository;
 use Dcat\Admin\Form;
 use Dcat\Admin\Layout\Content;
-use App\Models\TableListing;
-use App\Models\Product;
+use App\Models\ListingModel;
+
 class ListingSummaryController
 {
     public function create(Content $content)
@@ -17,92 +17,55 @@ class ListingSummaryController
             ->body($this->form());
     }
 
-    protected $options = [
-            1 => '显示文本框',
-            2 => '显示编辑器',
-            3 => '显示文件上传',
-            4 => '还是显示文本框',
-            ];
-
     protected function form()
     {
+        return Form::make(new NullRepository(), function (Form $form) {
 
-        return Form::make(new TableListing(), function (Form $form) {
-
-            $form->block(8, function (Form\BlockForm $form) {
-                
-                $irobot_id = 1;
-                //dd(TableListing::find($listing_id));
-                $listings = TableListing::get();
-
-
-                // 设置标题
-                $form->title('产品基本信息');
-                // 设置字段宽度
-                $form->width(6, 4);
-
-                $form->column(4, function (Form\BlockForm $form) use($listings){
-                    foreach($listings as $v){
-                        $options[] = $v->asin;
-                    }
-                    $form->select('Listing列表')->options($options);
-                });
-                
-                $products = Product::get()->where('irobot_id','=','');
-
-                $form->column(4, function (Form\BlockForm $form) {
-                    $form->image('');
-                });
-
-                $form->column(4, function (Form\BlockForm $form) {
-                    //$form->amz_account;
-                    $form->display('country');
-                    $form->display('amz_sku');
-                    $form->display('asin');
-                    $form->display('fnsku');
-                });
+            $form->disableListButton();
+            // 第一列占据1/3的页面宽度
+            $form->column(4, function (Form $form) {
+                $form->select('selected_listing_id', '选择Listing')->options(ListingModel::pluck('irobot_sku', 'id'))->loadpku(route('dcat.admin.api.listing.find'))->default('1')->required();
+                $form->ipt('country', '国家')->default('-')->disable();
+                $form->ipt('asin', 'ASIN')->default('-')->disable();
+                $form->ipt('irobot_sku', '赛盒ID')->default('-')->disable();
+                $form->ipt('amz_account', '账号名')->default('-')->disable();
+                $form->ipt('amz_sku', '平台SKU')->default('-')->disable();
+                $form->ipt('fnsku', 'FNSKU')->default('-')->disable();
+                $form->ipt('price', '售价')->default('-')->disable();
+                $form->ipt('saler', '负责人')->default('-')->disable();
+            });
+            // 第二列占据1/3的页面宽度
+            $form->column(4, function (Form $form) {
+                $form->image('avatar');
+                $form->decimal('wages');
+                $form->decimal('fund');
+                $form->decimal('pension');
+                $form->decimal('fee');
+                $form->decimal('business');
+                $form->decimal('other');
+                $form->text('area')->default(0);
+                $form->textarea('illness');
+                $form->textarea('comment');
             });
 
-            $form->block(8, function (Form\BlockForm $form) {
-                // 设置标题
-                $form->title('基本设置');
-
-                // 显示底部提交按钮
-                $form->showFooter();
-
-                // 设置字段宽度
-                $form->width(9, 2);
-
-                $form->column(6, function (Form\BlockForm $form) {
-                    $form->display('id');
-                    $form->text('name');
-                    $form->email('email');
-                    $form->image('avatar');
-                    $form->password('password');
-                });
-
-                $form->column(6, function (Form\BlockForm $form) {
-                    $form->text('username');
-                    $form->email('mobile');
-                    $form->textarea('description');
-                });
+            // 第二列占据1/3的页面宽度
+            $form->column(4, function (Form $form) {
+                $form->image('avatar');
+                $form->decimal('wages');
+                $form->decimal('fund');
+                $form->decimal('pension');
+                $form->decimal('fee');
+                $form->decimal('business');
+                $form->decimal('other');
+                $form->text('area')->default(0);
+                $form->textarea('illness');
+                $form->textarea('comment');
             });
-            $form->block(4, function (Form\BlockForm $form) {
-                $form->title('分块2');
 
-                $form->text('nickname');
-                $form->number('age');
-                $form->radio('status')->options(['1' => '默认', 2 => '冻结'])->default(1);
-
-                $form->next(function (Form\BlockForm $form) {
-                    $form->title('分块3');
-
-                    $form->date('birthday');
-                    $form->date('created_at');
-                });
-            });
 
 
         });
+
+        
     }
 }

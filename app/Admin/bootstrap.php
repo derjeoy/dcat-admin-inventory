@@ -112,6 +112,7 @@ Grid::resolving(function (Grid $grid) {
     $grid->showQuickEditButton();
     $grid->enableDialogCreate();
     $grid->disableBatchDelete();
+    $grid->disableT;
     $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
         $actions->disableView();
         $actions->disableDelete();
