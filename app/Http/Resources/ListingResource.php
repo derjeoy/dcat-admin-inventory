@@ -36,6 +36,13 @@ class ListingResource extends JsonResource
             'fnsku'           => $this->fnsku,
             'price'           => $this->price,
             'saler'           => $this->saler,
+
+            'fba_fee'           => $this->fba_fee,
+            'amz_sale_commssion'           => $this->amz_sale_commssion,
+            'latest_transportation_unitfee'           => $this->latest_transportation_unitfee,
+            'fba_current_inventory'           => $this->fba_current_inventory,
+            'fba_current_transfer'           => $this->fba_current_transfer,
+
         ];
     }
 }
