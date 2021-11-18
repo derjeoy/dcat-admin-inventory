@@ -107,12 +107,11 @@ Filter::resolving(function (Filter $filter) {
 //表格全局初始化
 Grid::resolving(function (Grid $grid) {
     $grid->setActionClass(\Dcat\Admin\Grid\Displayers\Actions::class);
-    $grid->model()->orderBy("id", "desc");
+    $grid->model()->orderBy("id", "asc");
     $grid->disableViewButton();
     $grid->showQuickEditButton();
     $grid->enableDialogCreate();
     $grid->disableBatchDelete();
-    $grid->disableT;
     $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
         $actions->disableView();
         $actions->disableDelete();
@@ -127,14 +126,7 @@ Grid::resolving(function (Grid $grid) {
 
 
 
-
-
-
-
 \App\Admin\Extensions\Form\Select::macro();
 
 
 Dcat\Admin\Form::extend('ipt', \App\Admin\Extensions\Form\Input::class);
-
-
-app('view')->prependNamespace('admin', resource_path('views/vendor/laravel-admin'));

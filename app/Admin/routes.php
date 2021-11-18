@@ -14,9 +14,11 @@ Route::group([
 
     $router->resource('products', 'ProductController');
     $router->resource('listings', 'TableListingController');
+    $router->resource('listingsummary', 'TableListingController');
     $router->get('productsummary', 'HomeController@index');
+
     
-    $router->get('listingsummary', 'Summary\ListingSummaryController@create');
+    //$router->get('listingsummary', 'Summary\ListingSummaryController@create');
 
     $router->get('api/product', 'ApiController@getProductInfo')->name('api.product.find');
     $router->get('api/product', 'ApiController@getListingInfo')->name('api.listing.find');

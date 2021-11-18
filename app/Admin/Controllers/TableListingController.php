@@ -21,22 +21,35 @@ class TableListingController extends AdminController
     protected function grid()
     {
         return Grid::make(new TableListing(), function (Grid $grid) {
-            $grid->column('id')->sortable();
-            $grid->column('amz_account');
-            $grid->column('country');
-            $grid->column('amz_sku');
-            $grid->column('asin');
-            $grid->column('fnsku');
-            $grid->column('local_name');
-            //$grid->column('upc');
-            $grid->column('irobot_sku');
-            $grid->column('saler');
-            $grid->column('price'); 
+            $grid->column('id','链接ID')->sortable();
+            $grid->column('irobot_sku','赛合SKU');
+            $grid->column('country','国家');
+            $grid->column('amz_account','账号名字');
+            $grid->column('amz_sku','平台SKU');
+            $grid->column('asin','ASIN');
+            $grid->column('fnsku','FNSKU');
+            $grid->column('local_name','产品名称');            
+            $grid->column('price','产品售价')->help('这里是产品售价，点开有利润')->display(function () {
+                 return ' <a data-title="PRICE" class="td-top-copy btn-white btn ">' . $this->price . '</a> &nbsp;&nbsp;&nbsp;';
+             });
+            $grid->column('saler','所属销售');
+            $grid->column('链接详情')
+               ->display('链接详情')->modal('链接详情', ListingTable::make());
+            // $grid->column('库存信息')
+            //    ->display('库存详情')->modal('库存详情', ListingTable::make());
+            $grid->column('库存详情')
+                ->display(Factory::create()->name)
+                ->expand(PostTable::make());
+
+            $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('country','国家');
+                $filter->equal('irobot_sku','赛合SKU');
+                $filter->equal('asin','ASIN');
+        
+            });
             // ->help('这里是产品售价，点开有利润')->display(function () {
             //     return ' <a data-title="PRICE" class="td-top-copy btn-white btn ">' . $this->price . '</a> &nbsp;&nbsp;&nbsp;';
             // });;
-            //$grid->column('created_at');
-            //$grid->column('updated_at')->sortable();
         
             // $grid->column('irobot_sku','赛盒SKU')->help('点开有产品详情')->display(function () {
             //     Form::dialog('编辑角色')
@@ -49,23 +62,15 @@ class TableListingController extends AdminController
             //     return ' <span class="btn btn-primary edit-form" data-url="/admin/form/layout/block"> 编辑表单弹窗</span> ';
             // });;
 
-            $grid->column('irobot_sku')
-                ->display('产品详情')->modal('产品详情', ListingTable::make());
-
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-        
-            });
-
-            // 禁止按钮边框
+            
             $grid->toolsWithOutline(false);
-            $grid->fixColumns(3);
+            //$grid->fixColumns(3);
 
-            $grid->showQuickEditButton();
+            //$grid->showQuickEditButton();
 
             //$grid->disableActions();
             
-            //$grid->disableRowSelector();
+            $grid->disableRowSelector();
 
         });
     }
