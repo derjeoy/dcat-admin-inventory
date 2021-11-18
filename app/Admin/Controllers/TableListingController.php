@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\TableListing;
+use App\Models\InventoryOut;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -10,6 +11,8 @@ use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Widgets\Table;
 use App\Admin\Renderable\ListingTable;
 use App\Models\ProductModel;
+use Dcat\Admin\Widgets\Card;
+use App\Admin\Forms\InventorySummary;
 
 class TableListingController extends AdminController
 {
@@ -34,12 +37,32 @@ class TableListingController extends AdminController
              });
             $grid->column('saler','所属销售');
             $grid->column('链接详情')
-               ->display('链接详情')->modal('链接详情', ListingTable::make());
+               ->display('展开')->modal('链接详情', ListingTable::make());
             // $grid->column('库存信息')
             //    ->display('库存详情')->modal('库存详情', ListingTable::make());
             $grid->column('库存详情')
-                ->display(Factory::create()->name)
-                ->expand(PostTable::make());
+                ->display('展开')
+                ->expand(function () {
+                        $shipments = InventoryOut::get()->where('listing_id','=', $this->id);
+
+                        $data = [];
+                        $table_title = ['国家','发货ID','发货个数','运输方式','承运商','跟踪号','发货日期','期望到达日期','货件状态'];
+                        
+                        foreach($shipments as $ship)
+                        {
+                            $data[] = [$ship->to_country,$ship->fbaid,$ship->send_number,$ship->send_method,$ship->carrier_name,$ship->tracking_num,$ship->date_create_ship,$ship->hope_arrive_date,$ship->status];
+                        }
+
+                        $table = new Table($table_title, $data);
+
+                        return "<div style='padding:10px 10px 0;color:blue;'>$table</div>";
+                    });
+                // ->expand(function (Grid\Displayers\Expand $expand) {
+                //     // 设置按钮名称
+                //     $expand->button('库存详情');
+
+                //     return InventorySummary::make()->payload(['id' => $this->id,'price'=>$this->price]);
+                // });
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('country','国家');
@@ -64,7 +87,7 @@ class TableListingController extends AdminController
 
             
             $grid->toolsWithOutline(false);
-            //$grid->fixColumns(3);
+            $grid->fixColumns(1);
 
             //$grid->showQuickEditButton();
 

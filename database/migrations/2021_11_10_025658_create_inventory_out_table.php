@@ -24,7 +24,7 @@ class CreateInventoryOutTable extends Migration
             $table->string('fba_code')->default('')->comment('FBA仓库代码');
             $table->string('address')->default('')->comment('FBA仓库代码详细地址');
             $table->string('postcode')->default('')->comment('目的仓库邮编');
-            $table->string('date_create_ship')->default('')->comment('提交发货计划日期');
+            $table->date('date_create_ship')->default('')->comment('提交发货计划日期');
             $table->string('carrier_name')->default('')->comment('承运商');
             $table->string('send_method')->default('')->comment('发货方式');
             $table->string('status')->default('')->comment('出库单状态');

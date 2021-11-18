@@ -324,4 +324,5 @@ return [
         // the extension files will be generated in this directory.
         'dir' => base_path('dcat-admin-extensions'),
     ],
+    // 'skin' => 'rainbow-blue',
 ];

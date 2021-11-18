@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 17/11/2021 17:27:33
+ Date: 19/11/2021 00:34:24
 */
 
 SET NAMES utf8mb4;
@@ -27,8 +27,8 @@ CREATE TABLE `admin_extension_histories`  (
   `type` tinyint(4) NOT NULL DEFAULT 1,
   `version` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `detail` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `admin_extension_histories_name_index`(`name`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -47,8 +47,8 @@ CREATE TABLE `admin_extensions`  (
   `version` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `is_enabled` tinyint(4) NOT NULL DEFAULT 0,
   `options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_extensions_name_unique`(`name`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -70,8 +70,8 @@ CREATE TABLE `admin_menu`  (
   `uri` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `extension` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -93,8 +93,8 @@ DROP TABLE IF EXISTS `admin_permission_menu`;
 CREATE TABLE `admin_permission_menu`  (
   `permission_id` bigint(20) NOT NULL,
   `menu_id` bigint(20) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   UNIQUE INDEX `admin_permission_menu_permission_id_menu_id_unique`(`permission_id`, `menu_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -114,8 +114,8 @@ CREATE TABLE `admin_permissions`  (
   `http_path` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `order` int(11) NOT NULL DEFAULT 0,
   `parent_id` bigint(20) NOT NULL DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_permissions_slug_unique`(`slug`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -137,8 +137,8 @@ DROP TABLE IF EXISTS `admin_role_menu`;
 CREATE TABLE `admin_role_menu`  (
   `role_id` bigint(20) NOT NULL,
   `menu_id` bigint(20) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   UNIQUE INDEX `admin_role_menu_role_id_menu_id_unique`(`role_id`, `menu_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -153,8 +153,8 @@ DROP TABLE IF EXISTS `admin_role_permissions`;
 CREATE TABLE `admin_role_permissions`  (
   `role_id` bigint(20) NOT NULL,
   `permission_id` bigint(20) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   UNIQUE INDEX `admin_role_permissions_role_id_permission_id_unique`(`role_id`, `permission_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -169,8 +169,8 @@ DROP TABLE IF EXISTS `admin_role_users`;
 CREATE TABLE `admin_role_users`  (
   `role_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   UNIQUE INDEX `admin_role_users_role_id_user_id_unique`(`role_id`, `user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -187,8 +187,8 @@ CREATE TABLE `admin_roles`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_roles_slug_unique`(`slug`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -205,8 +205,8 @@ DROP TABLE IF EXISTS `admin_settings`;
 CREATE TABLE `admin_settings`  (
   `slug` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`slug`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -225,8 +225,8 @@ CREATE TABLE `admin_users`  (
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_users_username_unique`(`username`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -252,20 +252,23 @@ CREATE TABLE `inventory_out`  (
   `fba_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'FBA仓库代码',
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'FBA仓库代码详细地址',
   `postcode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '目的仓库邮编',
-  `date_create_ship` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '提交发货计划日期',
+  `date_create_ship` date NOT NULL COMMENT '提交发货计划日期',
   `carrier_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '承运商',
   `send_method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '发货方式',
   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '出库单状态',
   `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '备注',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  `tracking_num` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '物流跟踪号',
+  `hope_arrive_date` date NULL DEFAULT NULL COMMENT '期望到达日期，追踪日期',
+  `actural_arrive_date` date NULL DEFAULT NULL COMMENT '实际到达日期，实际上架日期',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of inventory_out
 -- ----------------------------
-INSERT INTO `inventory_out` VALUES (1, '1', 'FBA12345678', 'FBA1234567811111', 'DJNFHKFE', 100, 'ADAD', 'US', 'ADAD', 'ddd', 'ddd', 'ddd', 'UPS', '空运', 'www', 'www', '2021-11-17 08:53:33', '2021-11-17 08:53:33');
+INSERT INTO `inventory_out` VALUES (1, '1', 'FBA123456', 'FBA123456', 'DJNFHKFE', 100, 'ADAD', 'US', 'ADAD', 'ddd', 'ddd', '2021-11-18', 'UPS', '2', '3', '1118 目的港塞港', '2021-11-17 08:53:33', '2021-11-18 16:24:50', '1ZJHD121231894289', '2021-12-04', '2021-12-05');
 
 -- ----------------------------
 -- Table structure for inventory_overseas
@@ -277,8 +280,8 @@ CREATE TABLE `inventory_overseas`  (
   `country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '仓库国家',
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '仓库地址',
   `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '备注',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -293,14 +296,14 @@ DROP TABLE IF EXISTS `inventory_purchase`;
 CREATE TABLE `inventory_purchase`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `listing_id` int(11) NOT NULL COMMENT 'listing ID',
-  `date` datetime NOT NULL COMMENT '采购日期',
+  `date` datetime(0) NOT NULL COMMENT '采购日期',
   `units_number` int(11) NOT NULL COMMENT '采购数目',
   `unit_price` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '采购单价',
   `already_send` int(11) NOT NULL COMMENT '已发货数目',
   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '订单状态',
   `备注` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '备注',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -344,7 +347,7 @@ DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets`  (
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
   INDEX `password_resets_email_index`(`email`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -378,8 +381,8 @@ CREATE TABLE `products`  (
   `upc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `irobot_sku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `addbyuser` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '添加产品用户',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   `image_column` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '产品图片',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -420,8 +423,8 @@ CREATE TABLE `table_listings`  (
   `irobot_sku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '赛盒SKU',
   `saler` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '所属销售',
   `price` float NULL DEFAULT NULL COMMENT '产品售价',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   `fba_fee` float NULL DEFAULT NULL COMMENT 'FBA费用',
   `amz_sale_commssion` float NULL DEFAULT NULL COMMENT 'FBA佣金',
   `fba_current_inventory` int(11) NULL DEFAULT NULL COMMENT 'FBA库存，不包含转运中',
@@ -433,9 +436,9 @@ CREATE TABLE `table_listings`  (
 -- ----------------------------
 -- Records of table_listings
 -- ----------------------------
-INSERT INTO `table_listings` VALUES (1, 'EEEEE', 'FR', 'sasff', 'B07VZZ1M6N', 'B07VZZ1M6N', 'sdasafsa', 'B07VZZ1M6N', '1624900', 'csf ', 12.99, NULL, NULL, 4.36, 3, 15, 20, 20.05);
-INSERT INTO `table_listings` VALUES (2, 'FFFF', 'US', 'fsdfsdf', 'B08JTZK7ZV', 'B08JTZK7ZV', 'B08JTZK7ZV', 'B08JTZK7ZV', '1624900', 'wx', 39.99, NULL, NULL, 3.99, 2.66, 0, 20, 23.99);
-INSERT INTO `table_listings` VALUES (3, 'FGRGRG', 'CA', 'lvmf', 'B083M8RRN3', 'B083M8RRN3', 'B083M8RRN3', 'B083M8RRN3', '1415432', 'csfs', 49.99, NULL, NULL, 1.99, 2.99, 12, 20, 15.99);
+INSERT INTO `table_listings` VALUES (1, 'EEEEE', 'FR', 'sasff', 'B07VZZ1M6N', 'B07VZZ1M6N', 'sdasafsa', 'B07VZZ1M6N', '1624900', 'csf', 12.99, NULL, '2021-11-18 16:26:34', 4.36, 3, 15, 20, 20.05);
+INSERT INTO `table_listings` VALUES (2, 'FFFF', 'US', 'fsdfsdf', 'B08JTZK7ZV', 'B08JTZK7ZV', 'B08JTZK7ZV', 'B08JTZK7ZV', '1624900', 'wx', 39.99, NULL, NULL, 3.99, 2.66, 0, 0, 23.99);
+INSERT INTO `table_listings` VALUES (3, 'FGRGRG', 'CA', 'lvmf', 'B083M8RRN3', 'B083M8RRN3', 'B083M8RRN3', 'B083M8RRN3', '1415432', 'csfs', 49.99, NULL, NULL, 1.99, 2.99, 12, 4, 15.99);
 
 -- ----------------------------
 -- Table structure for table_review
@@ -448,8 +451,8 @@ CREATE TABLE `table_review`  (
   `rew_rate` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '评论星级',
   `date` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '评论统计日期',
   `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '备注:记录意外状况等',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -465,11 +468,11 @@ CREATE TABLE `users`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `email_verified_at` timestamp(0) NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;

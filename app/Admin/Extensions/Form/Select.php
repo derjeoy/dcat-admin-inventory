@@ -98,8 +98,6 @@ $(document).on('change', "{$this->getElementClassSelector()}", function () {
 
         fba_current_inventory.val(data.data.fba_current_inventory);
         fba_current_transfer.val(data.data.fba_current_transfer);
-
-
     });
 });
 $("{$this->getElementClassSelector()}").trigger('change');
