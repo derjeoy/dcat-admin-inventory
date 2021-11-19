@@ -38,7 +38,7 @@ return [
     ],
     [
         'id'        => 'listingsummary',
-        'title'     => 'Listing详情',
+        'title'     => 'Listing详情(舍弃)',
         'icon'      => 'fa fa-amazon',
         'uri'       => 'listingsummary',
         'parent_id' => 'products',
@@ -55,6 +55,13 @@ return [
         'title'     => '采购列表',
         'icon'      => 'fa fa-shopping-bag',
         'uri'       => 'purchaseinventory',
+        'parent_id' => 'products',
+    ],
+    [
+        'id'        => 'fbawarehouse',
+        'title'     => 'FBA仓库列表',
+        'icon'      => 'fa fa-shopping-bag',
+        'uri'       => 'fbawarehouse',
         'parent_id' => 'products',
     ],
     /////////////////////////////////////////////////////

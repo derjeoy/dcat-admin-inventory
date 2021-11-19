@@ -102,3 +102,19 @@ public/storage（软连接） → storage/app/public
 、、、
 
 
+数据库table操作
+http://new.xiaosongit.com/article/805.html
+
+
+内网穿透
+https://natapp.cn/
+
+Discover ERP DEMO
+http://erp.you-tang.com/admin/products
+
+Dcat Admin Demo
+http://103.39.211.179:8080/admin
+
+
+laravel Admin
+https://laravel-admin.org/docs/en/model-grid-quick-create#Select

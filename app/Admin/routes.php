@@ -16,7 +16,7 @@ Route::group([
     $router->resource('listings', 'TableListingController');
     $router->resource('listingsummary', 'TableListingController');
     $router->get('productsummary', 'HomeController@index');
-
+    $router->resource('fbawarehouse', 'FCWarehouseController');
     
     //$router->get('listingsummary', 'Summary\ListingSummaryController@create');
 

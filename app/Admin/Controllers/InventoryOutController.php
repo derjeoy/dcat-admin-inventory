@@ -9,6 +9,7 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Http\Controllers\AdminController;
 use App\Models\ListingModel;
+use App\Models\InventotyOut;
 
 class InventoryOutController extends AdminController
 {
@@ -31,15 +32,17 @@ class InventoryOutController extends AdminController
             $grid->column('date_create_ship','货件发货日期');
             $grid->column('carrier_name','承运商');
             $grid->column('tracking_num','物流跟踪号');
-            $grid->column('send_method','发货方式');
-            $grid->column('status','发货计划状态');
+            $grid->column('send_method','发货方式')->using(\App\Models\InventoryOut::SEND_METHOD);
+            $grid->column('status','发货计划状态')->using(\App\Models\InventoryOut::SHIPMENT_STATUS);
             $grid->column('note','备注');
             $grid->column('from_address','发货地址');
             $grid->column('fba_reference_id','FBA参考号');
             $grid->column('irobot_shipment_id','赛盒发货编号');
         
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
+                $filter->equal('fbaid');
+                $filter->equal('to_country');
+                $filter->equal('tracking_num');
             });
 
             $grid->toolsWithOutline(false);
@@ -104,8 +107,8 @@ class InventoryOutController extends AdminController
             $form->date('date_create_ship');
             $form->text('carrier_name');
             $form->text('tracking_num','物流跟踪号');
-            $form->select('send_method','发货方式')->options([1=>'空运',2=>'海运',3=>'卡运',4=>'铁运']);
-            $form->select('status','货件状态')->options([1=>'已上架',2=>'接收中',3=>'已发货']);
+            $form->select('send_method','发货方式')->options(\App\Models\InventoryOut::SEND_METHOD);
+            $form->select('status','货件状态')->options(\App\Models\InventoryOut::SHIPMENT_STATUS);
             $form->textarea('note');
         });
     }
