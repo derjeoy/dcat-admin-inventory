@@ -2,8 +2,8 @@
 
 namespace App\Admin\Actions\Form\Import;
 
-use App\Models\ProductModel;
-use App\Models\ProductModel as DataModel;
+use App\Models\ListingModel;
+use App\Models\ListingModel as DataModel;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -16,7 +16,7 @@ use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 HeadingRowFormatter::
     default('none');
 
-class FirstSheetImport implements ToCollection, WithBatchInserts, WithChunkReading, WithHeadingRow, ToModel
+class ListingSheetImport implements ToCollection, WithBatchInserts, WithChunkReading, WithHeadingRow, ToModel
 {
     private $round;
 
@@ -33,7 +33,12 @@ class FirstSheetImport implements ToCollection, WithBatchInserts, WithChunkReadi
     public function model(array $row)
     {
         // 断数据是否
-        $products = ProductModel::where('irobot_sku', '=', $row['irobot_sku'])->first();
+        $products = ListingModel::where(function($query) use ($row){
+            $row['asin'] && $query->where('asin', '=', $row['asin']);
+            $row['fnsku'] && $query->where('fnsku', '=', $row['fnsku']);
+            $row['amz_sku'] &&$query->where('asin', '=', $row['amz_sku']);
+        })->first();
+        
         //dd($products);
         if ($products) {
             // 存在返回 null
@@ -41,13 +46,21 @@ class FirstSheetImport implements ToCollection, WithBatchInserts, WithChunkReadi
         }
         // 数据库对应的字段
         return new DataModel([
-            'name_chinese' => $row['name_chinese'],
-            'name_english' => $row['name_english'],
+            'amz_account' => $row['amz_account'],
+            'country' => $row['country'],
+            'amz_sku' => $row['amz_sku'],
             'asin' => $row['asin'],
+            'fnsku' => $row['fnsku'],
+            'local_name' => $row['local_name'],
             'upc' => $row['upc'],
             'irobot_sku' => $row['irobot_sku'],
-            'addbyuser' => $row['addbyuser'],
-            'image_column' => $row['image_column'],
+            'saler' => $row['saler'],
+            'price' => $row['price'],
+            'fba_fee' => $row['fba_fee'],
+            'amz_sale_commssion' => $row['amz_sale_commssion'],
+            'fba_current_inventory' => $row['fba_current_inventory'],
+            'fba_current_transfer' => $row['fba_current_transfer'],
+            'latest_transportation_unitfee' => $row['latest_transportation_unitfee'],
         ]);
     }
 

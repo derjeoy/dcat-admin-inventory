@@ -10,6 +10,8 @@ class InventoryOut extends Model
 	
     protected $table = 'inventory_out';
 
+    protected $guarded = [];
+
     const TYPE_RECEIVED = 1;
     const TYPE_RECEIVING = 2;
     const TYPE_SENDING = 3;

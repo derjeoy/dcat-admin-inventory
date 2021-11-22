@@ -24,12 +24,12 @@ class ProductController extends AdminController
     {
         return Grid::make(new Product(), function (Grid $grid) {
 
-            $grid->column('id')->sortable();
-            $grid->column('image_column')->image('',50,50);
-            $grid->column('name_chinese');
-            $grid->column('name_english');
+            $grid->column('id','产品库ID')->sortable();
+            $grid->column('image_column','产品图片')->image('',50,50);
+            $grid->column('name_chinese','产品中文名字');
+            $grid->column('name_english','产品英文名字');
             //$grid->column('asin');
-            $grid->column('content')
+            $grid->column('content','关联销售链接')
                 ->display("关联销售链接")
                 ->expand(function () {
                     // 返回显示的详情
@@ -49,11 +49,17 @@ class ProductController extends AdminController
 
                     return "<div style='padding:10px 10px 0;color:blue;'>$table</div>";
                 });
-            $grid->column('upc');
-            $grid->column('irobot_sku');
-            $grid->column('addbyuser');
-            $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+            $grid->column('upc','UPC');
+            $grid->column('irobot_sku','赛盒SKU');
+            $grid->column('unit_size','产品尺寸');//对应的inch
+            $grid->column('unit_weight','产品重量');
+            $grid->column('box_size','装箱尺寸');//对应体积
+            $grid->column('box_weight','装箱重量');
+            $grid->column('numberperbox','装箱个数');
+            $grid->column('amz_listing','参考亚马逊链接');
+            $grid->column('purchasemethod','采购链接');
+            $grid->column('','添加人');
+
             $grid->tools(function (Grid\Tools $tools) {
                 // excle 导入
                 $tools->append(new UploadProducts());
@@ -61,7 +67,7 @@ class ProductController extends AdminController
 
         
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
+                $filter->equal('irobot_sku','赛盒SKU');
         
             });
             // 禁止按钮边框

@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\TableListing;
+use App\Admin\Actions\Grid\UploadListing;
 use App\Models\InventoryOut;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -37,7 +38,7 @@ class TableListingController extends AdminController
              });
             $grid->column('saler','所属销售');
             $grid->column('链接详情')
-               ->display('展开')->modal('链接详情', ListingTable::make());
+               ->display('展开')->expand('链接详情', ListingTable::make());
             // $grid->column('库存信息')
             //    ->display('库存详情')->modal('库存详情', ListingTable::make());
             $grid->column('库存详情')
@@ -63,6 +64,11 @@ class TableListingController extends AdminController
 
                 //     return InventorySummary::make()->payload(['id' => $this->id,'price'=>$this->price]);
                 // });
+
+            $grid->tools(function (Grid\Tools $tools) {
+                // excle 导入
+                $tools->append(new UploadListing());
+            });
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('country','国家');

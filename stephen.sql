@@ -475,40 +475,40 @@ CREATE TABLE `posts`  (
 -- ----------------------------
 -- Table structure for products
 -- ----------------------------
-DROP TABLE IF EXISTS `products`;
-CREATE TABLE `products`  (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name_chinese` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '中文产品名称',
-  `name_english` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '英文产品名称',
-  `asin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '亚马逊ASIN',
-  `upc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `irobot_sku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `addbyuser` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '添加产品用户',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `image_column` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '产品图片',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+-- DROP TABLE IF EXISTS `products`;
+-- CREATE TABLE `products`  (
+--   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+--   `name_chinese` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '中文产品名称',
+--   `name_english` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '英文产品名称',
+--   `asin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '亚马逊ASIN',
+--   `upc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+--   `irobot_sku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+--   `addbyuser` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '添加产品用户',
+--   `created_at` timestamp NULL DEFAULT NULL,
+--   `updated_at` timestamp NULL DEFAULT NULL,
+--   `image_column` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '产品图片',
+--   PRIMARY KEY (`id`) USING BTREE
+-- ) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of products
 -- ----------------------------
-INSERT INTO `products` VALUES (1, '望远镜', 'Binoculars', 'B07VZZ1M6N', NULL, '1191445', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (2, '登山杖', 'Trekking', 'B07MLWHQJG', NULL, '1193539', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (3, '吸奶器', 'Breast Pump', 'B07WNQ9HCK', NULL, '1235329', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (4, '闹钟', 'Clock', 'B07MDW457N', NULL, '1198311', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (5, '戴森吸尘器两层简易款', 'dyson easy', 'B08YQKXHGT', NULL, '1630970', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (6, 'V11轮子', 'lunzi', 'B08JTZK7ZV', NULL, '1624900', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (7, 'V10', 'V10', 'B07YQLF9XW', NULL, '1396484', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (8, 'V11铁板', 'tieban', 'B083M8RRN3', NULL, '1415432', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (9, 'A款', 'A', 'B082T1NFVM', NULL, '1447512', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (10, '挂墙板', 'wallmounted', 'B08JLTS5LT', NULL, '1624913', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (11, '卷发器支架', 'airwrap', 'B08HQKFRNM', NULL, '1618347', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (12, 'B款', 'B', 'B08NK2JC3K', NULL, '1631129', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (13, '吸尘器支架无螺丝款', 'noscrew', 'B08MZV69MG', NULL, '1682600', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (14, '黑色飞机款', 'plane', 'B08PZ3H1XS', NULL, '1709876', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (15, '黑色三角款', 'triggle', 'B08PZ2RVTX', NULL, '1709875', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
-INSERT INTO `products` VALUES (16, '循环扇', 'air circulator fan', 'B08G8FRHKD', NULL, '1610774', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-17 08:12:26', 'images/920e0987a507ec406169520475c79806.jpg');
+-- INSERT INTO `products` VALUES (1, '望远镜', 'Binoculars', 'B07VZZ1M6N', NULL, '1191445', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (2, '登山杖', 'Trekking', 'B07MLWHQJG', NULL, '1193539', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (3, '吸奶器', 'Breast Pump', 'B07WNQ9HCK', NULL, '1235329', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (4, '闹钟', 'Clock', 'B07MDW457N', NULL, '1198311', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (5, '戴森吸尘器两层简易款', 'dyson easy', 'B08YQKXHGT', NULL, '1630970', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (6, 'V11轮子', 'lunzi', 'B08JTZK7ZV', NULL, '1624900', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (7, 'V10', 'V10', 'B07YQLF9XW', NULL, '1396484', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (8, 'V11铁板', 'tieban', 'B083M8RRN3', NULL, '1415432', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (9, 'A款', 'A', 'B082T1NFVM', NULL, '1447512', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (10, '挂墙板', 'wallmounted', 'B08JLTS5LT', NULL, '1624913', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (11, '卷发器支架', 'airwrap', 'B08HQKFRNM', NULL, '1618347', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (12, 'B款', 'B', 'B08NK2JC3K', NULL, '1631129', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (13, '吸尘器支架无螺丝款', 'noscrew', 'B08MZV69MG', NULL, '1682600', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (14, '黑色飞机款', 'plane', 'B08PZ3H1XS', NULL, '1709876', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (15, '黑色三角款', 'triggle', 'B08PZ2RVTX', NULL, '1709875', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-10 00:44:34', NULL);
+-- INSERT INTO `products` VALUES (16, '循环扇', 'air circulator fan', 'B08G8FRHKD', NULL, '1610774', 'Stephen Excel', '2021-11-10 00:44:34', '2021-11-17 08:12:26', 'images/920e0987a507ec406169520475c79806.jpg');
 
 -- ----------------------------
 -- Table structure for table_listings

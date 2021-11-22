@@ -21,7 +21,14 @@ class CreateProductsTable extends Migration
             $table->string('upc')->nullable();
             $table->string('irobot_sku')->default('');
             $table->string('addbyuser')->default('')->comment('添加产品用户');
-            $table->string('image_column')->default('');
+            $table->string('unit_size')->default('')->comment('产品尺寸');
+            $table->string('unit_weight')->default('')->comment('产品重量');
+            $table->string('box_size')->default('')->comment('装箱尺寸');
+            $table->string('box_weight')->default('')->comment('装箱重量');
+            $table->string('numberperbox')->default('')->comment('装箱个数');
+            $table->string('amz_listing')->default('')->comment('参考亚马逊链接');
+            $table->string('purchasemethod')->default('')->comment('采购链接');
+            $table->string('image_column')->default('')->comment('产品图片');
             $table->timestamps();
         });
     }

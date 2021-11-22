@@ -10,6 +10,7 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Http\Controllers\AdminController;
 use App\Models\ListingModel;
 use App\Models\InventotyOut;
+use App\Admin\Actions\Grid\UploadShipmeent;
 
 class InventoryOutController extends AdminController
 {
@@ -38,6 +39,12 @@ class InventoryOutController extends AdminController
             $grid->column('from_address','发货地址');
             $grid->column('fba_reference_id','FBA参考号');
             $grid->column('irobot_shipment_id','赛盒发货编号');
+
+            $grid->tools(function (Grid\Tools $tools) {
+                // excle 导入
+                $tools->append(new UploadShipmeent());
+            });
+
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('fbaid');
