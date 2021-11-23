@@ -32,17 +32,26 @@ class TableListingController extends AdminController
             $grid->column('amz_sku','平台SKU');
             $grid->column('asin','ASIN');
             $grid->column('fnsku','FNSKU');
-            $grid->column('local_name','产品名称');            
+            $grid->column('local_name','产品名称');
+            $grid->column('review_num','评论');//关联字段解决
             $grid->column('price','产品售价')->help('这里是产品售价，点开有利润')->display(function () {
                  return ' <a data-title="PRICE" class="td-top-copy btn-white btn ">' . $this->price . '</a> &nbsp;&nbsp;&nbsp;';
              });
             $grid->column('saler','所属销售');
-            $grid->column('链接详情')
-               ->display('展开')->expand('链接详情', ListingTable::make());
+            $grid->column('利润率')
+               ->display('详情')
+               ->expand(function () {
+                        $table_title = ['国家','汇率','采购成本'];
+                        $data[] = [$this->country,$this->exchange,$this->purchase_cost];
+
+                        $table = new Table($table_title, $data);
+
+                        return "<div style='padding:10px 10px 0;color:green;'>$table</div>";
+                    });
             // $grid->column('库存信息')
             //    ->display('库存详情')->modal('库存详情', ListingTable::make());
-            $grid->column('库存详情')
-                ->display('展开')
+            $grid->column('库存')
+                ->display('详情')
                 ->expand(function () {
                         $shipments = InventoryOut::get()->where('listing_id','=', $this->id);
 
@@ -56,7 +65,7 @@ class TableListingController extends AdminController
 
                         $table = new Table($table_title, $data);
 
-                        return "<div style='padding:10px 10px 0;color:blue;'>$table</div>";
+                        return "<div style='padding:10px 10px 0;color:grey;'>$table</div>";
                     });
                 // ->expand(function (Grid\Displayers\Expand $expand) {
                 //     // 设置按钮名称
