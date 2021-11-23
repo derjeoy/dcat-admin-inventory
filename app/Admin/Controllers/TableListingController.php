@@ -33,7 +33,7 @@ class TableListingController extends AdminController
             $grid->column('asin','ASIN');
             $grid->column('fnsku','FNSKU');
             $grid->column('local_name','产品名称');
-            $grid->column('review_num','评论');//关联字段解决
+            //$grid->column('rew_number','评论');//关联字段解决
             $grid->column('price','产品售价')->help('这里是产品售价，点开有利润')->display(function () {
                  return ' <a data-title="PRICE" class="td-top-copy btn-white btn ">' . $this->price . '</a> &nbsp;&nbsp;&nbsp;';
              });

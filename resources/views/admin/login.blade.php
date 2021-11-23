@@ -134,7 +134,7 @@
 
             <div class="login-box">
                 <div class="login-logo mb-2">
-                    <h4 class="mt-0">让后台开发更简单</h4>
+                    <h4 class="mt-0">一个懂亚马逊FBA的ERP系统</h4>
                     <p class="login-box-msg mt-1 mb-1">{{ __('admin.welcome_back') }}</p>
                 </div>
                 <div class="card">
@@ -233,10 +233,10 @@
         <div class="content-front"></div>
         <div class="login-description">
             <p class="lead">
-                十分钟内构建一个功能完善的高颜值后台系统。
+                一个由亚马逊5年精品运营开发的亚马逊后台管理系统。
             </p>
             <p>
-                Dcat Admin
+                超凡ERP - 一个懂你的ERP系统
             </p>
         </div>
     </div>

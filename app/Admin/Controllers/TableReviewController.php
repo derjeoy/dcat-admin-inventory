@@ -22,7 +22,7 @@ class TableReviewController extends AdminController
             $grid->column('listing_id');
             $grid->column('rew_number');
             $grid->column('rew_rate');
-            $grid->column('date');
+            $grid->date('date');
             $grid->column('note');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
@@ -67,7 +67,7 @@ class TableReviewController extends AdminController
             $form->text('listing_id');
             $form->text('rew_number');
             $form->text('rew_rate');
-            $form->text('date');
+            $form->date('date');
             $form->text('note');
         
             $form->display('created_at');
