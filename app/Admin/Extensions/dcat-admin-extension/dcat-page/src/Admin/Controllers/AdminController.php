@@ -26,8 +26,8 @@ class AdminController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Dcat Page')
-            ->description('一个简单易用的静态站点构建工具')
+            ->header('超凡ERP')
+            ->description('一个简单易用的亚马逊运营管理系统')
             ->body($this->grid());
     }
 

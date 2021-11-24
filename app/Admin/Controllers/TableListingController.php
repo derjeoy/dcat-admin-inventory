@@ -14,6 +14,7 @@ use App\Admin\Renderable\ListingTable;
 use App\Models\ProductModel;
 use Dcat\Admin\Widgets\Card;
 use App\Admin\Forms\InventorySummary;
+use AmrShawky\LaravelCurrency\Facade\Currency;
 
 class TableListingController extends AdminController
 {
@@ -24,16 +25,33 @@ class TableListingController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new TableListing(), function (Grid $grid) {
+        return Grid::make(new TableListing(['latest_review','purchase_cost','shipment']), function (Grid $grid) {
+            //$grid->title('listing列表');
             $grid->column('id','链接ID')->sortable();
             $grid->column('irobot_sku','赛合SKU');
-            $grid->column('country','国家');
-            $grid->column('amz_account','账号名字');
-            $grid->column('amz_sku','平台SKU');
+            $grid->column('country','国家')->setAttributes(['style' => 'color:blue;font-size:14px']);
+            $grid->column('amz_account','账号名字')->label('danger');
+            $grid->column('amz_sku','平台SKU')->badge('#222');;
             $grid->column('asin','ASIN');
             $grid->column('fnsku','FNSKU');
             $grid->column('local_name','产品名称');
-            //$grid->column('rew_number','评论');//关联字段解决
+            $grid->column('latest_review.rew_number','评论');//关联字段解决
+            $grid->column('latest_review.rew_rate','评分')->display(function () {
+                if($this->latest_review)
+                    if($this->latest_review->rew_rate < 4.3)
+                    {
+                        return ' <a data-title="rate" class="td-top-copy btn-danger btn ">' . $this->latest_review->rew_rate . '</a> &nbsp;&nbsp;&nbsp;';//关联字段解决
+                    }
+                    elseif ($this->latest_review->rew_rate == 4.3)
+                    {
+                        return ' <a data-title="rate" class="td-top-copy btn-warning btn ">' . $this->latest_review->rew_rate . '</a> &nbsp;&nbsp;&nbsp;';//关联字段解决
+                    }
+                    else
+                    {
+                        return ' <a data-title="rate" class="td-top-copy btn-success btn ">' . $this->latest_review->rew_rate . '</a> &nbsp;&nbsp;&nbsp;';//关联字段解决
+                    }
+                 
+            });
             $grid->column('price','产品售价')->help('这里是产品售价，点开有利润')->display(function () {
                  return ' <a data-title="PRICE" class="td-top-copy btn-white btn ">' . $this->price . '</a> &nbsp;&nbsp;&nbsp;';
              });
@@ -41,8 +59,25 @@ class TableListingController extends AdminController
             $grid->column('利润率')
                ->display('详情')
                ->expand(function () {
-                        $table_title = ['国家','汇率','采购成本'];
-                        $data[] = [$this->country,$this->exchange,$this->purchase_cost];
+                        $currency = 1.00;
+                        if ($this->country == 'FR' || $this->country == 'DE' ||$this->country == 'ES'||$this->country == 'IT')
+                            $currency =  round( Currency::convert()->from('EUR')->to('CNY')->amount(1)->get() , 2);
+                        if ($this->country == 'US')
+                            $currency = round( Currency::convert()->from('USD')->to('CNY')->amount(1)->get() ,2);
+                        if ($this->country == 'JP')
+                            $currency = round(Currency::convert()->from('JP')->to('CNY')->amount(100)->get(),2);
+
+                        $purchase_cost_cny = $this->purchase_cost->purchase_cost;
+                        $purchase_cost_foreign =  round( $purchase_cost_cny/$currency , 2 );
+
+                        $first_trans_fee = round( ($this->shipment) ? ($this->shipment->transportation_fee/$this->shipment->send_number) : 0 , 2);
+                        $first_trans_fee_foreign = round( $first_trans_fee/$currency , 2);
+
+                        $profit = round($this->price - $this->amz_sale_commssion - $this->fba_fee - $first_trans_fee_foreign - $purchase_cost_foreign , 2);
+                        $profit_rate = round(($this->price - $profit)/$this->price * 100, 2);
+
+                        $table_title = ['国家','实时汇率','采购成本CNY','采购成本外币','头程运费','平台佣金','FBA费用','产品售价','毛利','毛利率'];
+                        $data[] = [$this->country,$currency,$purchase_cost_cny,$purchase_cost_foreign,$first_trans_fee_foreign,round($this->amz_sale_commssion,2),round($this->fba_fee,2),round($this->price,2),$profit,$profit_rate.'%'];
 
                         $table = new Table($table_title, $data);
 

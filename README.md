@@ -118,3 +118,9 @@ http://103.39.211.179:8080/admin
 
 laravel Admin
 https://laravel-admin.org/docs/en/model-grid-quick-create#Select
+
+
+Laravel Currency
+https://github.com/amrshawky/laravel-currency
+composer require amrshawky/laravel-currency
+composer require amrshawky/laravel-currency

@@ -10,13 +10,5 @@ class TableReview extends Model
 {
 	
     protected $table = 'table_review';
-
-    //protected $with = ['rew_number'];
-
-
-    // public function rew_number()
-    // {
-    //     return $this->belongsTo(TableListing::class,'listing_id');
-    // }
     
 }

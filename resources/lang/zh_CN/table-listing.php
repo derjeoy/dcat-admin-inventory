@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'TableListing' => 'TableListing',
+        'TableListing' => 'Listing',
         'table-listing' => 'TableListing',
     ],
     'fields' => [

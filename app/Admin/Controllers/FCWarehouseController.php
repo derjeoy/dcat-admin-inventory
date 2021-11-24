@@ -37,6 +37,7 @@ class FCWarehouseController extends AdminController
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('FC');
+                $filter->equal('COUNTRY');
         
             });
         });
