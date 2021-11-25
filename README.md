@@ -123,10 +123,7 @@ https://laravel-admin.org/docs/en/model-grid-quick-create#Select
 Laravel Currency
 https://github.com/amrshawky/laravel-currency
 composer require amrshawky/laravel-currency
+composer require amrshawky/laravel-currency
 
-
-公司主页
-https://github.com/rahat-hossain/Develop-Company-Website-Laravel/tree/master
-https://www.basicitbd.com/
-
-https://coding.net/
+Dcat 图片插件
+https://github.com/de-memory/dcat-media-selector
