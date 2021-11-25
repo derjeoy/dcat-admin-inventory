@@ -121,11 +121,6 @@ Grid::resolving(function (Grid $grid) {
 });
 
 
-
-
-
-
-
 \App\Admin\Extensions\Form\Select::macro();
 
 

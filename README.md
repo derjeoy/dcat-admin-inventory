@@ -123,4 +123,3 @@ https://laravel-admin.org/docs/en/model-grid-quick-create#Select
 Laravel Currency
 https://github.com/amrshawky/laravel-currency
 composer require amrshawky/laravel-currency
-composer require amrshawky/laravel-currency

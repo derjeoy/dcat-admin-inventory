@@ -50,6 +50,42 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection password
      * @property Grid\Column|Collection avatar
      * @property Grid\Column|Collection remember_token
+     * @property Grid\Column|Collection country
+     * @property Grid\Column|Collection currency
+     * @property Grid\Column|Collection date
+     * @property Grid\Column|Collection COUNTRY
+     * @property Grid\Column|Collection COMPANY_NAME
+     * @property Grid\Column|Collection FC
+     * @property Grid\Column|Collection POSTAL_CODE
+     * @property Grid\Column|Collection STATES
+     * @property Grid\Column|Collection CITY
+     * @property Grid\Column|Collection ADDRESS
+     * @property Grid\Column|Collection TYPE
+     * @property Grid\Column|Collection POD
+     * @property Grid\Column|Collection note
+     * @property Grid\Column|Collection listing_id
+     * @property Grid\Column|Collection irobot_shipment_id
+     * @property Grid\Column|Collection fbaid
+     * @property Grid\Column|Collection fba_reference_id
+     * @property Grid\Column|Collection send_number
+     * @property Grid\Column|Collection from_address
+     * @property Grid\Column|Collection to_country
+     * @property Grid\Column|Collection fba_code
+     * @property Grid\Column|Collection address
+     * @property Grid\Column|Collection postcode
+     * @property Grid\Column|Collection date_create_ship
+     * @property Grid\Column|Collection carrier_name
+     * @property Grid\Column|Collection send_method
+     * @property Grid\Column|Collection status
+     * @property Grid\Column|Collection tracking_num
+     * @property Grid\Column|Collection hope_arrive_date
+     * @property Grid\Column|Collection actural_arrive_date
+     * @property Grid\Column|Collection transportation_fee
+     * @property Grid\Column|Collection irobot_id
+     * @property Grid\Column|Collection units_number
+     * @property Grid\Column|Collection unit_price
+     * @property Grid\Column|Collection already_send
+     * @property Grid\Column|Collection 备注
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection name_chinese
@@ -58,13 +94,27 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection upc
      * @property Grid\Column|Collection irobot_sku
      * @property Grid\Column|Collection addbyuser
+     * @property Grid\Column|Collection unit_size
+     * @property Grid\Column|Collection unit_weight
+     * @property Grid\Column|Collection box_size
+     * @property Grid\Column|Collection box_weight
+     * @property Grid\Column|Collection numberperbox
+     * @property Grid\Column|Collection amz_listing
+     * @property Grid\Column|Collection purchasemethod
      * @property Grid\Column|Collection image_column
+     * @property Grid\Column|Collection purchase_cost
      * @property Grid\Column|Collection amz_account
-     * @property Grid\Column|Collection country
      * @property Grid\Column|Collection amz_sku
      * @property Grid\Column|Collection fnsku
      * @property Grid\Column|Collection local_name
      * @property Grid\Column|Collection saler
+     * @property Grid\Column|Collection fba_fee
+     * @property Grid\Column|Collection amz_sale_commssion
+     * @property Grid\Column|Collection fba_current_inventory
+     * @property Grid\Column|Collection fba_current_transfer
+     * @property Grid\Column|Collection latest_transportation_unitfee
+     * @property Grid\Column|Collection rew_number
+     * @property Grid\Column|Collection rew_rate
      * @property Grid\Column|Collection email_verified_at
      *
      * @method Grid\Column|Collection image(string $label = null)
@@ -106,6 +156,42 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection password(string $label = null)
      * @method Grid\Column|Collection avatar(string $label = null)
      * @method Grid\Column|Collection remember_token(string $label = null)
+     * @method Grid\Column|Collection country(string $label = null)
+     * @method Grid\Column|Collection currency(string $label = null)
+     * @method Grid\Column|Collection date(string $label = null)
+     * @method Grid\Column|Collection COUNTRY(string $label = null)
+     * @method Grid\Column|Collection COMPANY_NAME(string $label = null)
+     * @method Grid\Column|Collection FC(string $label = null)
+     * @method Grid\Column|Collection POSTAL_CODE(string $label = null)
+     * @method Grid\Column|Collection STATES(string $label = null)
+     * @method Grid\Column|Collection CITY(string $label = null)
+     * @method Grid\Column|Collection ADDRESS(string $label = null)
+     * @method Grid\Column|Collection TYPE(string $label = null)
+     * @method Grid\Column|Collection POD(string $label = null)
+     * @method Grid\Column|Collection note(string $label = null)
+     * @method Grid\Column|Collection listing_id(string $label = null)
+     * @method Grid\Column|Collection irobot_shipment_id(string $label = null)
+     * @method Grid\Column|Collection fbaid(string $label = null)
+     * @method Grid\Column|Collection fba_reference_id(string $label = null)
+     * @method Grid\Column|Collection send_number(string $label = null)
+     * @method Grid\Column|Collection from_address(string $label = null)
+     * @method Grid\Column|Collection to_country(string $label = null)
+     * @method Grid\Column|Collection fba_code(string $label = null)
+     * @method Grid\Column|Collection address(string $label = null)
+     * @method Grid\Column|Collection postcode(string $label = null)
+     * @method Grid\Column|Collection date_create_ship(string $label = null)
+     * @method Grid\Column|Collection carrier_name(string $label = null)
+     * @method Grid\Column|Collection send_method(string $label = null)
+     * @method Grid\Column|Collection status(string $label = null)
+     * @method Grid\Column|Collection tracking_num(string $label = null)
+     * @method Grid\Column|Collection hope_arrive_date(string $label = null)
+     * @method Grid\Column|Collection actural_arrive_date(string $label = null)
+     * @method Grid\Column|Collection transportation_fee(string $label = null)
+     * @method Grid\Column|Collection irobot_id(string $label = null)
+     * @method Grid\Column|Collection units_number(string $label = null)
+     * @method Grid\Column|Collection unit_price(string $label = null)
+     * @method Grid\Column|Collection already_send(string $label = null)
+     * @method Grid\Column|Collection 备注(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection name_chinese(string $label = null)
@@ -114,13 +200,27 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection upc(string $label = null)
      * @method Grid\Column|Collection irobot_sku(string $label = null)
      * @method Grid\Column|Collection addbyuser(string $label = null)
+     * @method Grid\Column|Collection unit_size(string $label = null)
+     * @method Grid\Column|Collection unit_weight(string $label = null)
+     * @method Grid\Column|Collection box_size(string $label = null)
+     * @method Grid\Column|Collection box_weight(string $label = null)
+     * @method Grid\Column|Collection numberperbox(string $label = null)
+     * @method Grid\Column|Collection amz_listing(string $label = null)
+     * @method Grid\Column|Collection purchasemethod(string $label = null)
      * @method Grid\Column|Collection image_column(string $label = null)
+     * @method Grid\Column|Collection purchase_cost(string $label = null)
      * @method Grid\Column|Collection amz_account(string $label = null)
-     * @method Grid\Column|Collection country(string $label = null)
      * @method Grid\Column|Collection amz_sku(string $label = null)
      * @method Grid\Column|Collection fnsku(string $label = null)
      * @method Grid\Column|Collection local_name(string $label = null)
      * @method Grid\Column|Collection saler(string $label = null)
+     * @method Grid\Column|Collection fba_fee(string $label = null)
+     * @method Grid\Column|Collection amz_sale_commssion(string $label = null)
+     * @method Grid\Column|Collection fba_current_inventory(string $label = null)
+     * @method Grid\Column|Collection fba_current_transfer(string $label = null)
+     * @method Grid\Column|Collection latest_transportation_unitfee(string $label = null)
+     * @method Grid\Column|Collection rew_number(string $label = null)
+     * @method Grid\Column|Collection rew_rate(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
      */
     class Grid {}
@@ -167,6 +267,42 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection password
      * @property Show\Field|Collection avatar
      * @property Show\Field|Collection remember_token
+     * @property Show\Field|Collection country
+     * @property Show\Field|Collection currency
+     * @property Show\Field|Collection date
+     * @property Show\Field|Collection COUNTRY
+     * @property Show\Field|Collection COMPANY_NAME
+     * @property Show\Field|Collection FC
+     * @property Show\Field|Collection POSTAL_CODE
+     * @property Show\Field|Collection STATES
+     * @property Show\Field|Collection CITY
+     * @property Show\Field|Collection ADDRESS
+     * @property Show\Field|Collection TYPE
+     * @property Show\Field|Collection POD
+     * @property Show\Field|Collection note
+     * @property Show\Field|Collection listing_id
+     * @property Show\Field|Collection irobot_shipment_id
+     * @property Show\Field|Collection fbaid
+     * @property Show\Field|Collection fba_reference_id
+     * @property Show\Field|Collection send_number
+     * @property Show\Field|Collection from_address
+     * @property Show\Field|Collection to_country
+     * @property Show\Field|Collection fba_code
+     * @property Show\Field|Collection address
+     * @property Show\Field|Collection postcode
+     * @property Show\Field|Collection date_create_ship
+     * @property Show\Field|Collection carrier_name
+     * @property Show\Field|Collection send_method
+     * @property Show\Field|Collection status
+     * @property Show\Field|Collection tracking_num
+     * @property Show\Field|Collection hope_arrive_date
+     * @property Show\Field|Collection actural_arrive_date
+     * @property Show\Field|Collection transportation_fee
+     * @property Show\Field|Collection irobot_id
+     * @property Show\Field|Collection units_number
+     * @property Show\Field|Collection unit_price
+     * @property Show\Field|Collection already_send
+     * @property Show\Field|Collection 备注
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
      * @property Show\Field|Collection name_chinese
@@ -175,13 +311,27 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection upc
      * @property Show\Field|Collection irobot_sku
      * @property Show\Field|Collection addbyuser
+     * @property Show\Field|Collection unit_size
+     * @property Show\Field|Collection unit_weight
+     * @property Show\Field|Collection box_size
+     * @property Show\Field|Collection box_weight
+     * @property Show\Field|Collection numberperbox
+     * @property Show\Field|Collection amz_listing
+     * @property Show\Field|Collection purchasemethod
      * @property Show\Field|Collection image_column
+     * @property Show\Field|Collection purchase_cost
      * @property Show\Field|Collection amz_account
-     * @property Show\Field|Collection country
      * @property Show\Field|Collection amz_sku
      * @property Show\Field|Collection fnsku
      * @property Show\Field|Collection local_name
      * @property Show\Field|Collection saler
+     * @property Show\Field|Collection fba_fee
+     * @property Show\Field|Collection amz_sale_commssion
+     * @property Show\Field|Collection fba_current_inventory
+     * @property Show\Field|Collection fba_current_transfer
+     * @property Show\Field|Collection latest_transportation_unitfee
+     * @property Show\Field|Collection rew_number
+     * @property Show\Field|Collection rew_rate
      * @property Show\Field|Collection email_verified_at
      *
      * @method Show\Field|Collection image(string $label = null)
@@ -223,6 +373,42 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection password(string $label = null)
      * @method Show\Field|Collection avatar(string $label = null)
      * @method Show\Field|Collection remember_token(string $label = null)
+     * @method Show\Field|Collection country(string $label = null)
+     * @method Show\Field|Collection currency(string $label = null)
+     * @method Show\Field|Collection date(string $label = null)
+     * @method Show\Field|Collection COUNTRY(string $label = null)
+     * @method Show\Field|Collection COMPANY_NAME(string $label = null)
+     * @method Show\Field|Collection FC(string $label = null)
+     * @method Show\Field|Collection POSTAL_CODE(string $label = null)
+     * @method Show\Field|Collection STATES(string $label = null)
+     * @method Show\Field|Collection CITY(string $label = null)
+     * @method Show\Field|Collection ADDRESS(string $label = null)
+     * @method Show\Field|Collection TYPE(string $label = null)
+     * @method Show\Field|Collection POD(string $label = null)
+     * @method Show\Field|Collection note(string $label = null)
+     * @method Show\Field|Collection listing_id(string $label = null)
+     * @method Show\Field|Collection irobot_shipment_id(string $label = null)
+     * @method Show\Field|Collection fbaid(string $label = null)
+     * @method Show\Field|Collection fba_reference_id(string $label = null)
+     * @method Show\Field|Collection send_number(string $label = null)
+     * @method Show\Field|Collection from_address(string $label = null)
+     * @method Show\Field|Collection to_country(string $label = null)
+     * @method Show\Field|Collection fba_code(string $label = null)
+     * @method Show\Field|Collection address(string $label = null)
+     * @method Show\Field|Collection postcode(string $label = null)
+     * @method Show\Field|Collection date_create_ship(string $label = null)
+     * @method Show\Field|Collection carrier_name(string $label = null)
+     * @method Show\Field|Collection send_method(string $label = null)
+     * @method Show\Field|Collection status(string $label = null)
+     * @method Show\Field|Collection tracking_num(string $label = null)
+     * @method Show\Field|Collection hope_arrive_date(string $label = null)
+     * @method Show\Field|Collection actural_arrive_date(string $label = null)
+     * @method Show\Field|Collection transportation_fee(string $label = null)
+     * @method Show\Field|Collection irobot_id(string $label = null)
+     * @method Show\Field|Collection units_number(string $label = null)
+     * @method Show\Field|Collection unit_price(string $label = null)
+     * @method Show\Field|Collection already_send(string $label = null)
+     * @method Show\Field|Collection 备注(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection name_chinese(string $label = null)
@@ -231,19 +417,33 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection upc(string $label = null)
      * @method Show\Field|Collection irobot_sku(string $label = null)
      * @method Show\Field|Collection addbyuser(string $label = null)
+     * @method Show\Field|Collection unit_size(string $label = null)
+     * @method Show\Field|Collection unit_weight(string $label = null)
+     * @method Show\Field|Collection box_size(string $label = null)
+     * @method Show\Field|Collection box_weight(string $label = null)
+     * @method Show\Field|Collection numberperbox(string $label = null)
+     * @method Show\Field|Collection amz_listing(string $label = null)
+     * @method Show\Field|Collection purchasemethod(string $label = null)
      * @method Show\Field|Collection image_column(string $label = null)
+     * @method Show\Field|Collection purchase_cost(string $label = null)
      * @method Show\Field|Collection amz_account(string $label = null)
-     * @method Show\Field|Collection country(string $label = null)
      * @method Show\Field|Collection amz_sku(string $label = null)
      * @method Show\Field|Collection fnsku(string $label = null)
      * @method Show\Field|Collection local_name(string $label = null)
      * @method Show\Field|Collection saler(string $label = null)
+     * @method Show\Field|Collection fba_fee(string $label = null)
+     * @method Show\Field|Collection amz_sale_commssion(string $label = null)
+     * @method Show\Field|Collection fba_current_inventory(string $label = null)
+     * @method Show\Field|Collection fba_current_transfer(string $label = null)
+     * @method Show\Field|Collection latest_transportation_unitfee(string $label = null)
+     * @method Show\Field|Collection rew_number(string $label = null)
+     * @method Show\Field|Collection rew_rate(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
      */
     class Show {}
 
     /**
-     
+     * @method \App\Admin\Extensions\Form\Input ipt(...$params)
      */
     class Form {}
 
