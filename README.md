@@ -124,3 +124,6 @@ Laravel Currency
 https://github.com/amrshawky/laravel-currency
 composer require amrshawky/laravel-currency
 composer require amrshawky/laravel-currency
+
+Dcat 图片插件
+https://github.com/de-memory/dcat-media-selector
