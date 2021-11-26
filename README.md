@@ -122,8 +122,10 @@ https://laravel-admin.org/docs/en/model-grid-quick-create#Select
 
 Laravel Currency
 https://github.com/amrshawky/laravel-currency
-composer require amrshawky/laravel-currency
-composer require amrshawky/laravel-currency
 
 Dcat 图片插件
 https://github.com/de-memory/dcat-media-selector
+
+Laravel 视频教程
+https://github.com/johnlui/Learn-Laravel-5
+
