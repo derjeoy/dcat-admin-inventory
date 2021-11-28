@@ -12,6 +12,7 @@ namespace Dcat\Admin {
 
     /**
      * @property Grid\Column|Collection image
+     * @property Grid\Column|Collection date
      * @property Grid\Column|Collection id
      * @property Grid\Column|Collection name
      * @property Grid\Column|Collection norms
@@ -52,7 +53,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection remember_token
      * @property Grid\Column|Collection country
      * @property Grid\Column|Collection currency
-     * @property Grid\Column|Collection date
      * @property Grid\Column|Collection COUNTRY
      * @property Grid\Column|Collection COMPANY_NAME
      * @property Grid\Column|Collection FC
@@ -103,6 +103,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection purchasemethod
      * @property Grid\Column|Collection image_column
      * @property Grid\Column|Collection purchase_cost
+     * @property Grid\Column|Collection person
      * @property Grid\Column|Collection amz_account
      * @property Grid\Column|Collection amz_sku
      * @property Grid\Column|Collection fnsku
@@ -118,6 +119,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection email_verified_at
      *
      * @method Grid\Column|Collection image(string $label = null)
+     * @method Grid\Column|Collection date(string $label = null)
      * @method Grid\Column|Collection id(string $label = null)
      * @method Grid\Column|Collection name(string $label = null)
      * @method Grid\Column|Collection norms(string $label = null)
@@ -158,7 +160,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection remember_token(string $label = null)
      * @method Grid\Column|Collection country(string $label = null)
      * @method Grid\Column|Collection currency(string $label = null)
-     * @method Grid\Column|Collection date(string $label = null)
      * @method Grid\Column|Collection COUNTRY(string $label = null)
      * @method Grid\Column|Collection COMPANY_NAME(string $label = null)
      * @method Grid\Column|Collection FC(string $label = null)
@@ -209,6 +210,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection purchasemethod(string $label = null)
      * @method Grid\Column|Collection image_column(string $label = null)
      * @method Grid\Column|Collection purchase_cost(string $label = null)
+     * @method Grid\Column|Collection person(string $label = null)
      * @method Grid\Column|Collection amz_account(string $label = null)
      * @method Grid\Column|Collection amz_sku(string $label = null)
      * @method Grid\Column|Collection fnsku(string $label = null)
@@ -229,6 +231,7 @@ namespace Dcat\Admin {
 
     /**
      * @property Show\Field|Collection image
+     * @property Show\Field|Collection date
      * @property Show\Field|Collection id
      * @property Show\Field|Collection name
      * @property Show\Field|Collection norms
@@ -269,7 +272,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection remember_token
      * @property Show\Field|Collection country
      * @property Show\Field|Collection currency
-     * @property Show\Field|Collection date
      * @property Show\Field|Collection COUNTRY
      * @property Show\Field|Collection COMPANY_NAME
      * @property Show\Field|Collection FC
@@ -320,6 +322,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection purchasemethod
      * @property Show\Field|Collection image_column
      * @property Show\Field|Collection purchase_cost
+     * @property Show\Field|Collection person
      * @property Show\Field|Collection amz_account
      * @property Show\Field|Collection amz_sku
      * @property Show\Field|Collection fnsku
@@ -335,6 +338,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection email_verified_at
      *
      * @method Show\Field|Collection image(string $label = null)
+     * @method Show\Field|Collection date(string $label = null)
      * @method Show\Field|Collection id(string $label = null)
      * @method Show\Field|Collection name(string $label = null)
      * @method Show\Field|Collection norms(string $label = null)
@@ -375,7 +379,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection remember_token(string $label = null)
      * @method Show\Field|Collection country(string $label = null)
      * @method Show\Field|Collection currency(string $label = null)
-     * @method Show\Field|Collection date(string $label = null)
      * @method Show\Field|Collection COUNTRY(string $label = null)
      * @method Show\Field|Collection COMPANY_NAME(string $label = null)
      * @method Show\Field|Collection FC(string $label = null)
@@ -426,6 +429,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection purchasemethod(string $label = null)
      * @method Show\Field|Collection image_column(string $label = null)
      * @method Show\Field|Collection purchase_cost(string $label = null)
+     * @method Show\Field|Collection person(string $label = null)
      * @method Show\Field|Collection amz_account(string $label = null)
      * @method Show\Field|Collection amz_sku(string $label = null)
      * @method Show\Field|Collection fnsku(string $label = null)

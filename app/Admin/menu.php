@@ -50,6 +50,13 @@ return [
         'uri'       => 'shipments',
         'parent_id' => 'products',
     ],
+    [
+        'id'        => 'purchaseorders',
+        'title'     => '采购单列表',
+        'icon'      => 'fa-taxi',
+        'uri'       => 'purchaseorders',
+        'parent_id' => 'products',
+    ],
     // [
     //     'id'        => 'purchaseinventory',
     //     'title'     => '采购列表',
@@ -62,6 +69,13 @@ return [
         'title'     => 'FBA仓库列表',
         'icon'      => 'fa fa-shopping-bag',
         'uri'       => 'fbawarehouse',
+        'parent_id' => 'products',
+    ],
+    [
+        'id'        => 'currency',
+        'title'     => '汇率',
+        'icon'      => 'fa fa-shopping-bag',
+        'uri'       => 'currency',
         'parent_id' => 'products',
     ],
     /////////////////////////////////////////////////////

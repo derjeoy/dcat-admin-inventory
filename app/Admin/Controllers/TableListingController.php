@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Repositories\TableListing;
 use App\Admin\Actions\Grid\UploadListing;
 use App\Models\InventoryOut;
+use App\Models\Currency;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -14,7 +15,7 @@ use App\Admin\Renderable\ListingTable;
 use App\Models\ProductModel;
 use Dcat\Admin\Widgets\Card;
 use App\Admin\Forms\InventorySummary;
-use AmrShawky\LaravelCurrency\Facade\Currency;
+//use AmrShawky\LaravelCurrency\Facade\Currency;
 
 class TableListingController extends AdminController
 {
@@ -59,13 +60,19 @@ class TableListingController extends AdminController
             $grid->column('利润率')
                ->display('详情')
                ->expand(function () {
-                        $currency = 1.00;
-                        if ($this->country == 'FR' || $this->country == 'DE' ||$this->country == 'ES'||$this->country == 'IT')
-                            $currency =  round( Currency::convert()->from('EUR')->to('CNY')->amount(1)->get() , 2);
-                        if ($this->country == 'US')
-                            $currency = round( Currency::convert()->from('USD')->to('CNY')->amount(1)->get() ,2);
-                        if ($this->country == 'JP')
-                            $currency = round(Currency::convert()->from('JP')->to('CNY')->amount(100)->get(),2);
+                        $currency_model = Currency::get()->where('country','=', $this->country)->first();
+                        $currency = 1.0;
+                        //dd($currency_model);
+                        if ($currency_model)
+                            $currency = $currency_model->currency;
+
+                        //使用laravelCurrency库 刷新listing页面会比较慢
+                        // if ($this->country == 'FR' || $this->country == 'DE' ||$this->country == 'ES'||$this->country == 'IT')
+                        //     $currency =  round( Currency::convert()->from('EUR')->to('CNY')->amount(1)->get() , 2);
+                        // if ($this->country == 'US')
+                        //     $currency = round( Currency::convert()->from('USD')->to('CNY')->amount(1)->get() ,2);
+                        // if ($this->country == 'JP')
+                        //     $currency = round(Currency::convert()->from('JP')->to('CNY')->amount(100)->get(),2);
 
                         $purchase_cost_cny = $this->purchase_cost->purchase_cost;
                         $purchase_cost_foreign =  round( $purchase_cost_cny/$currency , 2 );
