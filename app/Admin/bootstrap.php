@@ -83,7 +83,6 @@ Admin::navbar(function (Navbar $navbar) {
         <a><i style="font-size: 1.5rem"></i> 温哥华:$datetime_wengehua &nbsp;|| &nbsp;</a>
         <a><i style="font-size: 1.5rem"></i> 洛杉矶:$datetime_la &nbsp;|| &nbsp;</a>
         <a><i style="font-size: 1.5rem"></i> 马德里:$datetime_es &nbsp;|| &nbsp;</a>
-        <a><i style="font-size: 1.5rem"></i> 太平洋:$datetime_utc</a>
         &nbsp; &nbsp; 
     </li>
 </ul> 

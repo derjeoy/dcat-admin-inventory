@@ -139,3 +139,4 @@ https://github.com/readyplayerme
 世界时间
 https://carbon.nesbot.com/docs/
 https://www.jb51.net/article/124259.htm
+时区对照表：https://learnku.com/articles/39628
