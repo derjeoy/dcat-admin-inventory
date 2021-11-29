@@ -129,3 +129,9 @@ https://github.com/de-memory/dcat-media-selector
 Laravel 视频教程
 https://github.com/johnlui/Learn-Laravel-5
 
+
+3D 头像 Meta 元宇宙
+https://readyplayer.me/avatar
+https://docs.readyplayer.me/integration-guides/web
+https://github.com/readyplayerme/Example-iframe
+https://github.com/readyplayerme
