@@ -8,7 +8,7 @@ use Dcat\Admin\Grid\Filter;
 use Dcat\Admin\Layout\Navbar;
 use Dcat\Admin\Show;
 use Dcat\Admin\Repositories\Repository;
-
+use Carbon\Carbon;
 /**
  * Dcat-admin - admin builder based on Laravel.
  * @author jqhph <https://github.com/jqhph>
@@ -64,18 +64,42 @@ Admin::navbar(function (Navbar $navbar) {
 //    ]));
     $method = config('admin.layout.horizontal_menu') ? 'left' : 'right';
 
+
+    $datetime_china = Carbon::now();
+    $datetime_london = Carbon::now('Europe/London');
+    $datetime_wengehua = Carbon::now('America/Vancouver');
+    $datetime_duolunduo = Carbon::now('America/Toronto');
+    $datetime_la = Carbon::now('America/Los_Angeles');
+    $datetime_utc = Carbon::now('UTC');
+    $datetime_es = Carbon::now('Europe/Madrid');
     $navbar->$method(
-        <<<HTML
+
+          <<<HTML
 <ul class="nav navbar-nav">
     <li class="nav-item">
-        &nbsp;
-        <a style="cursor: pointer" onclick="window.open('https://github.com/jqhph/dcat-admin-demo')">
-            <i class="feather icon-github" style="font-size: 1.5rem"></i> DEMO源码下载
-        </a> 
+        <a><i style="font-size: 1.5rem"></i> 北  京:$datetime_china &nbsp;|| &nbsp;</a>
+        <a><i style="font-size: 1.5rem"></i> 伦  敦:$datetime_london &nbsp;|| &nbsp;</a>
+        <a><i style="font-size: 1.5rem"></i> 多伦多:$datetime_duolunduo &nbsp;|| &nbsp;</a>
+        <a><i style="font-size: 1.5rem"></i> 温哥华:$datetime_wengehua &nbsp;|| &nbsp;</a>
+        <a><i style="font-size: 1.5rem"></i> 洛杉矶:$datetime_la &nbsp;|| &nbsp;</a>
+        <a><i style="font-size: 1.5rem"></i> 马德里:$datetime_es &nbsp;|| &nbsp;</a>
+        <a><i style="font-size: 1.5rem"></i> 太平洋:$datetime_utc</a>
         &nbsp; &nbsp; 
     </li>
 </ul> 
 HTML
+
+//         <<<HTML
+// <ul class="nav navbar-nav">
+//     <li class="nav-item">
+//         &nbsp;
+//         <a style="cursor: pointer" onclick="window.open('https://github.com/jqhph/dcat-admin-demo')">
+//             <i class="feather icon-github" style="font-size: 1.5rem"></i> DEMO源码下载
+//         </a> 
+//         &nbsp; &nbsp; 
+//     </li>
+// </ul> 
+// HTML
 
     );
 
