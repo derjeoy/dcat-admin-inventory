@@ -44,5 +44,6 @@ class UserProfile extends Form implements LazyRenderable
         $this->password('password_confirmation', trans('admin.password_confirmation'))
             ->same('password')
             ->help('请输入确认密码');
+
     }
 }

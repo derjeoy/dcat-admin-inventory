@@ -9,6 +9,8 @@ use Dcat\Admin\Layout\Navbar;
 use Dcat\Admin\Show;
 use Dcat\Admin\Repositories\Repository;
 use Carbon\Carbon;
+use AmrShawky\LaravelCurrency\Facade\Currency;
+
 /**
  * Dcat-admin - admin builder based on Laravel.
  * @author jqhph <https://github.com/jqhph>
@@ -72,18 +74,39 @@ Admin::navbar(function (Navbar $navbar) {
     $datetime_la = Carbon::now('America/Los_Angeles');
     $datetime_utc = Carbon::now('UTC');
     $datetime_es = Carbon::now('Europe/Madrid');
+
+    $currency_list = App\Models\Currency::get();
+    if (!$currency_list){
+        $currency_eur = $currency =  round( Currency::convert()->from('EUR')->to('CNY')->amount(1)->get() , 2);
+        $currency_usd = $currency =  round( Currency::convert()->from('USD')->to('CNY')->amount(1)->get() , 2);
+        $currency_jp = $currency =  round( Currency::convert()->from('JP')->to('CNY')->amount(1)->get() , 2);
+        $currency_uk = $currency =  round( Currency::convert()->from('UK')->to('CNY')->amount(1)->get() , 2);
+        $currency_cad = $currency =  round( Currency::convert()->from('CAD')->to('CNY')->amount(1)->get() , 2);
+        $currency_au = $currency =  round( Currency::convert()->from('AU')->to('CNY')->amount(1)->get() , 2);
+    }
+    else {
+        $currency_eur = App\Models\Currency::get()->where('country','=', 'DE')->first()->currency;
+        $currency_usd = App\Models\Currency::get()->where('country','=', 'US')->first()->currency;
+        $currency_jp = App\Models\Currency::get()->where('country','=', 'JP')->first()->currency;
+        $currency_uk = App\Models\Currency::get()->where('country','=', 'UK')->first()->currency;
+        $currency_cad = App\Models\Currency::get()->where('country','=', 'CA')->first()->currency;
+        $currency_au = App\Models\Currency::get()->where('country','=', 'AU')->first()->currency;
+    }
+    
+// <li class="nav-item">
+//         <a><i style="font-size: 1rem"></i>世界时间：北  京:$datetime_china ||伦  敦:$datetime_london ||多伦多:$datetime_duolunduo ||温哥华:$datetime_wengehua ||洛杉矶:$datetime_la &nbsp; ||马德里:$datetime_es</a>
+//     </li>
+
     $navbar->$method(
 
           <<<HTML
 <ul class="nav navbar-nav">
-    <li class="nav-item">
-        <a><i style="font-size: 1.5rem"></i> 北  京:$datetime_china &nbsp;|| &nbsp;</a>
-        <a><i style="font-size: 1.5rem"></i> 伦  敦:$datetime_london &nbsp;|| &nbsp;</a>
-        <a><i style="font-size: 1.5rem"></i> 多伦多:$datetime_duolunduo &nbsp;|| &nbsp;</a>
-        <a><i style="font-size: 1.5rem"></i> 温哥华:$datetime_wengehua &nbsp;|| &nbsp;</a>
-        <a><i style="font-size: 1.5rem"></i> 洛杉矶:$datetime_la &nbsp;|| &nbsp;</a>
-        <a><i style="font-size: 1.5rem"></i> 马德里:$datetime_es &nbsp;|| &nbsp;</a>
-        &nbsp; &nbsp; 
+    
+    <li>
+        <a><i style="font-size: 1rem"></i>常用邮编：US-90001; CA-V5K V6Z; ES-35600; IT-00185; FR-75020; DE-10115; UK-SE1 1XJ; AU-1001; JP-190 0155;</a>
+    </li>
+    <li>
+        <a><i style="font-size: 1rem">系统汇率：EUR-CNY:$currency_eur; USD-CNY:$currency_usd; CAD-CNY:$currency_cad; JP-CNY:$currency_jp; UK-CNY:$currency_uk; AU-CNY:$currency_au;</i></a>
     </li>
 </ul> 
 HTML
@@ -93,7 +116,7 @@ HTML
 //     <li class="nav-item">
 //         &nbsp;
 //         <a style="cursor: pointer" onclick="window.open('https://github.com/jqhph/dcat-admin-demo')">
-//             <i class="feather icon-github" style="font-size: 1.5rem"></i> DEMO源码下载
+//             <i class="feather icon-github" style="font-size: 1rem"></i> DEMO源码下载
 //         </a> 
 //         &nbsp; &nbsp; 
 //     </li>
