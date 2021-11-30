@@ -21,12 +21,12 @@ class FCWarehouseController extends AdminController
         return Grid::make(new FCWarehouse(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('COUNTRY');
-            $grid->column('COMPANY_NAME');
             $grid->column('FC');
             $grid->column('POSTAL_CODE');
             $grid->column('STATES');
             $grid->column('CITY');
             $grid->column('ADDRESS');
+            $grid->column('COMPANY_NAME');
             $grid->column('TYPE');
             $grid->column('POD');
             $grid->column('note');

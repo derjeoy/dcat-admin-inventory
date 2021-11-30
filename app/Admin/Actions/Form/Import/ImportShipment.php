@@ -12,10 +12,10 @@ class ImportShipment extends Form
 {
     public function handle(array $input)
     {
-        $file = env('APP_URL').'/uploads/'.$input['file'];
+        $file = env('APP_URL').'uploads/files'.$input['file'];
 
         try {
-            Excel::import(new DataExcelShipment(time()), $input['file'],'public');
+            Excel::import(new DataExcelShipment(time()), $input['file'],'admin');
 				//dcat-2.0版本写法
             return $this->response()
                 ->success('导入成功')
