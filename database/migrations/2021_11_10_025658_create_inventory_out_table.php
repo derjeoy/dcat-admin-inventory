@@ -33,6 +33,7 @@ class CreateInventoryOutTable extends Migration
             $table->string('status')->default('')->comment('出库单状态');
             $table->string('note')->default('')->comment('备注');
             $table->timestamps();
+            $table->string('carrier_file')->default('')->comment('物流形式发票');
         });
     }
 

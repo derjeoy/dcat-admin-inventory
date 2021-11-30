@@ -40,6 +40,8 @@ class FCWarehouseController extends AdminController
                 $filter->equal('COUNTRY');
         
             });
+
+            $grid->fixColumns(3);
         });
     }
 

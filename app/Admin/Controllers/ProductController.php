@@ -119,7 +119,7 @@ class ProductController extends AdminController
                 $finename = $img_name.'.'.$file->guessExtension();
                 return $finename;
             })->autoUpload();
-            $form->image('image_column')->uniqueName();
+            //$form->image('image_column')
             $form->text('name_chinese');
             $form->text('name_english');
             $form->text('asin');

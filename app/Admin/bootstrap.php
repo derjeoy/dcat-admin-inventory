@@ -101,12 +101,11 @@ Admin::navbar(function (Navbar $navbar) {
 
           <<<HTML
 <ul class="nav navbar-nav">
-    
     <li>
-        <a><i style="font-size: 1rem"></i>常用邮编：US-90001; CA-V5K V6Z; ES-35600; IT-00185; FR-75020; DE-10115; UK-SE1 1XJ; AU-1001; JP-190 0155;</a>
+        <a style="font-size: 1rem">常用邮编：US-90001; CA-V5K V6Z; ES-35600; IT-00185; FR-75020; DE-10115; UK-SE1 1XJ; AU-1001; JP-190 0155;</a>
     </li>
     <li>
-        <a><i style="font-size: 1rem">系统汇率：EUR-CNY:$currency_eur; USD-CNY:$currency_usd; CAD-CNY:$currency_cad; JP-CNY:$currency_jp; UK-CNY:$currency_uk; AU-CNY:$currency_au;</i></a>
+        <a style="font-size: 1rem">系统汇率：EUR-CNY:$currency_eur; USD-CNY:$currency_usd; CAD-CNY:$currency_cad; JP-CNY:$currency_jp; UK-CNY:$currency_uk; AU-CNY:$currency_au;</a>
     </li>
 </ul> 
 HTML
@@ -150,21 +149,21 @@ Filter::resolving(function (Filter $filter) {
     $filter->expand();
 });
 
-//表格全局初始化
-Grid::resolving(function (Grid $grid) {
-    $grid->setActionClass(\Dcat\Admin\Grid\Displayers\Actions::class);
-    $grid->model()->orderBy("id", "asc");
-    $grid->disableViewButton();
-    $grid->showQuickEditButton();
-    $grid->enableDialogCreate();
-    $grid->disableBatchDelete();
-    $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
-        $actions->disableView();
-        $actions->disableDelete();
-        $actions->disableEdit();
-    });
-    $grid->option("dialog_form_area", ["70%", "80%"]);
-});
+// //表格全局初始化
+// Grid::resolving(function (Grid $grid) {
+//     $grid->setActionClass(\Dcat\Admin\Grid\Displayers\Actions::class);
+//     $grid->model()->orderBy("id", "asc");
+//     $grid->disableViewButton();
+//     $grid->showQuickEditButton();
+//     $grid->enableDialogCreate();
+//     //$grid->disableBatchDelete();
+//     $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
+//         $actions->disableView();
+//         $actions->disableDelete();
+//         $actions->disableEdit();
+//     });
+//     $grid->option("dialog_form_area", ["70%", "80%"]);
+// });
 
 
 \App\Admin\Extensions\Form\Select::macro();

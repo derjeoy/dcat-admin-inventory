@@ -11,6 +11,8 @@ use Dcat\Admin\Http\Controllers\AdminController;
 use App\Models\ListingModel;
 use App\Models\InventotyOut;
 use App\Admin\Actions\Grid\UploadShipmeent;
+use App\Admin\RowActions\DownloadAction;
+use App\Admin\RowActions\DownloadCarrierExcel;
 
 class InventoryOutController extends AdminController
 {
@@ -45,6 +47,10 @@ class InventoryOutController extends AdminController
                 $tools->append(new UploadShipmeent());
             });
 
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                $actions->append( new DownloadAction());
+                $actions->append( new DownloadCarrierExcel('App\Models\InventoryOut'));
+            });
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('fbaid');
@@ -59,7 +65,7 @@ class InventoryOutController extends AdminController
 
             //$grid->disableActions();
             
-            $grid->disableRowSelector();
+            //$grid->disableRowSelector();
         });
     }
 
@@ -117,6 +123,7 @@ class InventoryOutController extends AdminController
             $form->select('send_method','发货方式')->options(\App\Models\InventoryOut::SEND_METHOD);
             $form->select('status','货件状态')->options(\App\Models\InventoryOut::SHIPMENT_STATUS);
             $form->textarea('note');
+            $form->file('carrier_file','物流形式发票')->autoUpload()->downloadable()->maxSize(1024);//1M
         });
     }
 }
