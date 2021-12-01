@@ -51,10 +51,24 @@ return [
         'parent_id' => 'products',
     ],
     [
+        'id'        => 'overseasinvnetory',
+        'title'     => '海外仓库存',
+        'icon'      => 'fa-taxi',
+        'uri'       => 'overseasinvnetory',
+        'parent_id' => 'products',
+    ],
+    [
         'id'        => 'purchaseorders',
         'title'     => '采购单列表',
         'icon'      => 'fa-taxi',
         'uri'       => 'purchaseorders',
+        'parent_id' => 'products',
+    ],
+    [
+        'id'        => 'orders',
+        'title'     => '订单列表',
+        'icon'      => 'fa-taxi',
+        'uri'       => 'orders',
         'parent_id' => 'products',
     ],
     // [

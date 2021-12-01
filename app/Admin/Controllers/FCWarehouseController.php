@@ -8,9 +8,28 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use App\Admin\Actions\Grid\UploadFCWarehouse;
+use Dcat\Admin\Layout\Content;
+use Dcat\Admin\Layout\Row;
+use App\Admin\Metrics\Examples\NewDevices;
+use App\Admin\Metrics\Examples\NewUsers;
+use App\Admin\Metrics\Examples\TotalUsers;
 
 class FCWarehouseController extends AdminController
 {
+
+    public function index(Content $content)
+    {
+        return $content
+            ->header('亚马逊仓库')
+            ->description('列表')
+            ->body(function (Row $row) {
+                $row->column(4, new TotalUsers());
+                $row->column(4, new NewUsers());
+                $row->column(4, new NewDevices());
+            })
+            ->body($this->grid());
+    }
+
     /**
      * Make a grid builder.
      *

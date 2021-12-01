@@ -23,8 +23,6 @@ class InventoryOverseaController extends AdminController
             $grid->column('country');
             $grid->column('address');
             $grid->column('note');
-            $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
@@ -47,9 +45,8 @@ class InventoryOverseaController extends AdminController
             $show->field('irobot_id');
             $show->field('country');
             $show->field('address');
+            $show->field('number');
             $show->field('note');
-            $show->field('created_at');
-            $show->field('updated_at');
         });
     }
 
@@ -66,9 +63,7 @@ class InventoryOverseaController extends AdminController
             $form->text('country');
             $form->text('address');
             $form->text('note');
-        
-            $form->display('created_at');
-            $form->display('updated_at');
+    
         });
     }
 }

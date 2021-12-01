@@ -19,6 +19,7 @@ Route::group([
     $router->resource('fbawarehouse', 'FCWarehouseController');
     $router->resource('currency', 'CurrencyController');
     $router->resource('purchaseorders', 'PurchaseOrderController');
+    $router->resource('overseasinvnetory', 'InventoryOverseaController');
     
     //$router->get('listingsummary', 'Summary\ListingSummaryController@create');
 

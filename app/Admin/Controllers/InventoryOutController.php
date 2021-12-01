@@ -13,6 +13,7 @@ use App\Models\InventotyOut;
 use App\Admin\Actions\Grid\UploadShipmeent;
 use App\Admin\RowActions\DownloadAction;
 use App\Admin\RowActions\DownloadCarrierExcel;
+use App\Admin\RowActions\DownloadCarrierPDF;
 
 class InventoryOutController extends AdminController
 {
@@ -50,6 +51,8 @@ class InventoryOutController extends AdminController
             $grid->actions(function (Grid\Displayers\Actions $actions) {
                 //$actions->append( new DownloadAction());
                 $actions->append( new DownloadCarrierExcel('App\Models\InventoryOut'));
+                $actions->append( new DownloadCarrierPDF('App\Models\InventoryOut'));
+
                 $actions->disableView();
                 $actions->disableDelete();
                 $actions->disableEdit();
@@ -128,7 +131,8 @@ class InventoryOutController extends AdminController
             $form->select('send_method','发货方式')->options(\App\Models\InventoryOut::SEND_METHOD);
             $form->select('status','货件状态')->options(\App\Models\InventoryOut::SHIPMENT_STATUS);
             $form->textarea('note');
-            $form->file('carrier_file','物流形式发票')->autoUpload()->downloadable()->maxSize(1024);//1M
+            $form->file('carrier_file','物流形式发票')->autoUpload()->downloadable()->maxSize(3069)->accept('xls,xlsx');;//3M
+            $form->file('carrier_pdf','箱麦')->autoUpload()->downloadable()->maxSize(3069)->accept('pdf');//3M
         });
     }
 }

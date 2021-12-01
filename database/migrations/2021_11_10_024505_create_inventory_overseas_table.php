@@ -19,7 +19,7 @@ class CreateInventoryOverseasTable extends Migration
             $table->string('country')->default('')->comment('仓库国家');
             $table->string('address')->default('')->comment('仓库地址');
             $table->string('note')->nullable()->comment('备注');
-            $table->timestamps();
+            $table->string('number')->nullable()->comment('数目');
         });
     }
 

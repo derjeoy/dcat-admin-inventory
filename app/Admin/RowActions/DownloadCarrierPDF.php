@@ -9,12 +9,12 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class DownloadCarrierExcel extends RowAction
+class DownloadCarrierPDF extends RowAction
 {
     /**
      * @return string
      */
-	protected $title = '下载发票';
+	protected $title = '下载箱唛';
     protected $model;
 
     public function __construct(string $model = null)
@@ -35,27 +35,10 @@ class DownloadCarrierExcel extends RowAction
         $id = $this->getKey();
 
         // 获取 parameters 方法传递的参数
-        $filepath = env('APP_URL').'/uploads/'.$request->get('carrier_file');
+        $filepath = env('APP_URL').'/uploads/'.$request->get('carrier_pdf');
 
         return $this->response()->download($filepath)->success("下载成功: [{$filepath}]");;
-
-        //return response()->download(public_path('/uploads/' . $request->get('carrier_file')), 'test1.pdf',$headers);
-
-        //return $this->response()->download($filepath)->success("下载成功: [{$filepath}]");
     }
-
- //    /**
-	//  * @return string|array|void
-	//  */
-	// public function confirm()
-	// {
-	// 	return [
- //            // 确认弹窗 title
- //            "您确定要下载这个箱唛吗？",
- //            // 确认弹窗 content
- //            $this->row->to_country.'-'.$this->row->fbaid.'-'.$this->row->carrier_file,
- //        ];
-	// }
 
     /**
      * @param Model|Authenticatable|HasPermissions|null $user
