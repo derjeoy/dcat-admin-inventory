@@ -48,8 +48,11 @@ class InventoryOutController extends AdminController
             });
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {
-                $actions->append( new DownloadAction());
+                //$actions->append( new DownloadAction());
                 $actions->append( new DownloadCarrierExcel('App\Models\InventoryOut'));
+                $actions->disableView();
+                $actions->disableDelete();
+                $actions->disableEdit();
             });
         
             $grid->filter(function (Grid\Filter $filter) {
@@ -61,7 +64,9 @@ class InventoryOutController extends AdminController
             $grid->toolsWithOutline(false);
             $grid->fixColumns(3);
 
-            //$grid->showQuickEditButton();
+            $grid->showQuickEditButton();
+            $grid->model()->orderBy("id", "asc");
+            // $grid->disableViewButton();
 
             //$grid->disableActions();
             

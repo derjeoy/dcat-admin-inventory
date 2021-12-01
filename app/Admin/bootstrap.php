@@ -96,16 +96,17 @@ Admin::navbar(function (Navbar $navbar) {
 // <li class="nav-item">
 //         <a><i style="font-size: 1rem"></i>世界时间：北  京:$datetime_china ||伦  敦:$datetime_london ||多伦多:$datetime_duolunduo ||温哥华:$datetime_wengehua ||洛杉矶:$datetime_la &nbsp; ||马德里:$datetime_es</a>
 //     </li>
+    //     <li>
+    //     <a style="font-size: 1rem">常用邮编：US-90001; CA-V5K V6Z; ES-35600; IT-00185; FR-75020; DE-10115; UK-SE1 1XJ; AU-1001; JP-190 0155;</a>
+    // </li>
 
     $navbar->$method(
 
           <<<HTML
 <ul class="nav navbar-nav">
+
     <li>
-        <a style="font-size: 1rem">常用邮编：US-90001; CA-V5K V6Z; ES-35600; IT-00185; FR-75020; DE-10115; UK-SE1 1XJ; AU-1001; JP-190 0155;</a>
-    </li>
-    <li>
-        <a style="font-size: 1rem">系统汇率：EUR-CNY:$currency_eur; USD-CNY:$currency_usd; CAD-CNY:$currency_cad; JP-CNY:$currency_jp; UK-CNY:$currency_uk; AU-CNY:$currency_au;</a>
+        <a style="font-size: 1rem">系统汇率：EUR-CNY:$currency_eur; USD-CNY:$currency_usd; CAD-CNY:$currency_cad; JP-CNY:$currency_jp; UK-CNY:$currency_uk; AU-CNY:$currency_au;&nbsp; &nbsp;&nbsp; &nbsp;</a>
     </li>
 </ul> 
 HTML
@@ -157,10 +158,10 @@ Filter::resolving(function (Filter $filter) {
 //     $grid->showQuickEditButton();
 //     $grid->enableDialogCreate();
 //     //$grid->disableBatchDelete();
-//     $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
-//         $actions->disableView();
-//         $actions->disableDelete();
-//         $actions->disableEdit();
+    // $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
+    //     $actions->disableView();
+    //     $actions->disableDelete();
+    //     $actions->disableEdit();
 //     });
 //     $grid->option("dialog_form_area", ["70%", "80%"]);
 // });
