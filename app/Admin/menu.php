@@ -9,12 +9,20 @@ return [
         'parent_id' => 0,
     ],
     [
+        'id'        => 'demands',
+        'title'     => '需求列表',
+        'icon'      => 'fa fa-amazon',
+        'uri'       => 'demands',
+        'parent_id' => 0,
+    ],
+    [
         'id'        => 'products',
         'title'     => '产品管理',
         'icon'      => 'fa-cubes',
         'uri'       => '',
         'parent_id' => 0,
     ],
+
     [
         'id'        => 'productslist',
         'title'     => '产品库列表',
@@ -113,6 +121,9 @@ return [
         'uri'       => 'promotionorders',
         'parent_id' => 'products',
     ],
+
+    
+
     /////////////////////////////////////////////////////
     [
         'id'        => 'tables',

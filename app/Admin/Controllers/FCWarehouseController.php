@@ -60,7 +60,14 @@ class FCWarehouseController extends AdminController
         
             });
 
-            $grid->fixColumns(3);
+            $grid->toolsWithOutline(false);
+            $grid->fixColumns(1);
+
+            //$grid->showQuickEditButton();
+
+            //$grid->disableActions();
+            
+            $grid->disableRowSelector();
         });
     }
 

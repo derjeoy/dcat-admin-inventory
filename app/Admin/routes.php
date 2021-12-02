@@ -31,6 +31,10 @@ Route::group([
     $router->resource('shipments', 'InventoryOutController');
     $router->resource('purchaseinventory', 'InventoryPurchaseController');
 
+
+    $router->resource('demands', 'DemandController');
+    
+
     $router->get('/', 'HomeController@index');
 
     $router->resource('users', 'UserController');
