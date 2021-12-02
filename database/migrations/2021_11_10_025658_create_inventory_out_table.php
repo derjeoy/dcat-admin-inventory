@@ -30,6 +30,7 @@ class CreateInventoryOutTable extends Migration
             $table->string('carrier_name')->default('')->comment('承运商');
             $table->string('tracking_num')->default('')->comment('跟踪号');
             $table->string('send_method')->default('')->comment('发货方式');
+            $table->string('send_number')->default('')->comment('发货数目');
             $table->string('status')->default('')->comment('出库单状态');
             $table->string('note')->default('')->comment('备注');
             $table->timestamps();

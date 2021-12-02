@@ -92,6 +92,27 @@ return [
         'uri'       => 'currency',
         'parent_id' => 'products',
     ],
+    [
+        'id'        => 'salesummery',
+        'title'     => '海卖助手',
+        'icon'      => 'fa fa-balance-scale',
+        'uri'       => 'salesummery',
+        'parent_id' => 'products',
+    ],
+    [
+        'id'        => 'promotionproducts',
+        'title'     => '推广产品',
+        'icon'      => 'fa fa-calendar-plus-o',
+        'uri'       => 'promotionproducts',
+        'parent_id' => 'products',
+    ],
+    [
+        'id'        => 'promotionorders',
+        'title'     => '推广订单',
+        'icon'      => 'fa fa-calendar-plus-o',
+        'uri'       => 'promotionorders',
+        'parent_id' => 'products',
+    ],
     /////////////////////////////////////////////////////
     [
         'id'        => 'tables',

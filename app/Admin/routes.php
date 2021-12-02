@@ -20,11 +20,12 @@ Route::group([
     $router->resource('currency', 'CurrencyController');
     $router->resource('purchaseorders', 'PurchaseOrderController');
     $router->resource('overseasinvnetory', 'InventoryOverseaController');
-    
-    //$router->get('listingsummary', 'Summary\ListingSummaryController@create');
+    $router->resource('promotionproducts', 'PromotionProductController');
+    $router->resource('promotionorders', 'PromotionOrderController');
+    $router->resource('salesummery', 'SalesSummeryController');
 
     $router->get('api/product', 'ApiController@getProductInfo')->name('api.product.find');
-    $router->get('api/product', 'ApiController@getListingInfo')->name('api.listing.find');
+    $router->get('api/listing', 'ApiController@getListingInfo')->name('api.listing.find');
 
     
     $router->resource('shipments', 'InventoryOutController');

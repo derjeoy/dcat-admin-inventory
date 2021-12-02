@@ -133,6 +133,18 @@ class InventoryOutController extends AdminController
             $form->textarea('note');
             $form->file('carrier_file','物流形式发票')->autoUpload()->downloadable()->maxSize(3069)->accept('xls,xlsx');;//3M
             $form->file('carrier_pdf','箱麦')->autoUpload()->downloadable()->maxSize(3069)->accept('pdf');//3M
+            // $form->mediaSelector('avatar1', '头像2')->rules('required', [
+            //             'required' => '请输上传或选择封面'
+            //         ])->options([
+            //             'length' => 20,
+            //             'type' => 'blend',
+            //             'sortable' => true,
+            //             'move' => json_encode(['dir' => 'upload_files', 'fileNameIsEncrypt' => true]),
+            //         ])->help('混合多媒体选择，拖动排序。限制上传或选择20个媒体');
+            // $form->photo('photo','图片')
+            //     ->nametype('datetime')
+            //     ->remove(true)
+            //     ->help('单图，可删除');
         });
     }
 }
