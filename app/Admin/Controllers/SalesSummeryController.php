@@ -7,6 +7,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use App\Admin\Metrics\Examples\TotalUsers;
 
 class SalesSummeryController extends AdminController
 {
@@ -18,30 +19,76 @@ class SalesSummeryController extends AdminController
     protected function grid()
     {
         return Grid::make(new SalesSummery(), function (Grid $grid) {
+
+            $grid->combine('today_sales', ['taday_order_number', 'taday_order_ammount', 'today_average_price'],'今日销售数据')->help('销售数据');
+            $grid->combine('Yestdays_sales', ['yesterday_order_number', 'yesterday_order_ammount', 'yesterday_order_price'],'昨日销售数据')->responsive();//->style('color:#1867c0');
+            $grid->combine('YestdaysLastWeek_sales', ['lastweekday_order_number', 'lastweekday_order_ammount', 'lastweekday_order_price'],'上周今日销售数据');
+
             $grid->column('id')->sortable();
             $grid->column('picture','产品图片')->image('',50,50);
             $grid->column('asin');
             $grid->column('name_local');
             $grid->column('sku');
-            $grid->column('taday_order_number');
-            $grid->column('taday_order_ammount');
-            $grid->column('today_average_price');
-            $grid->column('yesterday_order_number');
-            $grid->column('yesterday_order_ammount');
-            $grid->column('yesterday_order_price');
-            $grid->column('lastweekday_order_number');
-            $grid->column('lastweekday_order_ammount');
-            $grid->column('lastweekday_order_price');
-            $grid->column('inventory_salable');
-            $grid->column('inventory_receivable');
-            $grid->column('inventory_movable');
+            $grid->column('taday_order_number')->setHeaderAttributes(['style' => 'color:#5b69bc'])->sortable();
+            $grid->column('taday_order_ammount')->sortable();
+            $grid->column('today_average_price')->sortable();
+            $grid->column('yesterday_order_number')->sortable();
+            $grid->column('yesterday_order_ammount')->sortable();
+            $grid->column('yesterday_order_price')->sortable();
+            $grid->column('lastweekday_order_number')->sortable();
+            $grid->column('lastweekday_order_ammount')->sortable();
+            $grid->column('lastweekday_order_price')->sortable();
+            $grid->column('inventory_salable')->sortable();
+            $grid->column('inventory_receivable')->sortable();
+            $grid->column('inventory_movable')->sortable();
             $grid->column('note');
         
+            $grid->rowSelector()
+                ->style('success')
+                ->click();
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
         
             });
-        });
+
+            $grid->header(function ($collection) use ($grid) {
+                $query = \App\Models\SalesSummery::query();
+
+                // 拿到表格筛选 where 条件数组进行遍历
+                $grid->model()->getQueries()->unique()->each(function ($value) use (&$query) {
+                    if (in_array($value['method'], ['paginate', 'get', 'orderBy', 'orderByDesc'], true)) {
+                        return;
+                    }
+
+                    $query = call_user_func_array([$query, $value['method']], $value['arguments'] ?? []);
+                });
+
+                // 查出统计数据
+                $data = $query->get();
+
+                // 自定义组件
+                return new TotalUsers($data);
+            });
+
+            $grid->footer(function ($collection) use ($grid) {
+                $query = \App\Models\SalesSummery::query();
+
+                // 拿到表格筛选 where 条件数组进行遍历
+                $grid->model()->getQueries()->unique()->each(function ($value) use (&$query) {
+                    if (in_array($value['method'], ['paginate', 'get', 'orderBy', 'orderByDesc'], true)) {
+                        return;
+                    }
+
+                    $query = call_user_func_array([$query, $value['method']], $value['arguments'] ?? []);
+                });
+
+                // 查出统计数据
+                $data = $query->get();
+
+                return "<div style='padding: 10px;'>总收入 ： $data</div>";
+                });
+            });
     }
 
     /**

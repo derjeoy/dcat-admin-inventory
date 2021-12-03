@@ -83,6 +83,8 @@ Admin::navbar(function (Navbar $navbar) {
         $currency_uk = $currency =  round( Currency::convert()->from('UK')->to('CNY')->amount(1)->get() , 2);
         $currency_cad = $currency =  round( Currency::convert()->from('CAD')->to('CNY')->amount(1)->get() , 2);
         $currency_au = $currency =  round( Currency::convert()->from('AU')->to('CNY')->amount(1)->get() , 2);
+
+        
     }
     else {
         $currency_eur = App\Models\Currency::get()->where('country','=', 'DE')->first()->currency;

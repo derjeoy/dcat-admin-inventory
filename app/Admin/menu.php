@@ -22,6 +22,13 @@ return [
         'uri'       => '',
         'parent_id' => 0,
     ],
+    [
+        'id'        => 'productinterest',
+        'title'     => '产品调研记录',
+        'icon'      => 'fa fa-amazon',
+        'uri'       => 'productinterest',
+        'parent_id' => 'products',
+    ],
 
     [
         'id'        => 'productslist',
