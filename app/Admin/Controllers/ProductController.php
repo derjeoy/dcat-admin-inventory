@@ -114,11 +114,13 @@ class ProductController extends AdminController
 
             
 
-            $form->image('image_column')->name(function ($file) use ($form){
+            $form->image('image_column','请上传产品主图')->name(function ($file) use ($form){
                 $img_name = $form->model()->name_english;
                 $finename = $img_name.'.'.$file->guessExtension();
                 return $finename;
-            })->autoUpload();
+            })->autoUpload()->rules('required',[
+                'required' =>'请上传产品主图'
+                ]);
             //$form->image('image_column')
             $form->text('name_chinese');
             $form->text('name_english');

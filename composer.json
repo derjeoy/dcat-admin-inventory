@@ -10,8 +10,10 @@
     "require": {
         "php": "^7.1.3",
         "amrshawky/laravel-currency": "^4.0",
+        "clousale/amazon-sp-api-php": "2.1.2",
         "dcat/laravel-admin": "2.*",
         "de-memory/dcat-media-selector": "dev-master",
+        "double-break/spapi-php": "1.0.4",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
