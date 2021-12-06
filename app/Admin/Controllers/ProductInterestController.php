@@ -21,20 +21,26 @@ class ProductInterestController extends AdminController
             $grid->column('id')->sortable();
             $grid->column('image');
             $grid->column('image','产品图片')->image('',50,50);
-            $grid->column('country');
-            $grid->column('asin');
-            $grid->column('keyword');
-            $grid->column('name');
-            $grid->column('store');
+            $grid->column('country')->using(\App\Models\ProductInterest::COUNTRY_CODE);
+            $grid->column('asin')->limit(30);
+            $grid->column('keyword')->limit(30);
+            $grid->column('name')->limit(30);
+            $grid->column('store')->limit(30);
             $grid->column('bs_category');
             $grid->column('amz_price');
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
         
             });
+
+
+            // 禁止按钮边框
+            $grid->toolsWithOutline(false);
+            //$grid->fixColumns(3);
+            $grid->showQuickEditButton();
+
         });
     }
 
@@ -69,7 +75,7 @@ class ProductInterestController extends AdminController
         return Form::make(new ProductInterest(), function (Form $form) {
             $form->display('id');
             $form->image('image')->autoUpload();
-            $form->text('country');
+            $form->select('country','国家')->options(\App\Models\ProductInterest::COUNTRY_CODE);
             $form->text('keyword');
             $form->text('name');
             $form->text('asin');
