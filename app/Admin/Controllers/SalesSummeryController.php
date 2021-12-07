@@ -71,24 +71,9 @@ class SalesSummeryController extends AdminController
                 return new TotalUsers($data);
             });
 
-            $grid->footer(function ($collection) use ($grid) {
-                $query = \App\Models\SalesSummery::query();
-
-                // 拿到表格筛选 where 条件数组进行遍历
-                $grid->model()->getQueries()->unique()->each(function ($value) use (&$query) {
-                    if (in_array($value['method'], ['paginate', 'get', 'orderBy', 'orderByDesc'], true)) {
-                        return;
-                    }
-
-                    $query = call_user_func_array([$query, $value['method']], $value['arguments'] ?? []);
-                });
-
-                // 查出统计数据
-                $data = $query->get();
-
-                return "<div style='padding: 10px;'>总收入 ： $data</div>";
-                });
-            });
+            //启用导出功能
+            $grid->export()->xlsx();
+        });
     }
 
     /**

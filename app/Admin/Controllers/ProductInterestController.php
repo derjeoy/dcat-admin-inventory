@@ -20,14 +20,14 @@ class ProductInterestController extends AdminController
         return Grid::make(new ProductInterest(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('image','产品图片')->image('',50,50);
-            $grid->column('label','标记')->using(\App\Models\ProductInterest::LABEL_STATUS)->sortable()->label(\App\Models\ProductInterest::STATUS_COLOR);
-            $grid->column('country')->using(\App\Models\ProductInterest::COUNTRY_CODE);
+            $grid->column('label','标记')->select(\App\Models\ProductInterest::LABEL_STATUS)->sortable()->help('0-有兴趣；1-没有兴趣');//->label(\App\Models\ProductInterest::STATUS_COLOR);
+            $grid->column('country')->select(\App\Models\ProductInterest::COUNTRY_CODE);
             $grid->column('asin')->limit(30);
             $grid->column('keyword')->limit(30);
             $grid->column('name')->limit(30);
             $grid->column('store')->limit(30);
             $grid->column('bs_category');
-            $grid->column('amz_price');
+            $grid->column('amz_price')->editable(true);
             $grid->column('created_at');
         
             $grid->filter(function (Grid\Filter $filter) {

@@ -10,7 +10,9 @@
     "require": {
         "php": "^7.1.3",
         "amrshawky/laravel-currency": "^4.0",
+        "celaraze/dcat-extension-plus": "dev-master",
         "clousale/amazon-sp-api-php": "2.1.2",
+        "dcat/easy-excel": "^1.0",
         "dcat/laravel-admin": "2.*",
         "de-memory/dcat-media-selector": "dev-master",
         "double-break/spapi-php": "1.0.4",
@@ -19,6 +21,7 @@
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.54",
+        "sparkinzy/dcat-viewer": "^1.0",
         "yxx/laravel-quick": "^1.0"
     },
     "require-dev": {

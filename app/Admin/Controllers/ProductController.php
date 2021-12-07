@@ -75,6 +75,9 @@ class ProductController extends AdminController
             $grid->fixColumns(3);
             $grid->showQuickEditButton();
 
+            //启用导出功能
+            $grid->export()->xlsx();
+
         });
     }
 

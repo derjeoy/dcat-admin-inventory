@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc8605ea9e8cedcb0c887487ce03f0fa",
+    "content-hash": "c19f68a3bd11e3a9613a87deab127894",
     "packages": [
         {
             "name": "amrshawky/currency",
@@ -132,6 +132,135 @@
                 }
             ],
             "time": "2021-05-15T01:12:59+00:00"
+        },
+        {
+            "name": "box/spout",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/box/spout.git",
+                "reference": "9bdb027d312b732515b884a341c0ad70372c6295"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/box/spout/zipball/9bdb027d312b732515b884a341c0ad70372c6295",
+                "reference": "9bdb027d312b732515b884a341c0ad70372c6295",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-xmlreader": "*",
+                "ext-zip": "*",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2",
+                "phpunit/phpunit": "^8"
+            },
+            "suggest": {
+                "ext-iconv": "To handle non UTF-8 CSV files (if \"php-intl\" is not already installed or is too limited)",
+                "ext-intl": "To handle non UTF-8 CSV files (if \"iconv\" is not already installed)"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Box\\Spout\\": "src/Spout"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Adrien Loison",
+                    "email": "adrien@box.com"
+                }
+            ],
+            "description": "PHP Library to read and write spreadsheet files (CSV, XLSX and ODS), in a fast and scalable way",
+            "homepage": "https://www.github.com/box/spout",
+            "keywords": [
+                "OOXML",
+                "csv",
+                "excel",
+                "memory",
+                "odf",
+                "ods",
+                "office",
+                "open",
+                "php",
+                "read",
+                "scale",
+                "spreadsheet",
+                "stream",
+                "write",
+                "xlsx"
+            ],
+            "support": {
+                "issues": "https://github.com/box/spout/issues",
+                "source": "https://github.com/box/spout/tree/v3.3.0"
+            },
+            "time": "2021-05-14T21:18:09+00:00"
+        },
+        {
+            "name": "celaraze/dcat-extension-plus",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/celaraze/dcat-extension-plus.git",
+                "reference": "94093cf8c99d4b903d81d499119ff1c3d973e0fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/celaraze/dcat-extension-plus/zipball/94093cf8c99d4b903d81d499119ff1c3d973e0fe",
+                "reference": "94093cf8c99d4b903d81d499119ff1c3d973e0fe",
+                "shasum": ""
+            },
+            "require": {
+                "dcat/laravel-admin": "~2.0",
+                "php": ">=7.3.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "dcat-admin": "Celaraze\\DcatPlus\\ServiceProvider",
+                "laravel": {
+                    "providers": [
+                        "Celaraze\\DcatPlus\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Celaraze\\DcatPlus\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Celaraze",
+                    "email": "celaraze@qq.com"
+                }
+            ],
+            "description": "增强 DcatAdmin 的使用体验。",
+            "homepage": "https://github.com/celaraze/dcat-extension-plus",
+            "keywords": [
+                "dcat-admin",
+                "extension"
+            ],
+            "support": {
+                "issues": "https://github.com/celaraze/dcat-extension-plus/issues",
+                "source": "https://github.com/celaraze/dcat-extension-plus/tree/master"
+            },
+            "time": "2021-05-20T03:02:30+00:00"
         },
         {
             "name": "clousale/amazon-sp-api-php",
@@ -262,6 +391,65 @@
                 }
             ],
             "time": "2021-09-13T08:41:34+00:00"
+        },
+        {
+            "name": "dcat/easy-excel",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jqhph/easy-excel.git",
+                "reference": "a80d46001449a43b80700e3fe29e3f047cfc489d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jqhph/easy-excel/zipball/a80d46001449a43b80700e3fe29e3f047cfc489d",
+                "reference": "a80d46001449a43b80700e3fe29e3f047cfc489d",
+                "shasum": ""
+            },
+            "require": {
+                "box/spout": "~3",
+                "league/flysystem": "~1|~2",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2",
+                "phpunit/phpunit": "~7|~8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dcat\\EasyExcel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jqh",
+                    "email": "841324345@qq.com"
+                }
+            ],
+            "description": "使用简单实用的语义化接口快速读写Excel文件",
+            "homepage": "https://github.com/jqhph/easy-excel",
+            "keywords": [
+                "box spout",
+                "csv",
+                "easy excel",
+                "excel",
+                "ods",
+                "office",
+                "read",
+                "spreadsheet",
+                "stream",
+                "xlsx"
+            ],
+            "support": {
+                "issues": "https://github.com/jqhph/easy-excel/issues",
+                "source": "https://github.com/jqhph/easy-excel/tree/1.0.6"
+            },
+            "time": "2021-09-14T05:52:08+00:00"
         },
         {
             "name": "dcat/laravel-admin",
@@ -3665,6 +3853,60 @@
                 }
             ],
             "time": "2021-09-25T23:07:42+00:00"
+        },
+        {
+            "name": "sparkinzy/dcat-viewer",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sparkinzy/dcat-viewer.git",
+                "reference": "442bcfba8dece819ad524c8253df7c5dc407fdab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sparkinzy/dcat-viewer/zipball/442bcfba8dece819ad524c8253df7c5dc407fdab",
+                "reference": "442bcfba8dece819ad524c8253df7c5dc407fdab",
+                "shasum": ""
+            },
+            "require": {
+                "dcat/laravel-admin": "~2.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "dcat-admin": "Sparkinzy\\DcatViewer\\DcatViewerServiceProvider",
+                "laravel": {
+                    "providers": [
+                        "Sparkinzy\\DcatViewer\\DcatViewerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sparkinzy\\DcatViewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "sparkinzy",
+                    "email": "sparkinzy@163.com"
+                }
+            ],
+            "description": "dcat admin 图片预览增强插件...",
+            "homepage": "https://github.com/sparkinzy/dcat-viewer",
+            "keywords": [
+                "dcat-admin",
+                "extension"
+            ],
+            "support": {
+                "issues": "https://github.com/Sparkinzy/dcat-viewer/issues",
+                "source": "https://github.com/Sparkinzy/dcat-viewer/tree/1.0.1"
+            },
+            "time": "2021-11-17T06:54:34+00:00"
         },
         {
             "name": "spatie/eloquent-sortable",
@@ -8066,6 +8308,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "celaraze/dcat-extension-plus": 20,
         "de-memory/dcat-media-selector": 20
     },
     "prefer-stable": true,
