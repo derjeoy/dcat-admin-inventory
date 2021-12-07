@@ -23,6 +23,7 @@ class CreateProductInterestTable extends Migration
             $table->string('country')->default('')->comment('国家');
             $table->string('keyword')->default('')->comment('关键词');
             $table->string('name')->default('')->comment('名字');
+            $table->string('label')->default('')->comment('标记');
             $table->timestamps();
         });
     }

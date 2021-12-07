@@ -18,9 +18,9 @@ class ProductInterestController extends AdminController
     protected function grid()
     {
         return Grid::make(new ProductInterest(), function (Grid $grid) {
-            $grid->column('id')->sortable('desc');
-            $grid->column('image');
+            $grid->column('id')->sortable();
             $grid->column('image','产品图片')->image('',50,50);
+            $grid->column('label','标记')->using(\App\Models\ProductInterest::LABEL_STATUS)->sortable()->label(\App\Models\ProductInterest::STATUS_COLOR);
             $grid->column('country')->using(\App\Models\ProductInterest::COUNTRY_CODE);
             $grid->column('asin')->limit(30);
             $grid->column('keyword')->limit(30);
@@ -74,6 +74,7 @@ class ProductInterestController extends AdminController
     {
         return Form::make(new ProductInterest(), function (Form $form) {
             $form->display('id');
+            $form->select('label','标记')->options(\App\Models\ProductInterest::LABEL_STATUS);;
             $form->text('asin');
             $form->text('bs_category');
             $form->text('name');

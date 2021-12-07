@@ -33,5 +33,20 @@ class ProductInterest extends Model
         self::COUNTRY_IT => '意大利',
         self::COUNTRY_ES => '西班牙',
     ];
+
+
+    const LABEL_INTEREST = 0;
+    const LABEL_NO_INTEREST = 1;
+    const LABEL_STATUS = [
+        self::LABEL_INTEREST => '感兴趣',
+        self::LABEL_NO_INTEREST => '不感兴趣',
+    ];
     
+
+    const STATUS_COLOR = [
+        self::LABEL_INTEREST      => 'success',
+        self::LABEL_NO_INTEREST    => 'gray',
+        //self::STATUS_RETURNING => 'yellow',
+        //self::STATUS_RETURNED  => 'success',
+    ];
 }
