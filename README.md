@@ -155,3 +155,6 @@ http://www.jiufanglogistics.cn/channel/1/fbackfbt
 dcat媒体管理
 https://github.com/deatil/dcat-form-media
 https://github.com/de-memory/dcat-media-selector
+
+ICON
+https://fontawesome.com/v5.15/icons?d=gallery&p=2
