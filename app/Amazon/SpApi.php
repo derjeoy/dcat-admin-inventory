@@ -1,127 +1,201 @@
 <?php
-namespace App\Http\Controllers;
+namespace app\common;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
-use app\facade\MyRequest;
-use think\facade\Log;
-use think\route\Domain;
-
-class SpApi extends BaseController
+class SPAPI
 {
-    public function identify()
+    private $clientId       = '需要改';   ## 【卖家后台获取】客户端ID
+    private $clientSecret   = '需要改';   ## 【卖家后台获取】客户端秘钥
+    private $accessKey      = '需要改';   ## 【AWS后台获取】Access Key of AWS IAM User, for example AKIAABCDJKEHFJDS
+    private $secretKey      = '需要改';   ## 【AWS后台获取】Secret Key of AWS IAM User
+    private $roleArn        = '需要改';   ## 【AWS后台获取】AWS IAM Role ARN for example: arn:aws:iam::123456789:role/Your-Role-Name
+    private $config;
+    private $refreshToken;
+    private $regionInfo;
+
+    /**
+     * 文档https://github.com/amzn/selling-partner-api-docs/blob/main/guides/developer-guide
+     * SPAPI constructor.
+     * @param   string  $refreshToken           ## 刷新token授,权成功获得
+     * @param   string  $sellingPartnerId       ## 店铺唯一标识,授权成功获得
+     * @param   string  $countryCode            ## 国家代码，即国家简写
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function __construct($refreshToken, $sellingPartnerId, $countryCode)
     {
-        // Log::write('identify:'.\GuzzleHttp\json_encode($this->request->param()));
-        dump($this->request->param());
+        $this->refreshToken        = $refreshToken;
+        $this->regionInfo = $this->getRegionInfo($countryCode);
+        if (empty($this->regionInfo)) {
+            return ret_error('countryCode错误');
+        }
+        $options = [
+            // 'refresh_token' => $refreshToken, // Aztr|...
+            // 'client_id' => $client_id, // App ID from Seller Central, amzn1.sellerapps.app.cfbfac4a-......
+            // 'client_secret' => $client_secret, // The corresponding Client Secret
+            //'region' => \ClouSale\AmazonSellingPartnerAPI\SellingPartnerRegion::$EUROPE, // or NORTH_AMERICA / FAR_EAST
+            'region' => $this->regionInfo['region'], // or NORTH_AMERICA / FAR_EAST
+            'access_key' => $this->accessKey, // Access Key of AWS IAM User, for example AKIAABCDJKEHFJDS
+            'secret_key' => $this->secretKey, // Secret Key of AWS IAM User
+            //'endpoint' => \ClouSale\AmazonSellingPartnerAPI\SellingPartnerEndpoint::$EUROPE, // or NORTH_AMERICA / FAR_EAST
+            'endpoint' => $this->regionInfo['endpoint'], // or NORTH_AMERICA / FAR_EAST
+            'role_arn' => $this->roleArn, // AWS IAM Role ARN for example: arn:aws:iam::123456789:role/Your-Role-Name
+        ];
+        /*$accessToken = \ClouSale\AmazonSellingPartnerAPI\SellingPartnerOAuth::getAccessTokenFromRefreshToken(
+            $options['refresh_token'],
+            $options['client_id'],
+            $options['client_secret']
+        );*/
+        $result = $this->getAccessToken($sellingPartnerId);
+        if (isset($result['code'])) {
+            return $result;
+        }
+        $accessToken = $result;
+        $assumedRole = \ClouSale\AmazonSellingPartnerAPI\AssumeRole::assume(
+            $options['region'],
+            $options['access_key'],
+            $options['secret_key'],
+            $options['role_arn']
+        );
+        $config = \ClouSale\AmazonSellingPartnerAPI\Configuration::getDefaultConfiguration();
+        $config->setHost($options['endpoint']);
+        $config->setAccessToken($accessToken);
+        $config->setAccessKey($assumedRole->getAccessKeyId());
+        $config->setSecretKey($assumedRole->getSecretAccessKey());
+        $config->setRegion($options['region']);
+        $config->setSecurityToken($assumedRole->getSessionToken());
+        $this->config = $config;
 
     }
-
-    //https://sellercentral.amazon.com/apps/authorize/consent?application_id=amzn1.sp.solution.144889cf-4992-4b3c-bff3-301be38e74a4&state=17&version=beta
-    // 进行授权
-    public function identifyJump()
+     /**
+     * 获取accessToken
+     * @return array|mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function getAccessToken($sellingPartnerId)
     {
-        // 接收参数示例
-        //        ^ array:3 [▼
-        //  "spapi_oauth_code" => "ANozfWVllWNqbERcODQh"
-        //  "state" => "heidou"
-        //  "selling_partner_id" => "A3FC1S9HX7ZHY6"
-        //]
-        $params = $this->request->param();
-//        if (!isset($params['spapi_oauth_code'])) {
-//            return;
-//        }
+        /*POST /auth/o2/token HTTP/l.l
+        Host: api.amazon.com
+        Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+        grant_type=refresh_token
+        &refresh_token=Aztr|...
+        &client_id=foodev
+        &client_secret=Y76SDl2F*/
+        $tokenKey = 'access_token'.$sellingPartnerId;
+        if (cache($tokenKey)) {
+            return cache($tokenKey);
+        }
         $url = 'https://api.amazon.com/auth/o2/token';
-        //grant_type=authorization_code&code=SplxlOexamplebYS6WxSbIA&client_id=foodev&client_secret=Y76SDl2F
-        $data['grant_type'] = 'authorization_code';
-        $data['code'] = $params['spapi_oauth_code'];
-        $data['client_id'] = '需要改';         ## 在卖家后台
-        $data['client_secret'] = '需要改';     ## 在卖家后台
-        $res = MyRequest::post($url, [
+        $data['grant_type'] = 'refresh_token';
+        $data['refresh_token'] = $this->refreshToken;
+        $data['client_id'] = $this->clientId;
+        $data['client_secret'] = $this->clientSecret;
+
+        $res = \app\facade\MyRequest::post($url, [
             'form_params'   => $data,
             'Content-Type'  => 'application/x-www-form-urlencoded;charset=UTF-8'
         ]);
-        // 返回结果示例
-        //         array:4 [▼
-        //  "code" => 200
-        //  "msg" => "success"
-        //  "time" => 1613024603
-        //  "data" => array:4 [▼
-        //    "access_token" => "Atza|IwEBIErDeGnckwGv66pgX7FwNQrliDmG2mEOdBr9jLSPVtWeumgzXkwzcOiyMFw0e59LYJInESwpXOcL7kSNW7KxzRcLpm0vlAfRbHeAiOj8aBvOvF8gpb9DsRr_c-GPHAzLBTevkJVfsvRVZLB2mhq1u4B ▶"
-        //    "refresh_token" => "Atzr|IwEBID2fWkiuplGNZnif9nAwcn6rjQ-gIwmDXwXjn64SdCzx-iVRI8Ju6s6XO2wzOs9-Jz3ZhVP7GsyIPz4HnJ9gLe9G7LaWqA4pB5tIeVACRJmjqisNYIN6SqSsZ8VnM3tF24zd6H3OkL9Du6okAjXXtFs ▶"
-        //    "token_type" => "bearer"
-        //    "expires_in" => 3600
-        //  ]
-        //]
         if ($res['code'] != 200) {
-            return json($res);
+            return $res;
         }
-        $params['state'] = explode('||',$params['state']);
-        // 永久存储refresh_token,存数据库都可以, selling_partner_id这个也存起来
-        // 用这个值代替sdk里的refresh_token即可
-        if ($params['state'][1] == 1) {
-            // 正式
-            $url = 'http://dev4.eyu.com/api/authorize_callback.html';
-        } else {
-            // 測試 一般为 open.heidou.store
-            $url = 'http://k.dev4.eyu.com/api/authorize_callback.html';
-        }
-
-        $ret = MyRequest::post($url,[
-            'form_params'   =>  [
-                'refresh_token'  =>  $res['data']['refresh_token'],
-                'selling_partner_id'  =>  $params['selling_partner_id'],
-                'shop_id'  =>  $params['state'][0],
-            ]
-        ]);
-        // 缓存accessToken
-        // cache('access_token'.$params['selling_partner_id'], $res['data']['access_token'], $res['data']['expires_in']);
-        if ($ret['code'] == 200 && $ret['data']['code'] == 200) {
-            return json(ret_success('授权成功'));
-        } else {
-            return json($ret);
-        }
-
+        // 设置缓存
+        cache($tokenKey, $res['data']['access_token'], $res['data']['expires_in']);
+        return $res['data']['access_token'];
     }
-
-    // 获取亚马逊商品属性
-    public function getCataLogItem()
+    /**
+     * 获取亚马逊订单信息
+     *
+     * @param string $orderId   ## 亚马逊订单ID
+     * @return array
+     */
+    public function getOrder($orderId)
     {
-        // 表单验证 自行验证
-        // $validate = my_validate($this->request->param(), 'amz_getCataLogItem');
-        // if ($validate !== true) {
-        //     return json($validate);
-        // }
-        /*$spApi = new \app\common\SPAPI(
-            'Atzr|IwEBICG6JIdq2nUS4QmqXxL4CETfICMDdynSvYU8grxCtHGuonW6IDz1ZqGuI6TyPXljnaO11LFseknT7WKPfY28V6-z6vgLH1Q2oJXIWzM5dqoOgtajx3utBYR6D1LsvfDPBVJlr1lHia2I1LzLTQ0bqXtTq7tWYQsS8l_zK4dlUIsYL5zuNemxe1b7DjtdkF9OOwid6SndWhbW2SJeo3AU9nKSheCZkTIuEt9WHZbl_uIAKe1KwcYMmE-UXglGlDuR78dGjCxYCethZXORSuSYqaLOklh9RJxcREwcjfppbHVME5RSDBXeNcqe94wxyfr7BQs',
-            'A3FC1S9HX7ZHY6','CA');*/
-        $spApi = new \app\common\SPAPI(
-            $this->request->param('refresh_token'),
-            $this->request->param('selling_partner_id'),
-            $this->request->param('country_code')
-        );
-        //$asin, $marketplaceId
-        $ret = $spApi->cataLogItems($this->request->param('asin'));
-        return json($ret);
+        try {
+            $productClient = new \ClouSale\AmazonSellingPartnerAPI\Api\OrdersApi($this->config);
+            // 訂單信息
+            $result = $productClient->getOrder($orderId);
+            // 获取购买者信息
+            $buyerInfo = $productClient->getOrderBuyerInfo($orderId);
+            $result = \GuzzleHttp\json_decode($result,true);
+            $buyerInfo = \GuzzleHttp\json_decode($buyerInfo,true);
+            $ret = ret_success('ok', [
+                'order_info'  =>  isset($result['payload'])?$result['payload']:$result,
+                'buyer_info'  =>  isset($buyerInfo['payload'])?$buyerInfo['payload']:$buyerInfo,
+            ]);
+        } catch (\Exception $exception) {
+            $ret = ret_error('error', $exception->getMessage());
+        }
+        return $ret;
     }
 
-     // 获取亚马逊订单信息,包括买家信息
-    public function getOrderInfo()
+    /**
+     * 获取商品名称
+     * @param $asin
+     * @return array
+     */
+    public function cataLogItems($asin)
     {
-        // 表单验证 自行验证
-        // $validate = my_validate($this->request->param(), 'amz_getOrderInfo');
-        // if ($validate !== true) {
-        //     return json($validate);
-        // }
-        $m = new \app\common\SPAPI(
-            $this->request->param('refresh_token'),
-            $this->request->param('selling_partner_id'),
-            $this->request->param('country_code')
-        );
-        $ret = $m->getOrder($this->request->param('order_id'));
-        return json($ret);
+        $marketplaceId = $this->regionInfo['marketplaceId'];
+        try {
+            $apiInstance = new \ClouSale\AmazonSellingPartnerAPI\Api\CatalogApi($this->config);
+            //Check the catalog info for B074Z9QH5F ASIN
+            $result = $apiInstance->getCatalogItem($marketplaceId, $asin);
+            //echo ($result);
+            $result = \GuzzleHttp\json_decode($result,true);
+            //dump($result->getPayload()->getAttributeSets()[0]->getTitle());
+
+            $ret = ret_success('ok', isset($result['payload'])?$result['payload']:$result);
+        } catch (\Exception $exception) {
+            $ret = ret_error('error', $exception->getMessage());
+        }
+        return $ret;
+
     }
+
+    /**
+     * 获取店铺所在地区的参数信息
+     * @param $countryCode
+     * @return array|bool
+     */
+    public function getRegionInfo($countryCode)
+    {
+        $marketplaceIds = [
+            // North America
+            'CA'    =>  ['NorthAmerica','A2EUQ1WTGCTBG2'],    //'Canada'
+            'US'    =>  ['NorthAmerica','ATVPDKIKX0DER'],     //'United States of America'
+            'MX'    =>  ['NorthAmerica','A1AM78C64UM0Y8'],    //'Mexico'
+            'BR'    =>  ['NorthAmerica','A2Q3Y263D00KWC'],    //'Brazil'
+            //Europe
+            'ES'    =>  ['Europe','A1RKKUPIHCS9HS'],    //'Spain'
+            'GB'    =>  ['Europe','A1F83G8C2ARO7P'],    //'United Kingdom'
+            'FR'    =>  ['Europe','A13V1IB3VIYZZH'],    //'France'
+            'NL'    =>  ['Europe','A1805IZSGTT6HS'],    //'Netherlands'
+            'DE'    =>  ['Europe','A1PA6795UKMFR9'],    //'Germany'
+            'IT'    =>  ['Europe','	APJ6JRA9NG5V4'],    //'Italy '
+            'SE'    =>  ['Europe','A2NODRKZP88ZB9'],    //'Sweden'
+            'TR'    =>  ['Europe','A33AVAJ2PDY3EV'],    //'Turkey'
+            'AE'    =>  ['Europe','A2VIGQ35RCS4UG'],    //'United Arab Emirates 	'
+            'IN'    =>  ['Europe','	A21TJRUUN4KGV'],    //'India'
+            //Far East
+            'SG'    =>  ['FarEast','A19VAU5U5O7RUS'], //'Singapore'
+            'AU'    =>  ['FarEast','A39IBJ37TRP1C6'], //'Australia'
+            'JP'    =>  ['FarEast','A1VC38T7YXB528'], //'Japan'
+        ];
+        $endpoints = [
+            'NorthAmerica'  =>  ['https://sellingpartnerapi-na.amazon.com','us-east-1'],
+            'Europe'        =>  ['https://sellingpartnerapi-eu.amazon.com','eu-west-1'],
+            'FarEast'       =>  ['https://sellingpartnerapi-fe.amazon.com','us-west-2']
+        ];
+        if (!isset($marketplaceIds[$countryCode])) {
+            return false;
+        }
+        $marketplaceId = $marketplaceIds[$countryCode][1];
+        $endpoint = $endpoints[$marketplaceIds[$countryCode][0]];
+        return [
+            'marketplaceId' =>  $marketplaceId,
+            'region' =>  $endpoint[1],
+            'endpoint' =>  $endpoint[0],
+        ];
+    }
+
 
 
 }
