@@ -28,8 +28,8 @@ class TableListingController extends AdminController
     {
         return Grid::make(new TableListing(['latest_review','purchase_cost','shipment']), function (Grid $grid) {
             //$grid->title('listing列表');
-            $grid->column('id','链接ID')->sortable();
-            $grid->column('irobot_sku','赛合SKU');
+            $grid->column('id','链接ID')->sortable()->copyable();
+            $grid->column('irobot_sku','赛合SKU')->copyable();
             $grid->column('country','国家')->setAttributes(['style' => 'color:blue;font-size:14px']);
             $grid->column('amz_account','账号名字')->label('danger');
             $grid->column('amz_sku','平台SKU')->badge('#222');;
