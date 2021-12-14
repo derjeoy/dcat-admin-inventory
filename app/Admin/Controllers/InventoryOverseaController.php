@@ -28,6 +28,9 @@ class InventoryOverseaController extends AdminController
                 $filter->equal('id');
         
             });
+
+            //启用导出功能
+            $grid->export()->xlsx();
         });
     }
 

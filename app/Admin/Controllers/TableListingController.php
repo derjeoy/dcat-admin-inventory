@@ -142,15 +142,21 @@ class TableListingController extends AdminController
             //     return ' <span class="btn btn-primary edit-form" data-url="/admin/form/layout/block"> 编辑表单弹窗</span> ';
             // });;
 
-            
-            $grid->toolsWithOutline(false);
-            $grid->fixColumns(1);
+    
 
             //$grid->showQuickEditButton();
 
             //$grid->disableActions();
             
             $grid->disableRowSelector();
+
+            // 禁止按钮边框
+            $grid->toolsWithOutline(false);
+            $grid->fixColumns(1);
+            $grid->showQuickEditButton();
+
+            //启用导出功能
+            $grid->export()->xlsx();
 
         });
     }

@@ -67,7 +67,10 @@ class FCWarehouseController extends AdminController
 
             //$grid->disableActions();
             
-            $grid->disableRowSelector();
+            //$grid->disableRowSelector();
+
+            //启用导出功能
+            $grid->export()->xlsx();
         });
     }
 

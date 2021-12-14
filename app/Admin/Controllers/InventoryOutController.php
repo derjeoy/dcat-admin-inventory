@@ -74,6 +74,9 @@ class InventoryOutController extends AdminController
             //$grid->disableActions();
             
             //$grid->disableRowSelector();
+
+            //启用导出功能
+            $grid->export()->xlsx();
         });
     }
 
