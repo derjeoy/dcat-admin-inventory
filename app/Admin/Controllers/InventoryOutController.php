@@ -14,9 +14,19 @@ use App\Admin\Actions\Grid\UploadShipmeent;
 use App\Admin\RowActions\DownloadAction;
 use App\Admin\RowActions\DownloadCarrierExcel;
 use App\Admin\RowActions\DownloadCarrierPDF;
+use Dcat\Admin\Layout\Content;
 
 class InventoryOutController extends AdminController
 {
+
+    public function index(Content $content)
+    {
+        return $content
+            ->header('出库单')
+            ->description('列表')
+            ->body($this->grid());
+    }
+
     /**
      * Make a grid builder.
      *

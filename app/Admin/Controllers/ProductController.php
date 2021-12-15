@@ -13,8 +13,19 @@ use Dcat\Admin\Show;
 use Faker\Factory;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Widgets\Table;
+use Dcat\Admin\Layout\Content;
+
 class ProductController extends AdminController
 {
+
+    public function index(Content $content)
+    {
+        return $content
+            ->header('产品库')
+            ->description('列表')
+            ->body($this->grid());
+    }
+
     /**
      * Make a grid builder.
      *

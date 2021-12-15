@@ -7,9 +7,16 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
-
+use Dcat\Admin\Layout\Content;
 class InventoryPurchaseController extends AdminController
 {
+    public function index(Content $content)
+    {
+        return $content
+            ->header('入库')
+            ->description('or 采购中')
+            ->body($this->grid());
+    }
     /**
      * Make a grid builder.
      *

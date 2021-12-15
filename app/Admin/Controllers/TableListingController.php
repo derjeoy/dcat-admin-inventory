@@ -15,10 +15,18 @@ use App\Admin\Renderable\ListingTable;
 use App\Models\ProductModel;
 use Dcat\Admin\Widgets\Card;
 use App\Admin\Forms\InventorySummary;
+use Dcat\Admin\Layout\Content;
 //use AmrShawky\LaravelCurrency\Facade\Currency;
 
 class TableListingController extends AdminController
 {
+            public function index(Content $content)
+    {
+        return $content
+            ->header('亚马逊链接')
+            ->description('列表')
+            ->body($this->grid());
+    }
     /**
      * Make a grid builder.
      *

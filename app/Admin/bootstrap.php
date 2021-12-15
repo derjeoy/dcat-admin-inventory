@@ -8,8 +8,8 @@ use Dcat\Admin\Grid\Filter;
 use Dcat\Admin\Layout\Navbar;
 use Dcat\Admin\Show;
 use Dcat\Admin\Repositories\Repository;
-use Carbon\Carbon;
-use AmrShawky\LaravelCurrency\Facade\Currency;
+//use Carbon\Carbon;
+//use AmrShawky\LaravelCurrency\Facade\Currency;
 
 /**
  * Dcat-admin - admin builder based on Laravel.
@@ -57,13 +57,13 @@ Admin::menu()->add(include __DIR__.'/menu.php', 0);
 
 Admin::navbar(function (Navbar $navbar) {
     // 切换主题
-//    $navbar->right(view('admin.switch-theme', [
-//        'map' => [
-//            'indigo'    => Dcat\Admin\Admin::color()->indigo(),
-//            'blue'      => '#5686d4',
-//            'blue-dark' => '#5686d4',
-//        ],
-//    ]));
+   // $navbar->right(view('admin.switch-theme', [
+   //     'map' => [
+   //         'indigo'    => Dcat\Admin\Admin::color()->indigo(),
+   //         'blue'      => '#5686d4',
+   //         'blue-dark' => '#5686d4',
+   //     ],
+   // ]));
     $method = config('admin.layout.horizontal_menu') ? 'left' : 'right';
 
 

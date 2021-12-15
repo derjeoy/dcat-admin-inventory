@@ -7,9 +7,18 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Layout\Content;
 
 class InventoryOverseaController extends AdminController
 {
+    public function index(Content $content)
+    {
+        return $content
+            ->header('海外仓库存')
+            ->description('列表')
+            ->body($this->grid());
+    }
+
     /**
      * Make a grid builder.
      *

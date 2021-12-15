@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://erp.wanqian.tech'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'zh-CN',
+    'locale' => 'zh_CN',
     //'locale' => 'en',
 
     /*

@@ -1,453 +1,168 @@
 <?php
 
 return [
-    [
-        'id'        => 'layout',
-        'title'     => '布局',
-        'icon'      => 'fa-cubes',
-        'uri'       => 'layout',
-        'parent_id' => 0,
-    ],
-    [
-        'id'        => 'demands',
-        'title'     => '需求列表',
-        'icon'      => 'fa fa-amazon',
-        'uri'       => 'demands',
-        'parent_id' => 0,
-    ],
-    [
-        'id'        => 'products',
-        'title'     => '产品管理',
-        'icon'      => 'fa-cubes',
-        'uri'       => '',
-        'parent_id' => 0,
-    ],
-    [
-        'id'        => 'productinterest',
-        'title'     => '产品调研记录',
-        'icon'      => 'fa fa-amazon',
-        'uri'       => 'productinterest',
-        'parent_id' => 'products',
-    ],
 
-    [
-        'id'        => 'productslist',
-        'title'     => '产品库列表',
-        'icon'      => ' fa-ship',
-        'uri'       => 'products',
-        'parent_id' => 'products',
-    ],
-    [
-        'id'        => 'listings',
-        'title'     => 'Listing列表',
-        'icon'      => 'fa fa-amazon',
-        'uri'       => 'listings',
-        'parent_id' => 'products',
-    ],
+    //////////////////////////////
+
     // [
-    //     'id'        => 'productsummary',
-    //     'title'     => '产品详情(舍弃)',
+    //     'id'        => 'products',
+    //     'title'     => '产品管理',
     //     'icon'      => 'fa-cubes',
-    //     'uri'       => 'productsummary',
+    //     'uri'       => '',
+    //     'parent_id' => 0,
+    // ],
+
+    // [
+    //     'id'        => 'productslist',
+    //     'title'     => '产品库列表',
+    //     'icon'      => ' fa-ship',
+    //     'uri'       => 'products',
     //     'parent_id' => 'products',
     // ],
     // [
-    //     'id'        => 'listingsummary',
-    //     'title'     => 'Listing详情(舍弃)',
+    //     'id'        => 'listings',
+    //     'title'     => 'Listing列表',
     //     'icon'      => 'fa fa-amazon',
-    //     'uri'       => 'listingsummary',
+    //     'uri'       => 'listings',
     //     'parent_id' => 'products',
     // ],
-    [
-        'id'        => 'shipments',
-        'title'     => '发货列表',
-        'icon'      => 'fa-taxi',
-        'uri'       => 'shipments',
-        'parent_id' => 'products',
-    ],
-    [
-        'id'        => 'overseasinvnetory',
-        'title'     => '海外仓库存',
-        'icon'      => 'fa-taxi',
-        'uri'       => 'overseasinvnetory',
-        'parent_id' => 'products',
-    ],
-    [
-        'id'        => 'purchaseorders',
-        'title'     => '采购单列表',
-        'icon'      => 'fa-taxi',
-        'uri'       => 'purchaseorders',
-        'parent_id' => 'products',
-    ],
-    [
-        'id'        => 'orders',
-        'title'     => '订单列表',
-        'icon'      => 'fa-taxi',
-        'uri'       => 'orders',
-        'parent_id' => 'products',
-    ],
+
     // [
-    //     'id'        => 'purchaseinventory',
-    //     'title'     => '采购列表',
-    //     'icon'      => 'fa fa-shopping-bag',
-    //     'uri'       => 'purchaseinventory',
+    //     'id'        => 'productinterest',
+    //     'title'     => '产品调研记录',
+    //     'icon'      => 'fa fa-amazon',
+    //     'uri'       => 'productinterest',
     //     'parent_id' => 'products',
     // ],
-    [
-        'id'        => 'fbawarehouse',
-        'title'     => 'FBA仓库列表',
-        'icon'      => 'fa fa-shopping-bag',
-        'uri'       => 'fbawarehouse',
-        'parent_id' => 'products',
-    ],
-    [
-        'id'        => 'currency',
-        'title'     => '汇率',
-        'icon'      => 'fa fa-shopping-bag',
-        'uri'       => 'currency',
-        'parent_id' => 'products',
-    ],
-    [
-        'id'        => 'salesummery',
-        'title'     => '海卖助手',
-        'icon'      => 'fa fa-balance-scale',
-        'uri'       => 'salesummery',
-        'parent_id' => 'products',
-    ],
-    [
-        'id'        => 'promotionproducts',
-        'title'     => '推广产品',
-        'icon'      => 'fa fa-calendar-plus-o',
-        'uri'       => 'promotionproducts',
-        'parent_id' => 'products',
-    ],
-    [
-        'id'        => 'promotionorders',
-        'title'     => '推广订单',
-        'icon'      => 'fa fa-calendar-plus-o',
-        'uri'       => 'promotionorders',
-        'parent_id' => 'products',
-    ],
 
-    
+    ////////////////////////////////
 
-    /////////////////////////////////////////////////////
-    [
-        'id'        => 'tables',
-        'title'     => '列表',
-        'icon'      => 'feather icon-grid',
-        'uri'       => '',
-        'parent_id' => 0,
-    ],
 
-    [
-        'id'        => 'grid',
-        'title'     => '默认表格',
-        'icon'      => 'feather icon-menu',
-        'uri'       => 'components/grid',
-        'parent_id' => 'tables',
-    ],
+    // [
+    //     'id'        => 'sales',
+    //     'title'     => '销售管理',
+    //     'icon'      => 'fa-cubes',
+    //     'uri'       => '',
+    //     'parent_id' => 0,
+    // ],
 
-    [
-        'id'        => 'reports',
-        'title'     => '组合表头',
-        'icon'      => 'feather icon-menu',
-        'uri'       => 'reports',
-        'parent_id' => 'tables',
-    ],
-    [
-        'id'        => 'fixed-columns',
-        'title'     => '固定列',
-        'icon'      => 'feather icon-menu',
-        'uri'       => 'fixed-columns',
-        'parent_id' => 'tables',
-    ],
-    [
-        'id'        => 'with-border',
-        'title'     => '边框模式+异步加载',
-        'icon'      => 'feather icon-menu',
-        'uri'       => 'with-border',
-        'parent_id' => 'tables',
-    ],
-    [
-        'id'        => 'grid-tree',
-        'title'     => '树',
-        'icon'      => 'feather icon-align-left',
-        'uri'       => 'tree',
-        'parent_id' => 'tables',
-    ],
-    [
-        'id'        => 'selector',
-        'title'     => '筛选器',
-        'icon'      => 'feather icon-menu',
-        'uri'       => 'tables/selector',
-        'parent_id' => 'tables',
-    ],
-    [
-        'id'        => 'custom-grid',
-        'title'     => '自定义视图',
-        'icon'      => 'feather icon-image',
-        'uri'       => 'grid/custom',
-        'parent_id' => 'tables',
-    ],
-    [
-        'id'        => 'simple-paginate',
-        'title'     => '简化分页',
-        'icon'      => 'feather icon-menu',
-        'uri'       => 'tables/simple-pagination',
-        'parent_id' => 'tables',
-    ],
-    [
-        'id'        => 'row-space',
-        'title'     => '行间距模式',
-        'icon'      => 'feather icon-menu',
-        'uri'       => 'row-space',
-        'parent_id' => 'tables',
-    ],
+
+    // [
+    //     'id'        => 'orders',
+    //     'title'     => '订单列表',
+    //     'icon'      => 'fa-taxi',
+    //     'uri'       => 'orders',
+    //     'parent_id' => 'sales',
+    // ],
+
+    // [
+    //     'id'        => 'salesummery',
+    //     'title'     => '海卖助手',
+    //     'icon'      => 'fa fa-balance-scale',
+    //     'uri'       => 'salesummery',
+    //     'parent_id' => 'sales',
+    // ],
+
+///////////////////////////////////////
+
+    // [
+    //     'id'        => 'inventory',
+    //     'title'     => '库存管理',
+    //     'icon'      => 'fa-cubes',
+    //     'uri'       => '',
+    //     'parent_id' => 0,
+    // ],
+
+    //     [
+    //     'id'        => 'shipments',
+    //     'title'     => '发货列表',
+    //     'icon'      => 'fa-taxi',
+    //     'uri'       => 'shipments',
+    //     'parent_id' => 'inventory',
+    // ],
+    // [
+    //     'id'        => 'overseasinvnetory',
+    //     'title'     => '海外仓库存',
+    //     'icon'      => 'fa-taxi',
+    //     'uri'       => 'overseasinvnetory',
+    //     'parent_id' => 'inventory',
+    // ],
+    // [
+    //     'id'        => 'purchaseorders',
+    //     'title'     => '采购单列表',
+    //     'icon'      => 'fa-taxi',
+    //     'uri'       => 'purchaseorders',
+    //     'parent_id' => 'inventory',
+    // ],
+
+
+    /////////////////////////////////////
+
+
+
+    // [
+    //     'id'        => 'carrier',
+    //     'title'     => '物流管理',
+    //     'icon'      => 'fa-cubes',
+    //     'uri'       => '',
+    //     'parent_id' => 0,
+    // ],
+
+//////////////////////////////
+
+    // [
+    //     'id'        => 'accounting',
+    //     'title'     => '财务管理',
+    //     'icon'      => 'fa-cubes',
+    //     'uri'       => '',
+    //     'parent_id' => 0,
+    // ],
+
+    //     [
+    //     'id'        => 'currency',
+    //     'title'     => '汇率',
+    //     'icon'      => 'fa fa-shopping-bag',
+    //     'uri'       => 'currency',
+    //     'parent_id' => 'accounting',
+    // ],
+    ///////////////////////////
+    // [
+    //     'id'        => 'tools',
+    //     'title'     => '工具中心',
+    //     'icon'      => 'fa-cubes',
+    //     'uri'       => '',
+    //     'parent_id' => 0,
+    // ],
+
+    // [
+    //     'id'        => 'fbawarehouse',
+    //     'title'     => 'FBA仓库列表',
+    //     'icon'      => 'fa fa-shopping-bag',
+    //     'uri'       => 'fbawarehouse',
+    //     'parent_id' => 'tools',
+    // ],
     ///////////////////////////////
 
-    [
-        'id'        => 'form',
-        'title'     => '表单',
-        'icon'      => 'feather icon-edit',
-        'uri'       => '',
-        'parent_id' => 0,
-    ],
-    [
-        'id'        => 'form1',
-        'title'     => '表单字段',
-        'icon'      => 'feather icon-edit-1',
-        'uri'       => 'form',
-        'parent_id' => 'form',
-    ],
-    [
-        'id'        => 'modalf',
-        'title'     => '弹窗表单',
-        'icon'      => 'feather icon-edit-1',
-        'uri'       => 'form/modal',
-        'parent_id' => 'form',
-    ],
-    [
-        'id'        => 'stform',
-        'title'     => '分步表单',
-        'icon'      => ' fa-list-ol',
-        'uri'       => 'form/step',
-        'parent_id' => 'form',
-    ],
-    [
-        'id'        => 'whenform',
-        'title'     => '表单动态显示',
-        'icon'      => 'feather icon-edit-1',
-        'uri'       => 'form/when',
-        'parent_id' => 'form',
-    ],
-    [
-        'id'        => 'formlayout',
-        'title'     => '表单布局',
-        'icon'      => 'feather icon-layout',
-        'uri'       => '',
-        'parent_id' => 'form',
-    ],
-    [
-        'id'        => 'formlayout-1',
-        'title'     => 'Column布局',
-        'icon'      => 'feather icon-edit-1',
-        'uri'       => 'form/layout/column',
-        'parent_id' => 'formlayout',
-    ],
-    [
-        'id'        => 'formlayout-2',
-        'title'     => 'Block布局',
-        'icon'      => 'feather icon-edit-1',
-        'uri'       => 'form/layout/block',
-        'parent_id' => 'formlayout',
-    ],
-    [
-        'id'        => 'formlayout-3',
-        'title'     => 'Tab布局',
-        'icon'      => 'feather icon-edit-1',
-        'uri'       => 'form/layout/tab',
-        'parent_id' => 'formlayout',
-    ],
-    [
-        'id'        => 'formlayout-4',
-        'title'     => 'Row布局',
-        'icon'      => 'feather icon-edit-1',
-        'uri'       => 'form/layout/row',
-        'parent_id' => 'formlayout',
-    ],
+    // [
+    //     'id'        => 'promotion',
+    //     'title'     => '推广维护',
+    //     'icon'      => 'fa-cubes',
+    //     'uri'       => '',
+    //     'parent_id' => 0,
+    // ],
 
-    [
-        'id'        => 'full',
-        'title'     => 'Full Page',
-        'icon'      => 'fa-cut',
-        'uri'       => 'full',
-        'parent_id' => 0,
-    ],
-
-    ///////////////////////////////////////////////////////
-//    [
-//        'id'        => 'chart',
-//        'title'     => 'Chart',
-//        'icon'      => ' fa-pie-chart',
-//        'uri'       => 'components/charts',
-//        'parent_id' => 1,
-//    ],
-    [
-        'id'        => 'metric-card',
-        'title'     => '数据统计卡片',
-        'icon'      => ' fa  fa-line-chart',
-        'uri'       => 'components/metric-cards',
-        'parent_id' => 1,
-    ],
-
-
-    ///////////////////////////////////////////////////////
-    [
-        'id'        => 1,
-        'title'     => '组件',
-        'icon'      => 'fa-building',
-        'uri'       => '',
-        'parent_id' => 0,
-    ],
-
-
-    [
-        'id'        => 'modal',
-        'title'     => 'Modal',
-        'icon'      => ' fa fa-clone',
-        'uri'       => 'components/modal',
-        'parent_id' => 1,
-    ],
-//    [
-//        'id'        => 'navbar',
-//        'title'     => 'Navbar',
-//        'icon'      => 'fa-navicon',
-//        'uri'       => 'components/navbar',
-//        'parent_id' => 1,
-//    ],
-    [
-        'id'        => 'dropdown',
-        'title'     => 'Dropdown',
-        'icon'      => 'fa-list-ol',
-        'uri'       => 'components/dropdown-menu',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'button',
-        'title'     => 'Tab & Button',
-        'icon'      => 'fa-btc',
-        'uri'       => 'components/tab-button',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'checkbox',
-        'title'     => 'Checkbox & Radio',
-        'icon'      => 'fa-check-square-o',
-        'uri'       => 'components/checkbox-radio',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'alert',
-        'title'     => 'Alert',
-        'icon'      => 'fa-circle-o-notch',
-        'uri'       => 'components/alert',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'markdown',
-        'title'     => 'Markdown',
-        'icon'      => 'fa-trademark',
-        'uri'       => 'components/markdown',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'tooltip',
-        'title'     => 'Tooltip',
-        'icon'      => 'fa-info-circle',
-        'uri'       => 'components/tooltip',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'loading',
-        'title'     => 'Loading',
-        'icon'      => 'fa-spin fa-circle-o-notch',
-        'uri'       => 'components/loading',
-        'parent_id' => 1,
-    ],
-//    [
-//        'id'        => 'accordion',
-//        'title'     => 'Accordion',
-//        'icon'      => 'fa-plus-circle',
-//        'uri'       => 'components/accordion',
-//        'parent_id' => 1,
-//    ],
-
-
-    ///////////////////////////////////////////////////////
-    [
-        'id'        => 'api',
-        'title'     => 'Data From Api',
-        'icon'      => 'fa-film',
-        'uri'       => '',
-        'parent_id' => 0,
-    ],
-    [
-        'id'        => 'theaters',
-        'title'     => 'In Theaters',
-        'icon'      => '',
-        'uri'       => 'movies/in-theaters',
-        'parent_id' => 'api',
-    ],
-    [
-        'id'        => 'coming',
-        'title'     => 'Coming Soon',
-        'icon'      => '',
-        'uri'       => 'movies/coming-soon',
-        'parent_id' => 'api',
-    ],
-    [
-        'id'        => 'top250',
-        'title'     => 'Top 250',
-        'icon'      => '',
-        'uri'       => 'movies/top250',
-        'parent_id' => 'api',
-    ],
-
-    //////////////////////////////////
-//    [
-//        'id'        => 'extensions',
-//        'title'     => 'Extension Demo',
-//        'icon'      => 'fa fa-plugin',
-//        'uri'       => '',
-//        'parent_id' => 0,
-//    ],
-    [
-        'id'        => 'editor',
-        'title'     => '编辑器',
-        'icon'      => 'fa-underline',
-        'uri'       => '',
-        'parent_id' => '0',
-    ],
-    [
-        'id'        => 'tinymce',
-        'title'     => 'TinyMCE',
-        'icon'      => '',
-        'uri'       => 'form/tinymce',
-        'parent_id' => 'editor',
-    ],
-    [
-        'id'        => 'markdown',
-        'title'     => 'Markdown',
-        'icon'      => '',
-        'uri'       => 'form/markdown',
-        'parent_id' => 'editor',
-    ],
-    //[
-    //    'id'        => 'ueditor',
-    //    'title'     => 'UEditor',
-    //    'icon'      => '',
-    //    'uri'       => 'extensions/ueditor',
-    //    'parent_id' => 'editor',
-    //],
+    //     [
+    //     'id'        => 'promotionproducts',
+    //     'title'     => '推广产品',
+    //     'icon'      => 'fa fa-calendar-plus-o',
+    //     'uri'       => 'promotionproducts',
+    //     'parent_id' => 'promotion',
+    // ],
+    // [
+    //     'id'        => 'promotionorders',
+    //     'title'     => '推广订单',
+    //     'icon'      => 'fa fa-calendar-plus-o',
+    //     'uri'       => 'promotionorders',
+    //     'parent_id' => 'promotion',
+    // ],
 ];

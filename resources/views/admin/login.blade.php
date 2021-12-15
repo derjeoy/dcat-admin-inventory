@@ -134,7 +134,7 @@
 
             <div class="login-box">
                 <div class="login-logo mb-2">
-                    <h4 class="mt-0">一个懂亚马逊FBA的ERP系统</h4>
+                    <h4 class="mt-0">一个实用的亚马逊ERP系统</h4>
                     <p class="login-box-msg mt-1 mb-1">{{ __('admin.welcome_back') }}</p>
                 </div>
                 <div class="card">
@@ -150,7 +150,7 @@
                                         class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}"
                                         name="username"
                                         placeholder="{{ trans('admin.username') }}"
-                                        value="admin"
+                                        value=""
                                         required
                                         autofocus
                                 >
@@ -181,7 +181,7 @@
                                         name="password"
                                         placeholder="{{ trans('admin.password') }}"
                                         required
-                                        value="admin"
+                                        value=""
                                         autocomplete="current-password"
                                 >
 
@@ -215,12 +215,26 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary float-right login-btn">
+                            <div class="form-group d-flex justify-content-between align-items-center">
+                                <!-- <button type="submit" class="btn btn-primary float-left login-btn">
+                                    <i class="feather icon-arrow-left"></i>
+                                    &nbsp;注册
+                                </button> -->
+                                <!-- <h4 class="mt-0">&nbsp;&nbsp;&nbsp;&nbsp;</h4> -->
+                                <button type="submit" class="btn btn-primary float-right login-btn">
 
-                                {{ __('admin.login') }}
-                                &nbsp;
-                                <i class="feather icon-arrow-right"></i>
-                            </button>
+                                    {{ __('admin.login') }}
+                                    &nbsp;
+                                    <i class="feather icon-arrow-right"></i>
+                                </button>
+                            </div>
+                        </form>
+
+                        <form id="register-form" method="GET" action="{{ admin_url('auth/register') }}">
+                                <button  type="submit" class="btn btn-primary float-left login-btn">
+                                    <i class="feather icon-arrow-left"></i>
+                                    &nbsp;注册
+                                </button>
                         </form>
 
                     </div>
@@ -242,12 +256,18 @@
     </div>
 </div>
 
-
 <script>
     Dcat.ready(function () {
         // ajax表单提交
         $('#login-form').form({
             validate: true,
         });
+    });
+
+    Dcat.ready(function () {
+    // ajax表单提交
+    $('#register-form').form({
+        validate: true,
+
     });
 </script>
