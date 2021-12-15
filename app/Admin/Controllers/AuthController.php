@@ -44,7 +44,7 @@ class AuthController extends BaseAuthController
         if ($re_password != $password)
         {
             return $this->validationErrorsResponse([
-                        'username' => '密码不匹配.'+$password,
+                        're_password' => '密码不匹配.'+$password,
                     ]);
         }
 
@@ -65,24 +65,22 @@ class AuthController extends BaseAuthController
         if ($ret)
         {
             return $this->validationErrorsResponse([
-                        'error' => '用户已存在',
+                        'username' => '用户已存在',
                     ]);
         }
 
         $ret = Administrator::create([
             'username' => $credentials['username'],
-            'name' => '西摩',
+            'name' => $credentials['chinese_name'],
             'password' => Hash::make($credentials['password']),
         ]);
         if (!$ret)
         {
             return $this->validationErrorsResponse([
-                'error' => '创建失败.']);
+                'register' => '创建失败.']);
         }
 
-        return $this->validationErrorsResponse([
-            'error' => '注册成功,返回登录页面',
-        ]);
+        return $this->sendRegisterResponse($request);
 
         //$path = admin_url('auth/login');
 
@@ -97,4 +95,24 @@ class AuthController extends BaseAuthController
 
         
     }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function sendRegisterResponse(Request $request)
+    {
+        //$request->session()->regenerate();
+
+        //$path = $this->getRedirectPath();
+
+        return $this->response()
+            ->success('恭喜注册成功,请重新返回登陆')
+            //->locationToIntended($path)
+            //->locationIf(Admin::app()->getEnabledApps(), $path)
+            ->send();
+    }
+
 }

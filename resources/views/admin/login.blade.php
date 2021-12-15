@@ -258,11 +258,4 @@
             validate: true,
         });
     });
-
-    Dcat.ready(function () {
-    // ajax表单提交
-        $('#register-form').form({
-            validate: true,
-        });
-    });
 </script>

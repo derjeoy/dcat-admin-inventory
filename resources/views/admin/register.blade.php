@@ -257,9 +257,9 @@
                                 <label for="password">再次输入密码</label>
 
                                 <div class="help-block with-errors"></div>
-                                @if($errors->has('password'))
+                                @if($errors->has('re_password'))
                                     <span class="invalid-feedback text-danger" role="alert">
-                                                    @foreach($errors->get('password') as $message)
+                                                    @foreach($errors->get('re_password') as $message)
                                             <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
                                         @endforeach
                                                     </span>
@@ -276,9 +276,17 @@
                             </div>
 
                             <div class="help-block with-errors"></div>
-                                @if($errors->has('error'))
+                                @if($errors->has('register'))
                                     <span class="invalid-feedback text-danger" role="alert">
-                                        @foreach($errors->get('error') as $message)
+                                        @foreach($errors->get('register') as $message)
+                                            <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
+                                        @endforeach
+                                            </span>
+                                @endif
+
+                                @if($success->has('registerinfo'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                                        @foreach($success->get('registerinfo') as $message)
                                             <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
                                         @endforeach
                                             </span>
@@ -286,6 +294,7 @@
 
                         </form>
                         <form id="login-form" method="GET" action="{{ admin_url('auth/login') }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                                 <button  type="submit" class="btn btn-primary float-left login-btn">
                                     <i class="feather icon-arrow-left"></i>
                                     &nbsp;登录
@@ -316,13 +325,6 @@
         $('#register-form').form({
                 validate: true,
         });
-    });
-
-    Dcat.ready(function () {
-            // ajax表单提交
-        $('#login-form').form({
-                validate: true,
-            });
     });
     
 </script>
