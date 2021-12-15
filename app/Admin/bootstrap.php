@@ -31,26 +31,23 @@ use Dcat\Admin\Repositories\Repository;
  */
 
 // 覆盖默认配置
-config(['admin' => user_admin_config()]);
-config(['app.locale' => config('admin.lang') ?: config('app.locale')]);
+//config(['admin' => user_admin_config()]);
+//config(['app.locale' => config('admin.lang') ?: config('app.locale')]);
 
-Admin::style('.main-sidebar .nav-sidebar .nav-item>.nav-link {
-    border-radius: .1rem;
-}');
+// Admin::style('.main-sidebar .nav-sidebar .nav-item>.nav-link {
+//     border-radius: .1rem;
+// }');
 
-// 扩展Column
-Grid\Column::extend('code', function ($v) {
-    return "<code>$v</code>";
-});
+Admin::css('static/css/nxcrm.css');
 
-Grid::resolving(function (Grid $grid) {
-    if (! request('_row_')) {
-        $grid->tableCollapse();
+// Grid::resolving(function (Grid $grid) {
+//     if (! request('_row_')) {
+//         $grid->tableCollapse();
 
 
-//        $grid->tools(new App\Admin\Grid\Tools\SwitchGridMode());
-    }
-});
+// //        $grid->tools(new App\Admin\Grid\Tools\SwitchGridMode());
+//     }
+// });
 
 // 追加菜单
 Admin::menu()->add(include __DIR__.'/menu.php', 0);
@@ -64,8 +61,7 @@ Admin::navbar(function (Navbar $navbar) {
    //         'blue-dark' => '#5686d4',
    //     ],
    // ]));
-    $method = config('admin.layout.horizontal_menu') ? 'left' : 'right';
-
+    
 
     // $datetime_china = Carbon::now();
     // $datetime_london = Carbon::now('Europe/London');
@@ -126,6 +122,8 @@ Admin::navbar(function (Navbar $navbar) {
 // HTML
 
     // );
+    
+    $method = config('admin.layout.horizontal_menu') ? 'left' : 'right';
 
     // ajax请求不执行
     if (! Dcat\Admin\Support\Helper::isAjaxRequest()) {
@@ -133,16 +131,16 @@ Admin::navbar(function (Navbar $navbar) {
     }
 
     // 下拉菜单
-    //$navbar->right(view('admin.navbar-2'));
+    // $navbar->right(view('admin.navbar-2'));
 
-    // 搜索框
-    $navbar->right(
-        <<<HTML
-HTML
-    );
+//     // 搜索框
+//     $navbar->right(
+//         <<<HTML
+// HTML
+//     );
 
-    // 下拉面板
-    $navbar->right(view('admin.navbar-1'));
+    // 下拉面板 通知消息
+    // $navbar->right(view('admin.navbar-1'));
 });
 
 
@@ -173,3 +171,12 @@ Filter::resolving(function (Filter $filter) {
 
 
 Dcat\Admin\Form::extend('ipt', \App\Admin\Extensions\Form\Input::class);
+
+Dcat\Admin\Color::extend('orange', [
+    'primary'        => '#fbbd08',
+    'primary-darker' => '#fbbd08',
+    'link'           => '#fbbd08',
+]);
+
+
+

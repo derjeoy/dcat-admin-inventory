@@ -44,7 +44,8 @@ Route::group([
 
 });
 
-    Route::get('admin/auth/register', 'App\Http\Controllers\Auth\RegisterController@register');
+    Route::get('admin/auth/register', 'App\Admin\Controllers\AuthController@getRegister');
+    Route::post('admin/auth/register', 'App\Admin\Controllers\AuthController@postRegister');
 
 
 

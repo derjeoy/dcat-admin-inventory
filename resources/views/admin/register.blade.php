@@ -124,88 +124,205 @@
         color: #cacbd6
     }
 </style>
-
-<div class="register-box">
-  <div class="register-logo">
-    <a href="../../index2.html"><b>超凡</b>ERP</a>
-  </div>
-
-  <div class="card">
-    <div class="card-body register-card-body">
-      <p class="login-box-msg">注册新用户</p>
-
-      <form action="../../index.html" method="post">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
+<div class="row login-main">
+    <div class="col-lg-3 col-12 bg-white">
+        <div class="login-page">
+            <div class="auth-brand text-lg-left">
+                {!! config('admin.logo') !!}
             </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Retype password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">注册</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
 
-<!--       <div class="social-auth-links text-center">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
-        </a>
-      </div> -->
+            <div class="login-box">
+                <div class="login-logo mb-2">
+                    <h4 class="mt-0">注册新用户</h4>
+                    <p class="login-box-msg mt-1 mb-1">请输入您的注册信息</p>
+                </div>
+                <div class="card">
+                    <div class="card-body login-card-body">
 
-      <a href="login.html" class="text-center">I already have a membership</a>
+                        <form id="register-form" method="POST" action="{{ admin_url('auth/register') }}">
+
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+
+                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                <input
+                                        type="text"
+                                        class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}"
+                                        name="username"
+                                        placeholder="{{ trans('admin.username') }}"
+                                        value=""
+                                        required
+                                        autofocus
+                                >
+
+                                <div class="form-control-position">
+                                    <i class="feather icon-user"></i>
+                                </div>
+
+                                <label for="email">登录用户名(用户邮箱)</label>
+
+                                <div class="help-block with-errors"></div>
+                                @if($errors->has('username'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                                                    @foreach($errors->get('username') as $message)
+                                            <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
+                                        @endforeach
+                                                </span>
+                                @endif
+                            </fieldset>
+
+                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                <input
+                                        type="text"
+                                        class="form-control {{ $errors->has('chinese_name') ? 'is-invalid' : '' }}"
+                                        name="chinese_name"
+                                        placeholder="中文姓名"
+                                        value=""
+                                        required
+                                        autofocus
+                                >
+
+                                <div class="form-control-position">
+                                    <i class="feather icon-user"></i>
+                                </div>
+
+                                <label>中文姓名</label>
+                            </fieldset>
+
+                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                <input
+                                        type="text"
+                                        class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}"
+                                        name="phone"
+                                        placeholder="手机号"
+                                        value=""
+                                        required
+                                        autofocus
+                                >
+
+                                <div class="form-control-position">
+                                    <i class="feather icon-user"></i>
+                                </div>
+
+                                <label>手机号</label>
+                            </fieldset>
+
+
+                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                <input
+                                        minlength="5"
+                                        maxlength="20"
+                                        id="password"
+                                        type="password"
+                                        class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                                        name="password"
+                                        placeholder="{{ trans('admin.password') }}"
+                                        required
+                                        value=""
+                                        autocomplete="current-password"
+                                >
+
+                                <div class="form-control-position">
+                                    <i class="feather icon-lock"></i>
+                                </div>
+                                <label for="password">{{ trans('admin.password') }}</label>
+
+                                <div class="help-block with-errors"></div>
+                                @if($errors->has('password'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                                                    @foreach($errors->get('password') as $message)
+                                            <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
+                                        @endforeach
+                                                    </span>
+                                @endif
+
+                            </fieldset>
+
+                            <fieldset class="form-label-group form-group position-relative has-icon-left">
+                                <input
+                                        minlength="5"
+                                        maxlength="20"
+                                        id="password"
+                                        type="password"
+                                        class="form-control {{ $errors->has('re_password') ? 'is-invalid' : '' }}"
+                                        name="re_password"
+                                        placeholder="再次输入密码"
+                                        required
+                                        value=""
+                                        autocomplete="current-password"
+                                >
+
+                                <div class="form-control-position">
+                                    <i class="feather icon-lock"></i>
+                                </div>
+                                <label for="password">再次输入密码</label>
+
+                                <div class="help-block with-errors"></div>
+                                @if($errors->has('password'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                                                    @foreach($errors->get('password') as $message)
+                                            <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
+                                        @endforeach
+                                                    </span>
+                                @endif
+
+                            </fieldset>
+
+
+                            <div class="form-group d-flex justify-content-between align-items-center">
+                                <button type="submit" class="btn btn-primary float-right login-btn">
+                                    注册&nbsp;
+                                    <i class="feather icon-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <div class="help-block with-errors"></div>
+                                @if($errors->has('error'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                                        @foreach($errors->get('error') as $message)
+                                            <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
+                                        @endforeach
+                                            </span>
+                                @endif
+
+                        </form>
+                        <form id="login-form" method="GET" action="{{ admin_url('auth/login') }}">
+                                <button  type="submit" class="btn btn-primary float-left login-btn">
+                                    <i class="feather icon-arrow-left"></i>
+                                    &nbsp;登录
+                                </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <!-- /.form-box -->
-  </div><!-- /.card -->
+    <div class="col-lg-9 col-12 login-page-right">
+        <div class="content-front"></div>
+        <div class="login-description">
+            <p class="lead">
+                一个由亚马逊5年精品运营开发的亚马逊后台管理系统。
+            </p>
+            <p>
+                超凡ERP - 一个懂你的ERP系统
+            </p>
+        </div>
+    </div>
 </div>
-<!-- /.register-box -->
 
-<!-- <!-- jQuery -->
-<!-- <script src="../../plugins/jquery/jquery.min.js"></script> -->
-<!-- Bootstrap 4 -->
-<!-- <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-<!-- AdminLTE App -->
-<!-- <script src="../../dist/js/adminlte.min.js"></script> -->
+<script>
+    Dcat.ready(function () {
+        // ajax表单提交
+        $('#register-form').form({
+                validate: true,
+        });
+    });
+
+    Dcat.ready(function () {
+            // ajax表单提交
+        $('#login-form').form({
+                validate: true,
+            });
+    });
+    
+</script>

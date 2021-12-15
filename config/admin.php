@@ -282,20 +282,22 @@ return [
     | This value is the layout of admin pages.
     */
     'layout' => [
-        // default, blue, blue-light, green
+        // default, blue, blue-light, green, orange
         'color' => 'blue-light',
 
-        'body_class' => '',
+        'body_class' => 'light-mode',
 
         'sidebar_collapsed' => false,
 
         // light, primary, dark
         'sidebar_style' => 'light',
 
-        'dark_mode_switch' => false,
+        'dark_mode_switch' => true,
 
         // bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark
         'navbar_color' => '',
+
+        'horizontal_menu'  => false,
     ],
 
     /*

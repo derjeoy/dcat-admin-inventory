@@ -216,11 +216,6 @@
                                 </div>
                             </div>
                             <div class="form-group d-flex justify-content-between align-items-center">
-                                <!-- <button type="submit" class="btn btn-primary float-left login-btn">
-                                    <i class="feather icon-arrow-left"></i>
-                                    &nbsp;注册
-                                </button> -->
-                                <!-- <h4 class="mt-0">&nbsp;&nbsp;&nbsp;&nbsp;</h4> -->
                                 <button type="submit" class="btn btn-primary float-right login-btn">
 
                                     {{ __('admin.login') }}
@@ -266,8 +261,8 @@
 
     Dcat.ready(function () {
     // ajax表单提交
-    $('#register-form').form({
-        validate: true,
-
+        $('#register-form').form({
+            validate: true,
+        });
     });
 </script>

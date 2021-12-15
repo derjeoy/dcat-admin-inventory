@@ -19,8 +19,8 @@ class AdminSetting extends Form implements LazyRenderable
     protected $colors = [
         'default'    => '深蓝',
         'blue'       => '蓝',
-//        'blue-light' => '浅蓝',
-//        'blue-dark'  => '深蓝',
+        'blue-light' => '浅蓝',
+        //'blue-dark'  => '深蓝',
         'green'      => '绿',
     ];
 
@@ -57,7 +57,7 @@ class AdminSetting extends Form implements LazyRenderable
             ->options($this->colors);
 
         $this->radio('layout.sidebar_style', '菜单样式')
-            ->options(['light' => 'Light', 'primary' => 'Primary'])
+            ->options(['light' => 'Light', 'primary' => 'Primary' , 'dark' => 'Dark'])
             ->help('切换菜单栏样式');
 
         $this->checkbox('layout.body_class', '菜单布局')

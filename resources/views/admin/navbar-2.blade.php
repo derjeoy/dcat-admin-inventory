@@ -2,9 +2,12 @@
     <li class="dropdown dropdown-language nav-item">
         <a class="dropdown-toggle nav-link" href="#" id="dropdown-flag" data-toggle="dropdown">
             <i class="flag-icon flag-icon-us"></i>
-            <span class="selected-language">English</span>
+            <span class="selected-language">语言</span>
         </a>
         <ul class="dropdown-menu" aria-labelledby="dropdown-flag">
+            <li class="dropdown-item" href="#" data-language="zh">
+                <a><i class="flag-icon flag-icon-us"></i> 中文</a>
+            </li>
             <li class="dropdown-item" href="#" data-language="en">
                 <a><i class="flag-icon flag-icon-us"></i> English</a>
             </li>
