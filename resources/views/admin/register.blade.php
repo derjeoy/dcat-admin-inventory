@@ -284,13 +284,13 @@
                                             </span>
                                 @endif
 
-                                @if($success->has('registerinfo'))
+                                <!-- @if($errors->has('registerinfo'))
                                     <span class="invalid-feedback text-danger" role="alert">
-                                        @foreach($success->get('registerinfo') as $message)
+                                        @foreach($errors->get('registerinfo') as $message)
                                             <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
                                         @endforeach
                                             </span>
-                                @endif
+                                @endif -->
 
                         </form>
                         <form id="login-form" method="GET" action="{{ admin_url('auth/login') }}">
@@ -300,6 +300,15 @@
                                     &nbsp;登录
                                 </button>
                         </form>
+
+                        <div id="social-form" class="social-auth-links text-center">
+                            
+                            <p>- OR -</p>
+                            <button type="submit" class="btn btn-primary float-left login-btn">
+                                    <i class="feather icon-circle"></i>
+                                    &nbsp;QQ登录
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
