@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\TableListing;
 use App\Admin\Actions\Grid\UploadListing;
+use App\Admin\Actions\Grid\DownloadListingTemplate;
 use App\Models\InventoryOut;
 use App\Models\Currency;
 use Dcat\Admin\Form;
@@ -61,9 +62,10 @@ class TableListingController extends AdminController
                     }
                  
             });
-            $grid->column('price','产品售价')->help('这里是产品售价，点开有利润')->display(function () {
-                 return ' <a data-title="PRICE" class="td-top-copy btn-white btn ">' . $this->price . '</a> &nbsp;&nbsp;&nbsp;';
-             });
+            $grid->column('price','产品售价')->help('这里是产品售价，点开有利润')->editable();
+            // ->display(function () {
+            //      return ' <a data-title="PRICE" class="td-top-copy btn-white btn ">' . $this->price . '</a> &nbsp;&nbsp;&nbsp;';
+            //  });
             $grid->column('saler','所属销售');
             $grid->column('利润率')
                ->display('详情')
@@ -101,7 +103,9 @@ class TableListingController extends AdminController
             // $grid->column('库存信息')
             //    ->display('库存详情')->modal('库存详情', ListingTable::make());
             $grid->column('库存')
-                ->display('详情')
+                ->display(function () {
+                    return "<div style='padding:10px 10px 0;color:green;'>$this->price</div>";
+                })
                 ->expand(function () {
                         $shipments = InventoryOut::get()->where('listing_id','=', $this->id);
 
@@ -127,6 +131,9 @@ class TableListingController extends AdminController
             $grid->tools(function (Grid\Tools $tools) {
                 // excle 导入
                 $tools->append(new UploadListing());
+
+                // 模板下载
+                $tools->append(new DownloadListingTemplate());
             });
 
             $grid->filter(function (Grid\Filter $filter) {
@@ -156,12 +163,13 @@ class TableListingController extends AdminController
 
             //$grid->disableActions();
             
-            $grid->disableRowSelector();
+            //$grid->disableRowSelector();
 
             // 禁止按钮边框
             $grid->toolsWithOutline(false);
             $grid->fixColumns(1);
             $grid->showQuickEditButton();
+            $grid->disableViewButton();
 
             //启用导出功能
             $grid->export()->xlsx();
@@ -178,19 +186,22 @@ class TableListingController extends AdminController
      */
     protected function detail($id)
     {
-        return Show::make($id, new TableListing(), function (Show $show) {
-            $show->field('id');
-            $show->field('amz_account');
-            $show->field('country');
-            $show->field('amz_sku');
-            $show->field('asin');
-            $show->field('fnsku');
-            $show->field('local_name');
-            $show->field('upc');
-            $show->field('irobot_sku');
-            $show->field('saler');
-            $show->field('created_at');
-            $show->field('updated_at');
+        return Show::make($id, new TableListing(['latest_review','purchase_cost','shipment']), function (Show $show) {
+            // $show->field('id');
+            // $show->field('amz_account');
+            // $show->field('country');
+            // $show->field('amz_sku');
+            // $show->field('asin');
+            // $show->field('fnsku');
+            // $show->field('local_name');
+            // $show->field('upc');
+            // $show->field('irobot_sku');
+            // $show->field('saler');
+            // $show->field('price','售价');
+            // $show->field('fba_fee','FBA费用');
+            // $show->field('amz_sale_commssion');
+            // $show->field('latest_review.rew_number','评论');//关联字段解决
+            // $show->field('latest_review.rew_rate','评分');
         });
     }
 
@@ -204,8 +215,9 @@ class TableListingController extends AdminController
         return Form::make(new TableListing(), function (Form $form) {
             $this->setForm($form);
             if ($form->isCreating()) {
-                $this->creating($form);
+                //$this->creating($form);
             } 
+
             // elseif ($form->isEditing()) {
             //     $this->editing($form);
             // }
@@ -225,6 +237,9 @@ class TableListingController extends AdminController
         $form->text('upc');
         $form->text('irobot_sku');
         $form->text('saler');
+        $form->text('price','售价');
+        $form->currency('fba_fee','FBA费用');
+        $form->rate('amz_sale_commssion','FBA佣金费率');
     }
 
     protected function creating(Form &$form): void

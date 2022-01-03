@@ -11,6 +11,7 @@ use Dcat\Admin\Http\Controllers\AdminController;
 use App\Models\ListingModel;
 use App\Models\InventotyOut;
 use App\Admin\Actions\Grid\UploadShipmeent;
+use App\Admin\Actions\Grid\DownloadInventoryOutTemplate;
 use App\Admin\RowActions\DownloadAction;
 use App\Admin\RowActions\DownloadCarrierExcel;
 use App\Admin\RowActions\DownloadCarrierPDF;
@@ -41,7 +42,7 @@ class InventoryOutController extends AdminController
             $grid->column('send_number','发货数目');
             $grid->column('to_country','发货国家');
             $grid->column('fba_code','目的地址编号');
-            $grid->column('address','目的地详细地址');
+            $grid->column('address','目的地详细地址')->limit(30);
             $grid->column('postcode','目的国邮编');
             $grid->column('date_create_ship','货件发货日期');
             $grid->column('carrier_name','承运商');
@@ -56,6 +57,8 @@ class InventoryOutController extends AdminController
             $grid->tools(function (Grid\Tools $tools) {
                 // excle 导入
                 $tools->append(new UploadShipmeent());
+                // 模板下载
+                $tools->append(new DownloadInventoryOutTemplate());
             });
 
             $grid->actions(function (Grid\Displayers\Actions $actions) {

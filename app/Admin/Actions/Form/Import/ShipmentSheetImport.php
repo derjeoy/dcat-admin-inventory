@@ -33,35 +33,35 @@ class ShipmentSheetImport implements ToCollection, WithBatchInserts, WithChunkRe
     public function model(array $row)
     {
         // 断数据是否
-        $fc = InventoryOut::where('fbaid', '=', $row['fbaid'])->first();
+        $fc = InventoryOut::where('fbaid', '=', $row['FBA发货计划ID'])->first();
         //dd($products);
         if ($fc) {
             // 存在返回 null
             return null;
         }
-
-        //console.log($row['date_create_ship']);
+        //$row['FBA仓库编号'] = str_replace(array("\r\n", "\r", "\n"), "", $row['FBA仓库编号']);
+        //dd($row['FBA仓库编号']);
         // 数据库对应的字段
         return new DataModel([
-            'listing_id' => $row['listing_id'],
-            'irobot_shipment_id' => $row['irobot_shipment_id'],
-            'fbaid' => $row['fbaid'],
-            'fba_reference_id' => $row['fba_reference_id'],
-            'send_number' => $row['send_number'],
-            'from_address' => $row['from_address'],
-            'to_country' => $row['to_country'],
-            'fba_code' => $row['fba_code'],
-            'postcode' => $row['postcode'],
+            'listing_id' => $row['链接ID'],
+            'irobot_shipment_id' => $row['赛合发货计划ID'],
+            'fbaid' => $row['FBA发货计划ID'],
+            'fba_reference_id' => $row['FBA发货计划参考ID'],
+            'send_number' => $row['发货数目'],
+            'from_address' => $row['发货地址'],
+            'to_country' => $row['目的国家'],
+            'fba_code' => $row['FBA仓库编号'],
+            'postcode' => $row['FBA仓库邮编'],
             
-            'carrier_name' => $row['carrier_name'],
-            'send_method' => $row['send_method'],
-            'tracking_num' => $row['tracking_num'],
-            'status' => $row['status'],
-            'note' => $row['note'],
+            'carrier_name' => $row['承运商'],
+            'send_method' => $row['发货方式'],
+            'tracking_num' => $row['物流跟踪号'],
+            'address' => str_replace(array("\r\n", "\r", "\n"), "", $row['目的地址']),
+            'status' => $row['发货计划状态'],
+            'note' => $row['备注'],
 
-            'date_create_ship' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_create_ship'])->format('Y-m-d'),
-            'hope_arrive_date' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['hope_arrive_date'])->format('Y-m-d'),
-            'actural_arrive_date' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['actural_arrive_date'])->format('Y-m-d'),
+            'date_create_ship' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['货件发货日期'])->format('Y-m-d'),
+            'hope_arrive_date' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['期望上架日期'])->format('Y-m-d'),
             //'hope_arrive_date' => date('Y-m-d', ($row['hope_arrive_date']–25569) * 24*60*60),
             //'actural_arrive_date' => date('Y-m-d', ($row['actural_arrive_date']–25569) * 24*60*60),
             

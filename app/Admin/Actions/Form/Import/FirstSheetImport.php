@@ -33,7 +33,7 @@ class FirstSheetImport implements ToCollection, WithBatchInserts, WithChunkReadi
     public function model(array $row)
     {
         // 断数据是否
-        $products = ProductModel::where('irobot_sku', '=', $row['irobot_sku'])->first();
+        $products = ProductModel::where('irobot_sku', '=', $row['赛盒SKU'])->first();
         //dd($products);
         if ($products) {
             // 存在返回 null
@@ -41,13 +41,21 @@ class FirstSheetImport implements ToCollection, WithBatchInserts, WithChunkReadi
         }
         // 数据库对应的字段
         return new DataModel([
-            'name_chinese' => $row['name_chinese'],
-            'name_english' => $row['name_english'],
-            'asin' => $row['asin'],
-            'upc' => $row['upc'],
-            'irobot_sku' => $row['irobot_sku'],
-            'addbyuser' => $row['addbyuser'],
-            'image_column' => $row['image_column'],
+            'name_chinese' => $row['中文名字'],
+            'purchase_cost' => $row['采购成本'],
+            'irobot_sku' => $row['赛盒SKU'],
+            'amz_listing' => $row['参考亚马逊链接'],
+            'addbyuser' => $row['添加人'],
+            'unit_height' => $row['高度'],
+            'unit_width' => $row['宽度'],
+            'unit_length' => $row['长度'],
+            'unit_weight' => $row['重量'],
+            'box_height' => $row['装箱高度'],
+            'box_width' => $row['装箱宽度'],
+            'box_length' => $row['装箱长度'],
+            'box_weight' => $row['装箱重量'],
+            'box_number' => $row['装箱个数'],
+            'purchasemethod' => $row['采购链接'],
         ]);
     }
 

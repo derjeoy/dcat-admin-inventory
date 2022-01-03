@@ -36,9 +36,9 @@ class Import extends Form
     public function form()
     {
         $this->file('file', '上传数据（Excel）')->rules('required', ['required' => '文件不能为空']);
+        //$this->button('下载导入模板');//->on();
+        $this->disableResetButton();
     }
-
-
 
 }
 

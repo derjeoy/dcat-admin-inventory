@@ -27,11 +27,13 @@ class UploadProducts extends AbstractTool
 
         return <<<HTML
         <span class="grid-expand" data-toggle="modal" data-target="#{$id}">
-           <a href="javascript:void(0)"><button class="btn btn-success  ">上传Excel并导入数据</button></a>
+           <a href="javascript:void(0)"><button class="btn btn-success "><i class="feather icon-arrow-up"></i>导入数据</button></a>
+
         </span>
         HTML;
     }
-     protected function modal($id)
+    
+    protected function modal($id)
     {
         $form = new Import();
 
