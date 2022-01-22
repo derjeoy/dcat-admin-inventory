@@ -35,9 +35,10 @@ class TableListingController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new TableListing(['latest_review','purchase_cost','shipment']), function (Grid $grid) {
+        return Grid::make(new TableListing(['latest_review','purchase_cost','shipment','product']), function (Grid $grid) {
             //$grid->title('listing列表');
             $grid->column('id','链接ID')->sortable()->copyable();
+            $grid->column('product.image_column','产品图片')->image('',50,50);
             $grid->column('irobot_sku','赛合SKU')->copyable();
             $grid->column('country','国家')->setAttributes(['style' => 'color:blue;font-size:14px']);
             $grid->column('amz_account','账号名字')->label('danger');

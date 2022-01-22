@@ -24,6 +24,7 @@ Route::group([
     $router->resource('promotionorders', 'PromotionOrderController');
     $router->resource('salesummery', 'SalesSummeryController');
     $router->resource('productinterest', 'ProductInterestController');
+    $router->resource('websites', 'WebsiteController');
 
     $router->get('api/product', 'ApiController@getProductInfo')->name('api.product.find');
     $router->get('api/listing', 'ApiController@getListingInfo')->name('api.listing.find');

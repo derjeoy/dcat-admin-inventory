@@ -12,6 +12,7 @@ class TableListing extends Model
 	
     protected $table = 'table_listings';
 
+
     public function review():HasMany
     {
         return $this->hasMany(TableReview::class,'listing_id');//->orderBy('date','desc')->latest();
@@ -30,5 +31,10 @@ class TableListing extends Model
     public function shipment()
     {
         return $this->hasOne(InventoryOut::class, 'listing_id', 'listing_id')->orderByDesc('date_create_ship');
+    }
+
+    public function product():BelongsTo
+    {
+        return $this->belongsTo(ProductModel::class,'irobot_sku','irobot_sku');
     }
 }

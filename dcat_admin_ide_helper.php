@@ -15,19 +15,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection date
      * @property Grid\Column|Collection id
      * @property Grid\Column|Collection name
-     * @property Grid\Column|Collection norms
-     * @property Grid\Column|Collection category
-     * @property Grid\Column|Collection price
-     * @property Grid\Column|Collection shop_name
-     * @property Grid\Column|Collection brand
-     * @property Grid\Column|Collection state
-     * @property Grid\Column|Collection added_at
-     * @property Grid\Column|Collection images
-     * @property Grid\Column|Collection year
-     * @property Grid\Column|Collection rating
-     * @property Grid\Column|Collection directors
-     * @property Grid\Column|Collection casts
-     * @property Grid\Column|Collection genres
      * @property Grid\Column|Collection type
      * @property Grid\Column|Collection version
      * @property Grid\Column|Collection detail
@@ -102,20 +89,26 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection meta
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
+     * @property Grid\Column|Collection label
      * @property Grid\Column|Collection asin
      * @property Grid\Column|Collection store
      * @property Grid\Column|Collection bs_category
      * @property Grid\Column|Collection amz_price
+     * @property Grid\Column|Collection keyword
+     * @property Grid\Column|Collection owner
      * @property Grid\Column|Collection name_chinese
      * @property Grid\Column|Collection name_english
-     * @property Grid\Column|Collection upc
      * @property Grid\Column|Collection irobot_sku
      * @property Grid\Column|Collection addbyuser
-     * @property Grid\Column|Collection unit_size
+     * @property Grid\Column|Collection unit_height
+     * @property Grid\Column|Collection unit_width
+     * @property Grid\Column|Collection unit_length
      * @property Grid\Column|Collection unit_weight
-     * @property Grid\Column|Collection box_size
+     * @property Grid\Column|Collection box_length
+     * @property Grid\Column|Collection box_width
+     * @property Grid\Column|Collection box_height
      * @property Grid\Column|Collection box_weight
-     * @property Grid\Column|Collection numberperbox
+     * @property Grid\Column|Collection box_number
      * @property Grid\Column|Collection amz_listing
      * @property Grid\Column|Collection purchasemethod
      * @property Grid\Column|Collection image_column
@@ -134,6 +127,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection refund_status
      * @property Grid\Column|Collection refund_date
      * @property Grid\Column|Collection refund_money
+     * @property Grid\Column|Collection brand
      * @property Grid\Column|Collection keyword_location
      * @property Grid\Column|Collection agent_contact
      * @property Grid\Column|Collection store_name
@@ -157,7 +151,9 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection amz_sku
      * @property Grid\Column|Collection fnsku
      * @property Grid\Column|Collection local_name
+     * @property Grid\Column|Collection upc
      * @property Grid\Column|Collection saler
+     * @property Grid\Column|Collection price
      * @property Grid\Column|Collection fba_fee
      * @property Grid\Column|Collection amz_sale_commssion
      * @property Grid\Column|Collection fba_current_inventory
@@ -166,24 +162,14 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection rew_number
      * @property Grid\Column|Collection rew_rate
      * @property Grid\Column|Collection email_verified_at
+     * @property Grid\Column|Collection name_en
+     * @property Grid\Column|Collection name_cn
+     * @property Grid\Column|Collection url
      *
      * @method Grid\Column|Collection image(string $label = null)
      * @method Grid\Column|Collection date(string $label = null)
      * @method Grid\Column|Collection id(string $label = null)
      * @method Grid\Column|Collection name(string $label = null)
-     * @method Grid\Column|Collection norms(string $label = null)
-     * @method Grid\Column|Collection category(string $label = null)
-     * @method Grid\Column|Collection price(string $label = null)
-     * @method Grid\Column|Collection shop_name(string $label = null)
-     * @method Grid\Column|Collection brand(string $label = null)
-     * @method Grid\Column|Collection state(string $label = null)
-     * @method Grid\Column|Collection added_at(string $label = null)
-     * @method Grid\Column|Collection images(string $label = null)
-     * @method Grid\Column|Collection year(string $label = null)
-     * @method Grid\Column|Collection rating(string $label = null)
-     * @method Grid\Column|Collection directors(string $label = null)
-     * @method Grid\Column|Collection casts(string $label = null)
-     * @method Grid\Column|Collection genres(string $label = null)
      * @method Grid\Column|Collection type(string $label = null)
      * @method Grid\Column|Collection version(string $label = null)
      * @method Grid\Column|Collection detail(string $label = null)
@@ -258,20 +244,26 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection meta(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
+     * @method Grid\Column|Collection label(string $label = null)
      * @method Grid\Column|Collection asin(string $label = null)
      * @method Grid\Column|Collection store(string $label = null)
      * @method Grid\Column|Collection bs_category(string $label = null)
      * @method Grid\Column|Collection amz_price(string $label = null)
+     * @method Grid\Column|Collection keyword(string $label = null)
+     * @method Grid\Column|Collection owner(string $label = null)
      * @method Grid\Column|Collection name_chinese(string $label = null)
      * @method Grid\Column|Collection name_english(string $label = null)
-     * @method Grid\Column|Collection upc(string $label = null)
      * @method Grid\Column|Collection irobot_sku(string $label = null)
      * @method Grid\Column|Collection addbyuser(string $label = null)
-     * @method Grid\Column|Collection unit_size(string $label = null)
+     * @method Grid\Column|Collection unit_height(string $label = null)
+     * @method Grid\Column|Collection unit_width(string $label = null)
+     * @method Grid\Column|Collection unit_length(string $label = null)
      * @method Grid\Column|Collection unit_weight(string $label = null)
-     * @method Grid\Column|Collection box_size(string $label = null)
+     * @method Grid\Column|Collection box_length(string $label = null)
+     * @method Grid\Column|Collection box_width(string $label = null)
+     * @method Grid\Column|Collection box_height(string $label = null)
      * @method Grid\Column|Collection box_weight(string $label = null)
-     * @method Grid\Column|Collection numberperbox(string $label = null)
+     * @method Grid\Column|Collection box_number(string $label = null)
      * @method Grid\Column|Collection amz_listing(string $label = null)
      * @method Grid\Column|Collection purchasemethod(string $label = null)
      * @method Grid\Column|Collection image_column(string $label = null)
@@ -290,6 +282,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection refund_status(string $label = null)
      * @method Grid\Column|Collection refund_date(string $label = null)
      * @method Grid\Column|Collection refund_money(string $label = null)
+     * @method Grid\Column|Collection brand(string $label = null)
      * @method Grid\Column|Collection keyword_location(string $label = null)
      * @method Grid\Column|Collection agent_contact(string $label = null)
      * @method Grid\Column|Collection store_name(string $label = null)
@@ -313,7 +306,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection amz_sku(string $label = null)
      * @method Grid\Column|Collection fnsku(string $label = null)
      * @method Grid\Column|Collection local_name(string $label = null)
+     * @method Grid\Column|Collection upc(string $label = null)
      * @method Grid\Column|Collection saler(string $label = null)
+     * @method Grid\Column|Collection price(string $label = null)
      * @method Grid\Column|Collection fba_fee(string $label = null)
      * @method Grid\Column|Collection amz_sale_commssion(string $label = null)
      * @method Grid\Column|Collection fba_current_inventory(string $label = null)
@@ -322,6 +317,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection rew_number(string $label = null)
      * @method Grid\Column|Collection rew_rate(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
+     * @method Grid\Column|Collection name_en(string $label = null)
+     * @method Grid\Column|Collection name_cn(string $label = null)
+     * @method Grid\Column|Collection url(string $label = null)
      */
     class Grid {}
 
@@ -332,19 +330,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection date
      * @property Show\Field|Collection id
      * @property Show\Field|Collection name
-     * @property Show\Field|Collection norms
-     * @property Show\Field|Collection category
-     * @property Show\Field|Collection price
-     * @property Show\Field|Collection shop_name
-     * @property Show\Field|Collection brand
-     * @property Show\Field|Collection state
-     * @property Show\Field|Collection added_at
-     * @property Show\Field|Collection images
-     * @property Show\Field|Collection year
-     * @property Show\Field|Collection rating
-     * @property Show\Field|Collection directors
-     * @property Show\Field|Collection casts
-     * @property Show\Field|Collection genres
      * @property Show\Field|Collection type
      * @property Show\Field|Collection version
      * @property Show\Field|Collection detail
@@ -419,20 +404,26 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection meta
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
+     * @property Show\Field|Collection label
      * @property Show\Field|Collection asin
      * @property Show\Field|Collection store
      * @property Show\Field|Collection bs_category
      * @property Show\Field|Collection amz_price
+     * @property Show\Field|Collection keyword
+     * @property Show\Field|Collection owner
      * @property Show\Field|Collection name_chinese
      * @property Show\Field|Collection name_english
-     * @property Show\Field|Collection upc
      * @property Show\Field|Collection irobot_sku
      * @property Show\Field|Collection addbyuser
-     * @property Show\Field|Collection unit_size
+     * @property Show\Field|Collection unit_height
+     * @property Show\Field|Collection unit_width
+     * @property Show\Field|Collection unit_length
      * @property Show\Field|Collection unit_weight
-     * @property Show\Field|Collection box_size
+     * @property Show\Field|Collection box_length
+     * @property Show\Field|Collection box_width
+     * @property Show\Field|Collection box_height
      * @property Show\Field|Collection box_weight
-     * @property Show\Field|Collection numberperbox
+     * @property Show\Field|Collection box_number
      * @property Show\Field|Collection amz_listing
      * @property Show\Field|Collection purchasemethod
      * @property Show\Field|Collection image_column
@@ -451,6 +442,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection refund_status
      * @property Show\Field|Collection refund_date
      * @property Show\Field|Collection refund_money
+     * @property Show\Field|Collection brand
      * @property Show\Field|Collection keyword_location
      * @property Show\Field|Collection agent_contact
      * @property Show\Field|Collection store_name
@@ -474,7 +466,9 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection amz_sku
      * @property Show\Field|Collection fnsku
      * @property Show\Field|Collection local_name
+     * @property Show\Field|Collection upc
      * @property Show\Field|Collection saler
+     * @property Show\Field|Collection price
      * @property Show\Field|Collection fba_fee
      * @property Show\Field|Collection amz_sale_commssion
      * @property Show\Field|Collection fba_current_inventory
@@ -483,24 +477,14 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection rew_number
      * @property Show\Field|Collection rew_rate
      * @property Show\Field|Collection email_verified_at
+     * @property Show\Field|Collection name_en
+     * @property Show\Field|Collection name_cn
+     * @property Show\Field|Collection url
      *
      * @method Show\Field|Collection image(string $label = null)
      * @method Show\Field|Collection date(string $label = null)
      * @method Show\Field|Collection id(string $label = null)
      * @method Show\Field|Collection name(string $label = null)
-     * @method Show\Field|Collection norms(string $label = null)
-     * @method Show\Field|Collection category(string $label = null)
-     * @method Show\Field|Collection price(string $label = null)
-     * @method Show\Field|Collection shop_name(string $label = null)
-     * @method Show\Field|Collection brand(string $label = null)
-     * @method Show\Field|Collection state(string $label = null)
-     * @method Show\Field|Collection added_at(string $label = null)
-     * @method Show\Field|Collection images(string $label = null)
-     * @method Show\Field|Collection year(string $label = null)
-     * @method Show\Field|Collection rating(string $label = null)
-     * @method Show\Field|Collection directors(string $label = null)
-     * @method Show\Field|Collection casts(string $label = null)
-     * @method Show\Field|Collection genres(string $label = null)
      * @method Show\Field|Collection type(string $label = null)
      * @method Show\Field|Collection version(string $label = null)
      * @method Show\Field|Collection detail(string $label = null)
@@ -575,20 +559,26 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection meta(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
+     * @method Show\Field|Collection label(string $label = null)
      * @method Show\Field|Collection asin(string $label = null)
      * @method Show\Field|Collection store(string $label = null)
      * @method Show\Field|Collection bs_category(string $label = null)
      * @method Show\Field|Collection amz_price(string $label = null)
+     * @method Show\Field|Collection keyword(string $label = null)
+     * @method Show\Field|Collection owner(string $label = null)
      * @method Show\Field|Collection name_chinese(string $label = null)
      * @method Show\Field|Collection name_english(string $label = null)
-     * @method Show\Field|Collection upc(string $label = null)
      * @method Show\Field|Collection irobot_sku(string $label = null)
      * @method Show\Field|Collection addbyuser(string $label = null)
-     * @method Show\Field|Collection unit_size(string $label = null)
+     * @method Show\Field|Collection unit_height(string $label = null)
+     * @method Show\Field|Collection unit_width(string $label = null)
+     * @method Show\Field|Collection unit_length(string $label = null)
      * @method Show\Field|Collection unit_weight(string $label = null)
-     * @method Show\Field|Collection box_size(string $label = null)
+     * @method Show\Field|Collection box_length(string $label = null)
+     * @method Show\Field|Collection box_width(string $label = null)
+     * @method Show\Field|Collection box_height(string $label = null)
      * @method Show\Field|Collection box_weight(string $label = null)
-     * @method Show\Field|Collection numberperbox(string $label = null)
+     * @method Show\Field|Collection box_number(string $label = null)
      * @method Show\Field|Collection amz_listing(string $label = null)
      * @method Show\Field|Collection purchasemethod(string $label = null)
      * @method Show\Field|Collection image_column(string $label = null)
@@ -607,6 +597,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection refund_status(string $label = null)
      * @method Show\Field|Collection refund_date(string $label = null)
      * @method Show\Field|Collection refund_money(string $label = null)
+     * @method Show\Field|Collection brand(string $label = null)
      * @method Show\Field|Collection keyword_location(string $label = null)
      * @method Show\Field|Collection agent_contact(string $label = null)
      * @method Show\Field|Collection store_name(string $label = null)
@@ -630,7 +621,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection amz_sku(string $label = null)
      * @method Show\Field|Collection fnsku(string $label = null)
      * @method Show\Field|Collection local_name(string $label = null)
+     * @method Show\Field|Collection upc(string $label = null)
      * @method Show\Field|Collection saler(string $label = null)
+     * @method Show\Field|Collection price(string $label = null)
      * @method Show\Field|Collection fba_fee(string $label = null)
      * @method Show\Field|Collection amz_sale_commssion(string $label = null)
      * @method Show\Field|Collection fba_current_inventory(string $label = null)
@@ -639,6 +632,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection rew_number(string $label = null)
      * @method Show\Field|Collection rew_rate(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
+     * @method Show\Field|Collection name_en(string $label = null)
+     * @method Show\Field|Collection name_cn(string $label = null)
+     * @method Show\Field|Collection url(string $label = null)
      */
     class Show {}
 
@@ -652,7 +648,7 @@ namespace Dcat\Admin {
 
 namespace Dcat\Admin\Grid {
     /**
-     * @method $this code(...$params)
+     
      */
     class Column {}
 

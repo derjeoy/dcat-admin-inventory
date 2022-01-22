@@ -76,7 +76,8 @@ class DemandController extends AdminController
     {
         return Form::make(new Demand(), function (Form $form) {
             $form->text('title');
-            $form->markdown('content');
+            //$form->markdown('content');
+            $form->editor('content');
             $form->radio('type')->options(\App\Models\Demand::TYPE)->default(0);
             $form->markdown('reply');
             $form->select('status')->options(\App\Models\Demand::STATUS)->default(0);
