@@ -16,6 +16,7 @@ use App\Admin\RowActions\DownloadAction;
 use App\Admin\RowActions\DownloadCarrierExcel;
 use App\Admin\RowActions\DownloadCarrierPDF;
 use Dcat\Admin\Layout\Content;
+use Dcat\Admin\Form\NestedForm;
 
 class InventoryOutController extends AdminController
 {
@@ -40,6 +41,7 @@ class InventoryOutController extends AdminController
             $grid->column('listing_id','链接ID')->sortable();
             $grid->column('fbaid','SHIPMENT ID');
             $grid->column('send_number','发货数目');
+            $grid->column('from_address','发货地址');
             $grid->column('to_country','发货国家');
             $grid->column('fba_code','目的地址编号');
             $grid->column('address','目的地详细地址')->limit(30);
@@ -47,12 +49,13 @@ class InventoryOutController extends AdminController
             $grid->column('date_create_ship','货件发货日期');
             $grid->column('carrier_name','承运商');
             $grid->column('tracking_num','物流跟踪号');
+            $grid->column('carrier_fee','物流费用');
             $grid->column('send_method','发货方式')->using(\App\Models\InventoryOut::SEND_METHOD);
             $grid->column('status','发货计划状态')->using(\App\Models\InventoryOut::SHIPMENT_STATUS);
             $grid->column('note','备注');
-            $grid->column('from_address','发货地址');
+            
             $grid->column('fba_reference_id','FBA参考号');
-            $grid->column('irobot_shipment_id','赛盒发货编号');
+            // $grid->column('irobot_shipment_id','赛盒发货编号');
 
             $grid->tools(function (Grid\Tools $tools) {
                 // excle 导入
@@ -105,7 +108,7 @@ class InventoryOutController extends AdminController
         return Show::make($id, new InventoryOut(), function (Show $show) {
             // $show->field('id');
             $show->field('listing_id');
-            $show->field('irobot_shipment_id');
+            // $show->field('irobot_shipment_id');
             $show->field('fbaid');
             $show->field('fba_reference_id');
             $show->field('send_number');
@@ -131,24 +134,43 @@ class InventoryOutController extends AdminController
     protected function form()
     {
         return Form::make(new InventoryOut(), function (Form $form) {
-            $form->select('listing_id', '选择Listing')->options(ListingModel::pluck('irobot_sku', 'id'))->loadpku(route('dcat.admin.api.listing.find'))->default('1')->required();
-            $form->text('irobot_shipment_id');
-            $form->text('fbaid');
-            $form->text('fba_reference_id');
-            $form->text('send_number');
-            $form->text('from_address');
-            $form->text('to_country');
-            $form->text('fba_code');
-            $form->text('address');
-            $form->text('postcode');
-            $form->date('date_create_ship');
-            $form->text('carrier_name');
-            $form->text('tracking_num','物流跟踪号');
-            $form->select('send_method','发货方式')->options(\App\Models\InventoryOut::SEND_METHOD);
+
+            $form->row(function (Form\Row $row) {
+                $row->width(6)->text('fbaid');
+                $row->width(6)->text('fba_reference_id');
+                //$row->width(6)->text('send_number');
+                $row->width(6)->text('from_address');
+                $row->width(6)->text('to_country');
+                $row->width(6)->text('fba_code');
+                $row->width(6)->date('date_create_ship');
+
+                $row->hasMany('rellistings', '选择链接', function (Form\NestedForm $table) {
+                    $table->select('listing_id', '链接ID')->options(ListingModel::pluck('local_name', 'id'))->loadpku(route('dcat.admin.api.listing.find'))->required();
+                    //$table->ipt('asin', 'ASIN')->default('-')->disable();
+                    $table->text('send_number', '数目');
+                    //$table->text('fbaid')->value($this->.fbaid);
+            });
+
+            // $form->table('table','选择发货链接', function (NestedForm $table) {
+            //     // $table->select('listing_id', '选择Listing')->options(ListingModel::pluck('id', 'id'))->loadpku(route('dcat.admin.api.listing.find'))->default('1')->required();
+            //     $table->select('listing_id','链接ID')->options(ListingModel::pluck('local_name', 'id'))->loadpku(route('dcat.admin.api.listing.find'))->required();
+            //     //$table->ipt('value','产品名字')->value('1');
+            //     $table->text('number','发货数目');
+            // });
+        });
+
+            
             $form->select('status','货件状态')->options(\App\Models\InventoryOut::SHIPMENT_STATUS);
             $form->textarea('note');
             $form->file('carrier_file','物流形式发票')->autoUpload()->downloadable()->maxSize(3069)->accept('xls,xlsx');;//3M
-            $form->file('carrier_pdf','箱麦')->autoUpload()->downloadable()->maxSize(3069)->accept('pdf');//3M
+            $form->file('carrier_pdf','箱唛')->autoUpload()->downloadable()->maxSize(3069)->accept('pdf');//3M
+
+            $form->select('send_method','发货方式')->options(\App\Models\InventoryOut::SEND_METHOD);
+            $form->text('carrier_name');
+            $form->text('tracking_num','物流跟踪号');
+
+            $form->text('carrier_fee','物流费用');
+
             // $form->mediaSelector('avatar1', '头像2')->rules('required', [
             //             'required' => '请输上传或选择封面'
             //         ])->options([

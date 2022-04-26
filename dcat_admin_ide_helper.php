@@ -75,6 +75,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection carrier_file
      * @property Grid\Column|Collection carrier_pdf
      * @property Grid\Column|Collection send_number
+     * @property Grid\Column|Collection carrier_fee
      * @property Grid\Column|Collection irobot_id
      * @property Grid\Column|Collection units_number
      * @property Grid\Column|Collection unit_price
@@ -165,6 +166,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection name_en
      * @property Grid\Column|Collection name_cn
      * @property Grid\Column|Collection url
+     * @property Grid\Column|Collection category
      *
      * @method Grid\Column|Collection image(string $label = null)
      * @method Grid\Column|Collection date(string $label = null)
@@ -230,6 +232,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection carrier_file(string $label = null)
      * @method Grid\Column|Collection carrier_pdf(string $label = null)
      * @method Grid\Column|Collection send_number(string $label = null)
+     * @method Grid\Column|Collection carrier_fee(string $label = null)
      * @method Grid\Column|Collection irobot_id(string $label = null)
      * @method Grid\Column|Collection units_number(string $label = null)
      * @method Grid\Column|Collection unit_price(string $label = null)
@@ -320,6 +323,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection name_en(string $label = null)
      * @method Grid\Column|Collection name_cn(string $label = null)
      * @method Grid\Column|Collection url(string $label = null)
+     * @method Grid\Column|Collection category(string $label = null)
      */
     class Grid {}
 
@@ -390,6 +394,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection carrier_file
      * @property Show\Field|Collection carrier_pdf
      * @property Show\Field|Collection send_number
+     * @property Show\Field|Collection carrier_fee
      * @property Show\Field|Collection irobot_id
      * @property Show\Field|Collection units_number
      * @property Show\Field|Collection unit_price
@@ -480,6 +485,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection name_en
      * @property Show\Field|Collection name_cn
      * @property Show\Field|Collection url
+     * @property Show\Field|Collection category
      *
      * @method Show\Field|Collection image(string $label = null)
      * @method Show\Field|Collection date(string $label = null)
@@ -545,6 +551,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection carrier_file(string $label = null)
      * @method Show\Field|Collection carrier_pdf(string $label = null)
      * @method Show\Field|Collection send_number(string $label = null)
+     * @method Show\Field|Collection carrier_fee(string $label = null)
      * @method Show\Field|Collection irobot_id(string $label = null)
      * @method Show\Field|Collection units_number(string $label = null)
      * @method Show\Field|Collection unit_price(string $label = null)
@@ -635,12 +642,14 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection name_en(string $label = null)
      * @method Show\Field|Collection name_cn(string $label = null)
      * @method Show\Field|Collection url(string $label = null)
+     * @method Show\Field|Collection category(string $label = null)
      */
     class Show {}
 
     /**
      * @method \DeMemory\DcatMediaSelector\MediaSelector mediaSelector(...$params)
      * @method \App\Admin\Extensions\Form\Input ipt(...$params)
+     * @method \App\Admin\Extensions\Form\SelectCreate selectCreate(...$params)
      */
     class Form {}
 
@@ -660,7 +669,7 @@ namespace Dcat\Admin\Grid {
 
 namespace Dcat\Admin\Show {
     /**
-     
+     * @method $this video(...$params)
      */
     class Field {}
 }

@@ -34,8 +34,8 @@ class ApiController extends Controller
 
     public function getListingInfo(Request $request, ListingRepository $repository): ListingResource
     {
-        $listing_id = $request->get('q');
-        return ListingResource::make($repository->getInfoById($listing_id));
+        $id = $request->get('q');
+        return ListingResource::make($repository->getInfoById($id));
     }
 
 }

@@ -44,7 +44,7 @@ class ProductController extends AdminController
             $grid->column('name_chinese','产品名')->width(80);
             $grid->column('purchase_cost','采购成本');
             
-            $grid->column('irobot_sku','赛盒SKU');
+            //$grid->column('irobot_sku','赛盒SKU');
             $grid->column('unit_length','长度')->display(function ($unit_length) {
 
                 return "<span style='color:black'>$unit_length cm</span><br/><span style='color:grey'>".round($unit_length/2.54,2)."''</span>";
@@ -94,15 +94,15 @@ class ProductController extends AdminController
                 ->expand(function () {
                     // 返回显示的详情
                     // 这里返回 content 字段内容，并用 Card 包裹起来
-                    $sku = $this->irobot_sku;
+                    $sku = $this->id;
                     $listings = TableListing::get()->where('irobot_sku','=',$sku);
 
                     $data = [];
-                    $table_title = ['亚马逊账号','国家','赛盒SKU','平台SKU','ASIN','FNSKU','UPC','销售','售价'];
+                    $table_title = ['亚马逊账号','国家','平台SKU','ASIN','FNSKU','UPC','销售','售价'];
 
                     foreach($listings as $list)
                     {
-                        $data[] = [$list->amz_account,$list->country,$list->irobot_sku,$list->amz_sku,$list->asin,$list->fnsku,$list->upc,$list->saler,$list->price];
+                        $data[] = [$list->amz_account,$list->country,$list->amz_sku,$list->asin,$list->fnsku,$list->upc,$list->saler,$list->price];
                     }
 
                     $table = new Table($table_title, $data);
@@ -123,7 +123,8 @@ class ProductController extends AdminController
 
         
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('irobot_sku','赛盒SKU');
+                $filter->like('name_chinese','产品名字');
+                $filter->equal('id','产品库ID');
             });
             // 禁止按钮边框
             $grid->toolsWithOutline(false);
@@ -172,7 +173,7 @@ class ProductController extends AdminController
             $form->tab('基本信息', function (Form $form) {
 
                     $form->display('id');
-                    $form->text('irobot_sku','赛合SKU');
+                    // $form->text('irobot_sku','赛合SKU');
                     
                     $form->text('name_chinese','中文名');
                     $form->text('name_english','英文名');

@@ -4,6 +4,7 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class InventoryOut extends Model
 {
@@ -11,6 +12,7 @@ class InventoryOut extends Model
     protected $table = 'inventory_out';
 
     protected $guarded = [];
+    
 
     const TYPE_RECEIVED = 1;
     const TYPE_RECEIVING = 2;
@@ -34,5 +36,14 @@ class InventoryOut extends Model
         self::TYPE_TRAIN =>'铁运',
         self::TYPE_TRUCK =>'卡运',
     ];
+
+
+    /**
+     * @return HasMany
+     */
+    public function rellistings():HasMany
+    {
+        return $this->hasMany(RelInventoryOutListing::class, 'fbaid');
+    }
     
 }

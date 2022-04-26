@@ -15,6 +15,11 @@ class ProductModel extends Model
 
 	protected $guarded = [];
 
+    // public function tableListings()
+    // {
+    //     return $this->hasMany(TableListing::class);
+    // }
+
 
     // public function listings():HasMany
     // {

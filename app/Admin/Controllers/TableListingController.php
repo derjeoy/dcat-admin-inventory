@@ -39,13 +39,13 @@ class TableListingController extends AdminController
             //$grid->title('listing列表');
             $grid->column('id','链接ID')->sortable()->copyable();
             $grid->column('product.image_column','产品图片')->image('',50,50);
-            $grid->column('irobot_sku','赛合SKU')->copyable();
+            $grid->column('irobot_sku','产品SKU')->copyable();
             $grid->column('country','国家')->setAttributes(['style' => 'color:blue;font-size:14px']);
             $grid->column('amz_account','账号名字')->label('danger');
             $grid->column('amz_sku','平台SKU')->badge('#222');;
             $grid->column('asin','ASIN');
             $grid->column('fnsku','FNSKU');
-            $grid->column('local_name','产品名称');
+            $grid->column('local_name','产品名称')->limit(50, '...');
             $grid->column('latest_review.rew_number','评论');//关联字段解决
             $grid->column('latest_review.rew_rate','评分')->display(function () {
                 if($this->latest_review)
@@ -86,6 +86,7 @@ class TableListingController extends AdminController
                         //     $currency = round(Currency::convert()->from('JP')->to('CNY')->amount(100)->get(),2);
 
                         $purchase_cost_cny = $this->purchase_cost->purchase_cost;
+                        //dd($this->purchase_cost);
                         $purchase_cost_foreign =  round( $purchase_cost_cny/$currency , 2 );
 
                         $first_trans_fee = round( ($this->shipment) ? ($this->shipment->transportation_fee/$this->shipment->send_number) : 0 , 2);
@@ -139,7 +140,7 @@ class TableListingController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('country','国家');
-                $filter->equal('irobot_sku','赛合SKU');
+                // $filter->equal('irobot_sku','赛合SKU');
                 $filter->equal('asin','ASIN');
         
             });
@@ -228,7 +229,8 @@ class TableListingController extends AdminController
 
     protected function setForm(Form &$form): void
     {
-        $form->display('id');
+        $form->display('id','链接ID');
+        $form->select('irobot_sku','关联产品SKU')->options(ProductModel::pluck('name_chinese', 'id'))->loadpku(route('dcat.admin.api.product.find'))->required();
         $form->text('amz_account');
         $form->text('country');
         $form->text('amz_sku');
@@ -236,7 +238,7 @@ class TableListingController extends AdminController
         $form->text('fnsku');
         $form->text('local_name');
         $form->text('upc');
-        $form->text('irobot_sku');
+        // $form->text('irobot_sku');
         $form->text('saler');
         $form->text('price','售价');
         $form->currency('fba_fee','FBA费用');

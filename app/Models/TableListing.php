@@ -25,7 +25,7 @@ class TableListing extends Model
 
     public function purchase_cost()
     {
-        return $this->belongsTo(ProductModel::class, 'irobot_sku', 'irobot_sku');
+        return $this->belongsTo(ProductModel::class, 'irobot_sku', 'id');
     }
 
     public function shipment()
