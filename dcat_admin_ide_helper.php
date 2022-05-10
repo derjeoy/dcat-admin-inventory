@@ -58,8 +58,10 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection POD
      * @property Grid\Column|Collection note
      * @property Grid\Column|Collection listing_id
-     * @property Grid\Column|Collection irobot_shipment_id
      * @property Grid\Column|Collection fbaid
+     * @property Grid\Column|Collection send_number
+     * @property Grid\Column|Collection listings
+     * @property Grid\Column|Collection irobot_shipment_id
      * @property Grid\Column|Collection fba_reference_id
      * @property Grid\Column|Collection from_address
      * @property Grid\Column|Collection to_country
@@ -74,7 +76,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection send_method
      * @property Grid\Column|Collection carrier_file
      * @property Grid\Column|Collection carrier_pdf
-     * @property Grid\Column|Collection send_number
      * @property Grid\Column|Collection carrier_fee
      * @property Grid\Column|Collection irobot_id
      * @property Grid\Column|Collection units_number
@@ -215,8 +216,10 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection POD(string $label = null)
      * @method Grid\Column|Collection note(string $label = null)
      * @method Grid\Column|Collection listing_id(string $label = null)
-     * @method Grid\Column|Collection irobot_shipment_id(string $label = null)
      * @method Grid\Column|Collection fbaid(string $label = null)
+     * @method Grid\Column|Collection send_number(string $label = null)
+     * @method Grid\Column|Collection listings(string $label = null)
+     * @method Grid\Column|Collection irobot_shipment_id(string $label = null)
      * @method Grid\Column|Collection fba_reference_id(string $label = null)
      * @method Grid\Column|Collection from_address(string $label = null)
      * @method Grid\Column|Collection to_country(string $label = null)
@@ -231,7 +234,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection send_method(string $label = null)
      * @method Grid\Column|Collection carrier_file(string $label = null)
      * @method Grid\Column|Collection carrier_pdf(string $label = null)
-     * @method Grid\Column|Collection send_number(string $label = null)
      * @method Grid\Column|Collection carrier_fee(string $label = null)
      * @method Grid\Column|Collection irobot_id(string $label = null)
      * @method Grid\Column|Collection units_number(string $label = null)
@@ -377,8 +379,10 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection POD
      * @property Show\Field|Collection note
      * @property Show\Field|Collection listing_id
-     * @property Show\Field|Collection irobot_shipment_id
      * @property Show\Field|Collection fbaid
+     * @property Show\Field|Collection send_number
+     * @property Show\Field|Collection listings
+     * @property Show\Field|Collection irobot_shipment_id
      * @property Show\Field|Collection fba_reference_id
      * @property Show\Field|Collection from_address
      * @property Show\Field|Collection to_country
@@ -393,7 +397,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection send_method
      * @property Show\Field|Collection carrier_file
      * @property Show\Field|Collection carrier_pdf
-     * @property Show\Field|Collection send_number
      * @property Show\Field|Collection carrier_fee
      * @property Show\Field|Collection irobot_id
      * @property Show\Field|Collection units_number
@@ -534,8 +537,10 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection POD(string $label = null)
      * @method Show\Field|Collection note(string $label = null)
      * @method Show\Field|Collection listing_id(string $label = null)
-     * @method Show\Field|Collection irobot_shipment_id(string $label = null)
      * @method Show\Field|Collection fbaid(string $label = null)
+     * @method Show\Field|Collection send_number(string $label = null)
+     * @method Show\Field|Collection listings(string $label = null)
+     * @method Show\Field|Collection irobot_shipment_id(string $label = null)
      * @method Show\Field|Collection fba_reference_id(string $label = null)
      * @method Show\Field|Collection from_address(string $label = null)
      * @method Show\Field|Collection to_country(string $label = null)
@@ -550,7 +555,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection send_method(string $label = null)
      * @method Show\Field|Collection carrier_file(string $label = null)
      * @method Show\Field|Collection carrier_pdf(string $label = null)
-     * @method Show\Field|Collection send_number(string $label = null)
      * @method Show\Field|Collection carrier_fee(string $label = null)
      * @method Show\Field|Collection irobot_id(string $label = null)
      * @method Show\Field|Collection units_number(string $label = null)

@@ -2,13 +2,13 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\RelInventoryOutListing;
+use App\Admin\Repositories\FbaListing;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 
-class RelInventoryOutListingController extends AdminController
+class FbaListingController extends AdminController
 {
     /**
      * Make a grid builder.
@@ -17,11 +17,13 @@ class RelInventoryOutListingController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new RelInventoryOutListing(), function (Grid $grid) {
+        return Grid::make(new FbaListing(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('listing_id');
             $grid->column('fbaid');
             $grid->column('send_number');
+            $grid->column('created_at');
+            $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
@@ -39,11 +41,13 @@ class RelInventoryOutListingController extends AdminController
      */
     protected function detail($id)
     {
-        return Show::make($id, new RelInventoryOutListing(), function (Show $show) {
+        return Show::make($id, new FbaListing(), function (Show $show) {
             $show->field('id');
             $show->field('listing_id');
             $show->field('fbaid');
             $show->field('send_number');
+            $show->field('created_at');
+            $show->field('updated_at');
         });
     }
 
@@ -54,11 +58,14 @@ class RelInventoryOutListingController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new RelInventoryOutListing(), function (Form $form) {
+        return Form::make(new FbaListing(), function (Form $form) {
             $form->display('id');
             $form->text('listing_id');
             $form->text('fbaid');
             $form->text('send_number');
+        
+            $form->display('created_at');
+            $form->display('updated_at');
         });
     }
 }

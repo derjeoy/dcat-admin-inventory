@@ -2,10 +2,10 @@
 
 namespace App\Admin\Repositories;
 
-use App\Models\RelInventoryOutListing as Model;
+use App\Models\FbaListing as Model;
 use Dcat\Admin\Repositories\EloquentRepository;
 
-class RelInventoryOutListing extends EloquentRepository
+class FbaListing extends EloquentRepository
 {
     /**
      * Model.

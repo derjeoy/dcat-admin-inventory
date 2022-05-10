@@ -19,6 +19,7 @@ Route::group([
     $router->resource('fbawarehouse', 'FCWarehouseController');
     $router->resource('currency', 'CurrencyController');
     $router->resource('purchaseorders', 'PurchaseOrderController');
+    $router->resource('review', 'TableReviewController');
     $router->resource('overseasinvnetory', 'InventoryOverseaController');
     $router->resource('promotionproducts', 'PromotionProductController');
     $router->resource('promotionorders', 'PromotionOrderController');
@@ -28,6 +29,7 @@ Route::group([
 
     $router->get('api/product', 'ApiController@getProductInfo')->name('api.product.find');
     $router->get('api/listing', 'ApiController@getListingInfo')->name('api.listing.find');
+    $router->get('api/productlisting', 'ApiController@getProductListingInfo')->name('api.productlisting.find');
 
     
     $router->resource('shipments', 'InventoryOutController');

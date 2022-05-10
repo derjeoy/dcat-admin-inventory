@@ -35,6 +35,6 @@ class TableListing extends Model
 
     public function product():BelongsTo
     {
-        return $this->belongsTo(ProductModel::class,'irobot_sku','irobot_sku');
+        return $this->belongsTo(ProductModel::class,'irobot_sku','id');
     }
 }

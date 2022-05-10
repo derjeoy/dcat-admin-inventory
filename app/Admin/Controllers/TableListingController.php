@@ -7,6 +7,7 @@ use App\Admin\Actions\Grid\UploadListing;
 use App\Admin\Actions\Grid\DownloadListingTemplate;
 use App\Models\InventoryOut;
 use App\Models\Currency;
+use App\Models\FbaListing;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -21,7 +22,7 @@ use Dcat\Admin\Layout\Content;
 
 class TableListingController extends AdminController
 {
-            public function index(Content $content)
+    public function index(Content $content)
     {
         return $content
             ->header('亚马逊链接')
@@ -35,17 +36,22 @@ class TableListingController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new TableListing(['latest_review','purchase_cost','shipment','product']), function (Grid $grid) {
+        return Grid::make(new TableListing(['latest_review','purchase_cost','product']), function (Grid $grid) {
             //$grid->title('listing列表');
             $grid->column('id','链接ID')->sortable()->copyable();
+            $grid->column('product.id','产品库ID')->copyable();
             $grid->column('product.image_column','产品图片')->image('',50,50);
-            $grid->column('irobot_sku','产品SKU')->copyable();
+            $grid->column('product.name_chinese','产品名称')->limit(30, '...');
+            //$grid->column('irobot_sku','产品SKU')->copyable();
             $grid->column('country','国家')->setAttributes(['style' => 'color:blue;font-size:14px']);
             $grid->column('amz_account','账号名字')->label('danger');
-            $grid->column('amz_sku','平台SKU')->badge('#222');;
-            $grid->column('asin','ASIN');
+            //$grid->column('amz_sku','平台SKU')->badge('#222');;
+            $grid->column('asin','ASIN')->link(function() {
+                return 'http://www.amazon.'.$this->country.'/dp/'.$this->asin;
+            });
             $grid->column('fnsku','FNSKU');
-            $grid->column('local_name','产品名称')->limit(50, '...');
+
+            
             $grid->column('latest_review.rew_number','评论');//关联字段解决
             $grid->column('latest_review.rew_rate','评分')->display(function () {
                 if($this->latest_review)
@@ -109,26 +115,31 @@ class TableListingController extends AdminController
                     return "<div style='padding:10px 10px 0;color:green;'>$this->price</div>";
                 })
                 ->expand(function () {
-                        $shipments = InventoryOut::get()->where('listing_id','=', $this->id);
+                        $fbalistings = FbaListing::get()->where('listing_id','=', $this->id);
 
-                        $data = [];
-                        $table_title = ['国家','发货ID','发货个数','运输方式','承运商','跟踪号','发货日期','期望到达日期','货件状态'];
                         
-                        foreach($shipments as $ship)
-                        {
-                            $data[] = [$ship->to_country,$ship->fbaid,$ship->send_number,$ship->send_method,$ship->carrier_name,$ship->tracking_num,$ship->date_create_ship,$ship->hope_arrive_date,$ship->status];
+                        $table_title = ['国家','发货ID','发货个数','运输方式','承运商','跟踪号','发货日期','期望到达日期','实际上架日期','货件状态'];
+                        $data = [];
+
+                        foreach($fbalistings as $fbalisting){
+                            $fbashipments = InventoryOut::get()->where('id','=',$fbalisting->fbaid);
+                            if (!$fbashipments){
+                                return ;    
+                            }
+                            foreach($fbashipments as $fbashipment ){
+                                if (!$fbashipment)
+                                {
+                                    return ;
+                                }
+                                $data[] = [$fbashipment->to_country,$fbashipment->fbaid,$fbalisting->send_number,$fbashipment->send_method,$fbashipment->carrier_name,$fbashipment->tracking_num,$fbashipment->date_create_ship,$fbashipment->hope_arrive_date,$fbashipment->actural_arrive_date,$fbashipment->status];
+                            }
                         }
+
 
                         $table = new Table($table_title, $data);
 
                         return "<div style='padding:10px 10px 0;color:grey;'>$table</div>";
                     });
-                // ->expand(function (Grid\Displayers\Expand $expand) {
-                //     // 设置按钮名称
-                //     $expand->button('库存详情');
-
-                //     return InventorySummary::make()->payload(['id' => $this->id,'price'=>$this->price]);
-                // });
 
             $grid->tools(function (Grid\Tools $tools) {
                 // excle 导入
@@ -215,46 +226,48 @@ class TableListingController extends AdminController
     protected function form()
     {
         return Form::make(new TableListing(), function (Form $form) {
-            $this->setForm($form);
+            //$this->setForm($form);
             if ($form->isCreating()) {
-                //$this->creating($form);
+                $this->editing($form);
             } 
 
-            // elseif ($form->isEditing()) {
-            //     $this->editing($form);
-            // }
+            elseif ($form->isEditing()) {
+                 $this->editing($form);
+            }
         });
     }
 
 
-    protected function setForm(Form &$form): void
-    {
+    protected function editing(Form &$form): void
+    {            
         $form->display('id','链接ID');
-        $form->select('irobot_sku','关联产品SKU')->options(ProductModel::pluck('name_chinese', 'id'))->loadpku(route('dcat.admin.api.product.find'))->required();
-        $form->text('amz_account');
-        $form->text('country');
+
+        $form->select('irobot_sku','关联产品SKU')->options(ProductModel::pluck('name_chinese', 'id'))->required();
+
+        $form->text('amz_account')->required();
+        $form->text('country')->required();
         $form->text('amz_sku');
-        $form->text('asin');
+        $form->text('asin')->required();
         $form->text('fnsku');
-        $form->text('local_name');
+
         $form->text('upc');
-        // $form->text('irobot_sku');
-        $form->text('saler');
-        $form->text('price','售价');
-        $form->currency('fba_fee','FBA费用');
-        $form->rate('amz_sale_commssion','FBA佣金费率');
+
+        $form->text('saler')->required();
+        $form->text('price','售价')->required();
+        $form->currency('fba_fee','FBA费用')->required();
+        $form->rate('amz_sale_commssion','FBA佣金费率')->required();
+        
     }
 
     protected function creating(Form &$form): void
     {
-        $form->row(function (Form\Row $row) {
-            $row->hasMany('items', '', function (Form\NestedForm $table) {
-                //pluck(value, key) : 返回指定value,key的值组成的集合
-                $table->select('selected_product_id', '名称')->options(ProductModel::pluck('name_chinese', 'id'))->loadpku(route('dcat.admin.api.product.find'))->required();
-                $table->ipt('asin', 'asin')->rem(6)->default('-')->disable();
-            })->useTable()->width(12);
+        // $form->row(function (Form\Row $row) {
+        //     $row->hasMany('items', '', function (Form\NestedForm $table) {
+        //         $table->select('selected_product_id', '名称')->options(ProductModel::pluck('name_chinese', 'id'))->loadpku(route('dcat.admin.api.product.find'))->required();
+        //         $table->ipt('asin', 'asin')->rem(6)->default('-')->disable();
+        //     })->useTable()->width(12);
 
 
-        });
+        // });
     }
 }

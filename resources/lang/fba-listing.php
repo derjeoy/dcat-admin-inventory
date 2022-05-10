@@ -1,11 +1,11 @@
 <?php 
 return [
     'labels' => [
-        'RelInventoryOutListing' => 'RelInventoryOutListing',
-        'rel-inventory-out-listing' => 'RelInventoryOutListing',
+        'FbaListing' => 'FbaListing',
+        'fba-listing' => 'FbaListing',
     ],
     'fields' => [
-        'listing_id' => '评论数目',
+        'listing_id' => '链接ID',
         'fbaid' => '发货Shipment ID',
         'send_number' => '发货数目',
     ],

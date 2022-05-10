@@ -4,8 +4,7 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProductModel extends Model
 {
@@ -15,25 +14,14 @@ class ProductModel extends Model
 
 	protected $guarded = [];
 
-    // public function tableListings()
-    // {
-    //     return $this->hasMany(TableListing::class);
-    // }
+    protected $with = ['listings'];
 
-
-    // public function listings():HasMany
-    // {
-    //     return $this->hasMany(TableListing::class,'irobot_sku');
-    // }
-
-	// // 定义一个public方法访问图片或文件
- //    public function getImage()
- //    {
- //        if (Str::contains($this->image_column, '//')) {
- //            return $this->image_column;
- //        }
-
- //        return Storage::disk('admin')->url($this->image_column);
- //    }
+    /**
+     * @return HasMany
+     */
+    public function listings(): HasMany
+    {
+        return $this->hasMany(TableListing::class, 'irobot_sku','id');
+    }
 
 }

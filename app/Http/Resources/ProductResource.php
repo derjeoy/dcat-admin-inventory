@@ -28,10 +28,11 @@ class ProductResource extends JsonResource
     {
         return [
             'id'           => $this->id,
-            'name'         => $this->name_chinese,
+            'name_chinese' => $this->name_chinese,
             'asin'         => $this->asin,
-            'irobot_sku' => $this->irobot_sku,
-            'name_english'     => $this->name_english
+            'irobot_sku'   => $this->irobot_sku,
+            'name_english' => $this->name_english  
+
         ];
     }
 }

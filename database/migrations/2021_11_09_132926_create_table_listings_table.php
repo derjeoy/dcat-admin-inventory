@@ -22,7 +22,7 @@ class CreateTableListingsTable extends Migration
             $table->string('fnsku')->default('')->comment('FNSKU');
             $table->string('local_name')->default('')->comment('本土语言产品名称');
             $table->string('upc')->nullable();
-            $table->string('irobot_sku')->default('')->comment('赛盒SKU');
+            $table->string('irobot_sku')->default('')->comment('产品库SKU');
             $table->string('saler')->default('')->comment('所属销售');
             $table->string('price')->default('')->comment('产品售价');
             $table->timestamps();

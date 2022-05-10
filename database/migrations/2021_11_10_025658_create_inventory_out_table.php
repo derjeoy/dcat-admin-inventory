@@ -15,8 +15,6 @@ class CreateInventoryOutTable extends Migration
     {
         Schema::create('inventory_out', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('listing_id')->default('')->comment('评论数目');
-            $table->string('irobot_shipment_id')->default('');
             $table->string('fbaid')->default('')->comment('发货Shipment ID');
             $table->string('fba_reference_id')->default('')->comment('FBA参考ID');
             $table->string('from_address')->default('')->comment('发货地址');
@@ -30,7 +28,6 @@ class CreateInventoryOutTable extends Migration
             $table->string('carrier_name')->default('')->comment('承运商');
             $table->string('tracking_num')->default('')->comment('跟踪号');
             $table->string('send_method')->default('')->comment('发货方式');
-            $table->string('send_number')->default('')->comment('发货数目');
             $table->string('status')->default('')->comment('出库单状态');
             $table->string('note')->default('')->comment('备注');
             $table->timestamps();

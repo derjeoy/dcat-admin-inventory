@@ -179,4 +179,13 @@ Dcat\Admin\Color::extend('orange', [
 ]);
 
 
+// 扩展表单字段方法
+// 保存为字符串
+Form\Field::macro('saveAsString', function () {
+    return $this->saving(function ($v) {
+        return (string) $v;
+    });
+});
+
+
 

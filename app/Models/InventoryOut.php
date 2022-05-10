@@ -12,7 +12,7 @@ class InventoryOut extends Model
     protected $table = 'inventory_out';
 
     protected $guarded = [];
-    
+
 
     const TYPE_RECEIVED = 1;
     const TYPE_RECEIVING = 2;
@@ -37,13 +37,23 @@ class InventoryOut extends Model
         self::TYPE_TRUCK =>'卡运',
     ];
 
+    const TYPE_US = 1;
+    const TYPE_CA = 2;
+
+    const COUNTRY_CODE = [
+        self::TYPE_US => '美国',
+        self::TYPE_CA => '加拿大',
+    ];
+
+
+
 
     /**
      * @return HasMany
      */
-    public function rellistings():HasMany
+    public function fba_listings(): HasMany
     {
-        return $this->hasMany(RelInventoryOutListing::class, 'fbaid');
+        return $this->hasMany(FbaListing::class, 'fbaid');
     }
     
 }
