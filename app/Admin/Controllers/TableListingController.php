@@ -244,18 +244,18 @@ class TableListingController extends AdminController
 
         $form->select('irobot_sku','关联产品SKU')->options(ProductModel::pluck('name_chinese', 'id'))->required();
 
-        $form->text('amz_account')->required();
-        $form->text('country')->required();
-        $form->text('amz_sku');
+        $form->text('amz_account')->required()->default('YSWQ');
+        $form->text('country')->required()->default('CA');
+        // $form->text('amz_sku');
         $form->text('asin')->required();
         $form->text('fnsku');
 
-        $form->text('upc');
+        // $form->text('upc');
 
-        $form->text('saler')->required();
-        $form->text('price','售价')->required();
-        $form->currency('fba_fee','FBA费用')->required();
-        $form->rate('amz_sale_commssion','FBA佣金费率')->required();
+        $form->text('saler')->required()->default('csf');
+        $form->text('price','售价')->required()->default('19.99');
+        $form->currency('fba_fee','FBA费用')->required()->default('5.68');
+        $form->rate('amz_sale_commssion','FBA佣金费率')->required()->default('0.15');
         
     }
 

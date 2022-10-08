@@ -17,6 +17,9 @@ Route::group([
     $router->resource('listingsummary', 'TableListingController');
     $router->get('productsummary', 'HomeController@index');
     $router->resource('fbawarehouse', 'FCWarehouseController');
+    $router->resource('pyamazoninput', 'PyAmazonInputController');
+    $router->resource('pyamzlocrslt', 'PyAmazonLocationResultController');
+    
     $router->resource('currency', 'CurrencyController');
     $router->resource('purchaseorders', 'PurchaseOrderController');
     $router->resource('review', 'TableReviewController');
@@ -28,12 +31,17 @@ Route::group([
     $router->resource('websites', 'WebsiteController');
 
     $router->get('api/product', 'ApiController@getProductInfo')->name('api.product.find');
+    $router->get('api/product/purchasemethod', 'ApiController@getProductPurchaseMethod')->name('api.product.find.purchasemethod');
+    $router->get('api/product/purchasecost', 'ApiController@getProductPurchaseCost')->name('api.product.find.purchasecost');
     $router->get('api/listing', 'ApiController@getListingInfo')->name('api.listing.find');
     $router->get('api/productlisting', 'ApiController@getProductListingInfo')->name('api.productlisting.find');
 
-    
+    $router->get('keywordtool', 'KeywordToolController@index');
+    $router->post('keywordtool/input', 'KeywordToolController@input');
+
     $router->resource('shipments', 'InventoryOutController');
     $router->resource('purchaseinventory', 'InventoryPurchaseController');
+
 
 
     $router->resource('demands', 'DemandController');

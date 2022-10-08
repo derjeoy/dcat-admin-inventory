@@ -178,7 +178,7 @@ class ProductController extends AdminController
                     $form->text('name_chinese','中文名');
                     $form->text('name_english','英文名');
                     $form->text('amz_listing','参考亚马逊链接');
-                    $form->text('purchasemethod','采购方式');
+                    $form->text('purchasemethod','采购方式')->default('1688');
                     $form->text('purchase_cost','采购成本');
 
                     $form->image('image_column','请上传产品主图')->name(function ($file) use ($form){
@@ -187,7 +187,7 @@ class ProductController extends AdminController
                         return $finename;
                         })->autoUpload()->rules('required',['required' =>'请上传产品主图']);
                     
-                    $form->text('addbyuser','添加人');
+                    $form->text('addbyuser','添加人')->default('csf');
 
 
                 })->tab('尺寸信息', function (Form $form) {

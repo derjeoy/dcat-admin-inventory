@@ -146,8 +146,8 @@ Admin::navbar(function (Navbar $navbar) {
 
 //过滤初始化
 Filter::resolving(function (Filter $filter) {
-    $filter->panel();
-    $filter->expand();
+    // $filter->panel(); // 不以默认的侧边显示搜索   直接当前页显示
+    // $filter->expand();// 是否显示搜索条件 默认不显示 点击筛选后才出现 设置后就直接显示
 });
 
 // //表格全局初始化

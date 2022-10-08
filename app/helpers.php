@@ -31,3 +31,18 @@ if (! function_exists('user_admin_config')) {
         return Arr::get($config, $key, $value);
     }
 }
+
+
+if (! function_exists('build_order_no')) {
+    /**
+     * @param string $prefix
+     * @return string
+     */
+    function build_order_no(string $prefix = ''): string
+    {
+        $date = date("Ymd");
+        $number = 1234;
+
+        return $prefix . $date . str_pad($number + 1, "4", "0", STR_PAD_LEFT);
+    }
+}

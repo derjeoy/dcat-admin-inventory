@@ -78,6 +78,7 @@ class InventoryOutController extends AdminController
             $grid->column('carrier_name','承运商');
             $grid->column('tracking_num','物流跟踪号');
             $grid->column('carrier_fee','物流费用');
+            $grid->column('weight_kg','发货重量');
             $grid->column('send_method','发货方式')->using(\App\Models\InventoryOut::SEND_METHOD);
             $grid->column('status','发货计划状态')->using(\App\Models\InventoryOut::SHIPMENT_STATUS);
             $grid->column('note','备注');
@@ -187,9 +188,10 @@ class InventoryOutController extends AdminController
         });
 
         $form->row(function ($form) {
-            $form->width(2)->date('date_create_ship','发货日期');
-            $form->width(2)->date('hope_arrive_date','期望上架日期');
-            $form->width(2)->date('actural_arrive_date','实际上架日期');
+            $form->width(3)->date('date_create_ship','发货日期');
+            $form->width(3)->date('hope_arrive_date','期望上架日期');
+            $form->width(3)->date('actural_arrive_date','实际上架日期');
+            $form->width(3)->text('weight_kg', '发货重量');
         });
 
 
@@ -215,7 +217,7 @@ class InventoryOutController extends AdminController
 
         $form->row(function ($form) {
             $form->width(6)->file('carrier_file','物流形式发票')->autoUpload()->downloadable()->maxSize(3069)->accept('xls,xlsx');;//3M
-            $form->width(6)->file('carrier_pdf','箱唛')->autoUpload()->downloadable()->maxSize(3069)->accept('pdf,xls,xlsx');//3M
+            $form->width(6)->file('carrier_pdf','箱唛')->autoUpload()->downloadable()->maxSize(3069)->accept('pdf');//3M
         });   
 
     }
@@ -239,9 +241,10 @@ class InventoryOutController extends AdminController
         });
 
         $form->row(function ($form) {
-            $form->width(4)->date('date_create_ship','发货日期');
-            $form->width(4)->date('hope_arrive_date','期望上架日期');
-            $form->width(4)->date('actural_arrive_date','实际上架日期');
+            $form->width(3)->date('date_create_ship','发货日期');
+            $form->width(3)->date('hope_arrive_date','期望上架日期');
+            $form->width(3)->date('actural_arrive_date','实际上架日期');
+            $form->width(3)->text('weight_kg', '发货重量');
         });
 
         $form->row(function ($form) {

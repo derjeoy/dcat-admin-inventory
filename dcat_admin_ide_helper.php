@@ -60,8 +60,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection listing_id
      * @property Grid\Column|Collection fbaid
      * @property Grid\Column|Collection send_number
-     * @property Grid\Column|Collection listings
-     * @property Grid\Column|Collection irobot_shipment_id
+     * @property Grid\Column|Collection name_chinese
      * @property Grid\Column|Collection fba_reference_id
      * @property Grid\Column|Collection from_address
      * @property Grid\Column|Collection to_country
@@ -76,6 +75,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection send_method
      * @property Grid\Column|Collection carrier_file
      * @property Grid\Column|Collection carrier_pdf
+     * @property Grid\Column|Collection volumn_cbm
+     * @property Grid\Column|Collection weight_kg
      * @property Grid\Column|Collection carrier_fee
      * @property Grid\Column|Collection irobot_id
      * @property Grid\Column|Collection units_number
@@ -98,7 +99,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection amz_price
      * @property Grid\Column|Collection keyword
      * @property Grid\Column|Collection owner
-     * @property Grid\Column|Collection name_chinese
+     * @property Grid\Column|Collection chooseornot
      * @property Grid\Column|Collection name_english
      * @property Grid\Column|Collection irobot_sku
      * @property Grid\Column|Collection addbyuser
@@ -134,6 +135,11 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection agent_contact
      * @property Grid\Column|Collection store_name
      * @property Grid\Column|Collection person
+     * @property Grid\Column|Collection order_id
+     * @property Grid\Column|Collection product_id
+     * @property Grid\Column|Collection purchase_number
+     * @property Grid\Column|Collection total_cost
+     * @property Grid\Column|Collection moniter_flag
      * @property Grid\Column|Collection picture
      * @property Grid\Column|Collection name_local
      * @property Grid\Column|Collection sku
@@ -218,8 +224,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection listing_id(string $label = null)
      * @method Grid\Column|Collection fbaid(string $label = null)
      * @method Grid\Column|Collection send_number(string $label = null)
-     * @method Grid\Column|Collection listings(string $label = null)
-     * @method Grid\Column|Collection irobot_shipment_id(string $label = null)
+     * @method Grid\Column|Collection name_chinese(string $label = null)
      * @method Grid\Column|Collection fba_reference_id(string $label = null)
      * @method Grid\Column|Collection from_address(string $label = null)
      * @method Grid\Column|Collection to_country(string $label = null)
@@ -234,6 +239,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection send_method(string $label = null)
      * @method Grid\Column|Collection carrier_file(string $label = null)
      * @method Grid\Column|Collection carrier_pdf(string $label = null)
+     * @method Grid\Column|Collection volumn_cbm(string $label = null)
+     * @method Grid\Column|Collection weight_kg(string $label = null)
      * @method Grid\Column|Collection carrier_fee(string $label = null)
      * @method Grid\Column|Collection irobot_id(string $label = null)
      * @method Grid\Column|Collection units_number(string $label = null)
@@ -256,7 +263,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection amz_price(string $label = null)
      * @method Grid\Column|Collection keyword(string $label = null)
      * @method Grid\Column|Collection owner(string $label = null)
-     * @method Grid\Column|Collection name_chinese(string $label = null)
+     * @method Grid\Column|Collection chooseornot(string $label = null)
      * @method Grid\Column|Collection name_english(string $label = null)
      * @method Grid\Column|Collection irobot_sku(string $label = null)
      * @method Grid\Column|Collection addbyuser(string $label = null)
@@ -292,6 +299,11 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection agent_contact(string $label = null)
      * @method Grid\Column|Collection store_name(string $label = null)
      * @method Grid\Column|Collection person(string $label = null)
+     * @method Grid\Column|Collection order_id(string $label = null)
+     * @method Grid\Column|Collection product_id(string $label = null)
+     * @method Grid\Column|Collection purchase_number(string $label = null)
+     * @method Grid\Column|Collection total_cost(string $label = null)
+     * @method Grid\Column|Collection moniter_flag(string $label = null)
      * @method Grid\Column|Collection picture(string $label = null)
      * @method Grid\Column|Collection name_local(string $label = null)
      * @method Grid\Column|Collection sku(string $label = null)
@@ -381,8 +393,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection listing_id
      * @property Show\Field|Collection fbaid
      * @property Show\Field|Collection send_number
-     * @property Show\Field|Collection listings
-     * @property Show\Field|Collection irobot_shipment_id
+     * @property Show\Field|Collection name_chinese
      * @property Show\Field|Collection fba_reference_id
      * @property Show\Field|Collection from_address
      * @property Show\Field|Collection to_country
@@ -397,6 +408,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection send_method
      * @property Show\Field|Collection carrier_file
      * @property Show\Field|Collection carrier_pdf
+     * @property Show\Field|Collection volumn_cbm
+     * @property Show\Field|Collection weight_kg
      * @property Show\Field|Collection carrier_fee
      * @property Show\Field|Collection irobot_id
      * @property Show\Field|Collection units_number
@@ -419,7 +432,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection amz_price
      * @property Show\Field|Collection keyword
      * @property Show\Field|Collection owner
-     * @property Show\Field|Collection name_chinese
+     * @property Show\Field|Collection chooseornot
      * @property Show\Field|Collection name_english
      * @property Show\Field|Collection irobot_sku
      * @property Show\Field|Collection addbyuser
@@ -455,6 +468,11 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection agent_contact
      * @property Show\Field|Collection store_name
      * @property Show\Field|Collection person
+     * @property Show\Field|Collection order_id
+     * @property Show\Field|Collection product_id
+     * @property Show\Field|Collection purchase_number
+     * @property Show\Field|Collection total_cost
+     * @property Show\Field|Collection moniter_flag
      * @property Show\Field|Collection picture
      * @property Show\Field|Collection name_local
      * @property Show\Field|Collection sku
@@ -539,8 +557,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection listing_id(string $label = null)
      * @method Show\Field|Collection fbaid(string $label = null)
      * @method Show\Field|Collection send_number(string $label = null)
-     * @method Show\Field|Collection listings(string $label = null)
-     * @method Show\Field|Collection irobot_shipment_id(string $label = null)
+     * @method Show\Field|Collection name_chinese(string $label = null)
      * @method Show\Field|Collection fba_reference_id(string $label = null)
      * @method Show\Field|Collection from_address(string $label = null)
      * @method Show\Field|Collection to_country(string $label = null)
@@ -555,6 +572,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection send_method(string $label = null)
      * @method Show\Field|Collection carrier_file(string $label = null)
      * @method Show\Field|Collection carrier_pdf(string $label = null)
+     * @method Show\Field|Collection volumn_cbm(string $label = null)
+     * @method Show\Field|Collection weight_kg(string $label = null)
      * @method Show\Field|Collection carrier_fee(string $label = null)
      * @method Show\Field|Collection irobot_id(string $label = null)
      * @method Show\Field|Collection units_number(string $label = null)
@@ -577,7 +596,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection amz_price(string $label = null)
      * @method Show\Field|Collection keyword(string $label = null)
      * @method Show\Field|Collection owner(string $label = null)
-     * @method Show\Field|Collection name_chinese(string $label = null)
+     * @method Show\Field|Collection chooseornot(string $label = null)
      * @method Show\Field|Collection name_english(string $label = null)
      * @method Show\Field|Collection irobot_sku(string $label = null)
      * @method Show\Field|Collection addbyuser(string $label = null)
@@ -613,6 +632,11 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection agent_contact(string $label = null)
      * @method Show\Field|Collection store_name(string $label = null)
      * @method Show\Field|Collection person(string $label = null)
+     * @method Show\Field|Collection order_id(string $label = null)
+     * @method Show\Field|Collection product_id(string $label = null)
+     * @method Show\Field|Collection purchase_number(string $label = null)
+     * @method Show\Field|Collection total_cost(string $label = null)
+     * @method Show\Field|Collection moniter_flag(string $label = null)
      * @method Show\Field|Collection picture(string $label = null)
      * @method Show\Field|Collection name_local(string $label = null)
      * @method Show\Field|Collection sku(string $label = null)

@@ -31,8 +31,9 @@ class ProductResource extends JsonResource
             'name_chinese' => $this->name_chinese,
             'asin'         => $this->asin,
             'irobot_sku'   => $this->irobot_sku,
-            'name_english' => $this->name_english  
-
+            'name_english' => $this->name_english,
+            'purchasemethod' => $this->purchasemethod,
+            'purchase_cost' => $this->purchase_cost,
         ];
     }
 }

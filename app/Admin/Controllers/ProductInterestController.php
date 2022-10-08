@@ -29,12 +29,27 @@ class ProductInterestController extends AdminController
         return Grid::make(new ProductInterest(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('image','产品图片')->image('',50,50);
-            $grid->column('label','标记')->select(\App\Models\ProductInterest::LABEL_STATUS)->sortable()->help('0-有兴趣；1-没有兴趣');//->label(\App\Models\ProductInterest::STATUS_COLOR);
+            // $grid->column('label','标记')->select(\App\Models\ProductInterest::LABEL_STATUS)->sortable()->help('0-有兴趣；1-没有兴趣');//->label(\App\Models\ProductInterest::STATUS_COLOR);
+            // $grid->column('chooseornot','调研与否')->select(\App\Models\ProductInterest::LABEL_STATUS)->sortable()->help('0-未调研；1-已调研');
             $grid->column('country','国家')->select(\App\Models\ProductInterest::COUNTRY_CODE)->sortable();;
-            $grid->column('asin','链接')->limit(30);
+            $grid->column('asin','链接')->limit(30)->link(function() {
+                if (strlen($this->asin) > 10)
+                    return $this->asin;
+                else
+                    if ($this->country == 1)
+                        return 'https://www.amazon.ca/dp/'.$this->asin;
+                    else if ($this->country == 0)
+                        return 'https://www.amazon.com/dp/'.$this->asin;
+                    else
+                        return ;
+            });
             $grid->column('keyword','关键词')->limit(30);
             $grid->column('name','产品名称')->limit(30);
-            $grid->column('store','卖家店铺')->limit(30);
+            $grid->column('store','卖家店铺')->limit(30)->link(function() {
+                if (strlen($this->store) > 0)
+                    return $this->store;
+
+            });
             $grid->column('bs_category','分类')->limit(30)->sortable();;
             $grid->column('amz_price','亚马逊售价')->editable(true);
             $grid->column('created_at','添加时间')->sortable();//orderBy('created_at', 'desc');
@@ -88,13 +103,14 @@ class ProductInterestController extends AdminController
     {
         return Form::make(new ProductInterest(), function (Form $form) {
             $form->display('id');
-            $form->select('label','有兴趣吗？')->options(\App\Models\ProductInterest::LABEL_STATUS);;
+            $form->select('label','有兴趣吗？')->options(\App\Models\ProductInterest::LABEL_STATUS)->default(0, true);
+            $form->select('country','国家')->default(1, true)->options(\App\Models\ProductInterest::COUNTRY_CODE);
             $form->text('asin','产品链接');
-            $form->text('bs_category','分类')->default('节日', true);
             $form->text('name','产品名字');
-            $form->image('image','产品图片')->autoUpload();
-            $form->select('country','国家')->default(0, true)->options(\App\Models\ProductInterest::COUNTRY_CODE);
             $form->text('keyword','关键词');
+            $form->text('bs_category','分类')->default('万圣节', true);
+            $form->image('image','产品图片')->autoUpload();
+        
             $form->text('owner','添加人')->default(Admin::user()->name, true);
             
             $form->text('store');

@@ -21,6 +21,7 @@ use App\Repositories\Product;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Models\ListingModel;
+use App\Models\ProductModel;
 
 class ApiController extends Controller
 {
@@ -29,11 +30,28 @@ class ApiController extends Controller
      * @param ProductRepository $repository
      * @return ProductResource
      */
-    public function getProductInfo(Request $request, Product $repository): ProductResource
+    public function getProductInfo(Request $request, Product $repository)
     {
         $product_id = $request->get('q');
 
         return ProductResource::make($repository->getInfoById($product_id));
+    }
+
+
+    public function getProductPurchaseMethod(Request $request, Product $repository)
+    {
+        // 获取产品SKU
+        $product_id = $request->get('q');
+        // 获取链接列表
+        return ProductModel::where('id',$product_id)->get(['id', 'purchasemethod as text'])->toarray();
+    }
+
+    public function getProductPurchaseCost(Request $request, Product $repository)
+    {
+        // 获取产品SKU
+        $product_id = $request->get('q');
+        // 获取链接列表
+        return ProductModel::where('id',$product_id)->get(['id', 'purchase_cost as text'])->toarray();
     }
 
     public function getListingInfo(Request $request, ListingRepository $repository): ListingResource
